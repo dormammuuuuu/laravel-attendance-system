@@ -1,0 +1,74 @@
+#qr-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px;
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #qr-card{
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        width: 100%;
+        text-align: center;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: 300px;
+        width: 100%;  
+        // background-image: url("../img/id_bg.svg");
+        background-size: cover;
+        background-position: center right;
+        background-repeat: no-repeat;
+        margin-bottom: 50px;
+
+        .qr-image{
+            // padding: 10px;
+            border-radius: 10px;
+            width: fit-content;
+            background-color: white;
+        }
+    
+        .qr-details{
+            .student-number{
+                font-size: 20px;
+                font-weight: 700;
+                color: #00204A;
+                letter-spacing: 2px;
+                margin-bottom: 10px;
+            }
+            .student-name{
+                font-size: 16px;
+                font-weight: 600;
+                color: #00204A;
+                letter-spacing: 1px;
+            }
+            .student-section{
+                font-size: 14px;
+                font-weight: 500;
+                color: #00204A;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    .download-button{
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #00204A;
+        color: white;
+        font-weight: 500;
+        text-align: center;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: none;
+        width: 100%;
+
+    }
+}

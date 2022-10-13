@@ -1,0 +1,47 @@
+#qr-id{
+    max-width: 226px;
+    width: 100%;
+    max-height: 348px;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: url("../img/id_bg.png");
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+.qr-image{
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    background-color: white;
+}
+
+.student-number{
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+.student-name{
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 1px;
+}
+.student-section{
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 1px;
+}

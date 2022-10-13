@@ -1,0 +1,34 @@
+#nav {
+  background-color: #fff;
+  color: #00204a;
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+#nav .left {
+  display: flex;
+  align-items: center;
+}
+#nav .left i {
+  margin-right: 10px;
+}
+#nav .right .logout {
+  margin-left: 20px;
+  color: #00204a;
+}
+#nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+#nav ul li {
+  padding: 0 10px;
+}
+#nav ul li a {
+  text-decoration: none;
+  color: #fff;
+}/*# sourceMappingURL=navbar.css.map */

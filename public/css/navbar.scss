@@ -1,0 +1,37 @@
+#nav{
+    background-color: #fff;
+    color: #00204a;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    .left{
+        display: flex;
+        align-items: center;
+        i{
+            margin-right: 10px;
+        }
+    }
+    .right{
+        .logout{
+            margin-left: 20px;
+            color: #00204a;
+        }
+    }
+    ul{
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        li{
+            padding: 0 10px;
+            a{
+                text-decoration: none;
+                color: #fff;
+            }
+        }
+    }
+
+}
