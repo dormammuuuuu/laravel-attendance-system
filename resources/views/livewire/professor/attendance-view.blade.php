@@ -10,7 +10,7 @@
             <th sortable wire:click="sortBy('student_no')">Student Number <i class='bx bxs-sort-alt'></i></th>
             <th sortable wire:click="sortBy('lastname')">Name <i class='bx bxs-sort-alt'></i></th>
             <th sortable wire:click="sortBy('section')">Year & Section <i class='bx bxs-sort-alt'></i></th>
-            <th>Actions</th>
+            <th>Status</th>
         </thead>
         <tbody> 
             @if ($data->count() == 0)
@@ -24,10 +24,19 @@
                     <td>{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
                     <td>{{ $user->section }}</td>
                     <td data-token="{{ $user->token }}">
-                        ------------
-                        {{-- <button class="action view">View</button>
-                        <button class="action edit">Edit</button> 
-                        <a class="action delete" href="/student/{{$user->token}}/delete">Delete</a> --}}
+                        @php
+                            $attendance = App\Models\ClassAttendance::where([
+                                'student_token' => $user->student_no,
+                                'attendance_day' => Carbon\Carbon::now()->format('Y-m-d'),
+                                'class_token' => $classToken
+                            ])->first();   
+
+                            if ($attendance) {
+                                echo '<span class="present">Present</span>';
+                            } else {
+                                echo '<span class="absent">Absent</span>';
+                            }
+                        @endphp
                     </td>
                 </tr>
             @endforeach

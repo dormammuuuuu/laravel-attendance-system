@@ -16,8 +16,8 @@
         </div>
         <form action="{{ route('auth.professor') }}" method="POST">
             @csrf
-            <x-form-group label="Username" id="UserName" type="text" />
-            <x-form-group label="Password" id="password" type="password" />
+            <x-form-group label="Username" id="UserName" type="text" value=""/>
+            <x-form-group label="Password" id="password" type="password" value=""/>
             <input id="submit" type="submit" value="Log in">
         </form>
         <div class="form-footer">

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/classCard.css') }}">
 @endsection
 
 @section('js')
@@ -29,18 +28,8 @@
     </x-sidebar.sidebar>
     <div id="main">
         <x-navbar.navbar title="{{$subject->class_name}} | {{ $subject->class_section }}" />
-        <div class="prof-class">
-            <div class="subject-card-container">
-                <x-subject.dashboard-card label="Students" count="{{$students}}" icon="bx bx-user" style="red"/>
-                <x-subject.dashboard-card label="Days" count="{{$session}}" icon="bx bx-sun"/>
-                <x-subject.dashboard-card label="Average Attendance" count="100%" icon="bx bx-calendar"/>
-            </div>
-            <div>
-                <x-action-card label="Start" desc="Start a session now." link="/professor/class/{{$subject->class_token}}/start"/>
-                <x-action-card label="View List" desc="View full student list" link="/professor/class/{{$subject->class_token}}/manage"/>
-                <x-action-card label="Attendance" desc="View student attendance" link="/professor/class/{{$subject->class_token}}/attendance"/>
-                <x-action-card label="Delete" desc="This option will delete your class and all of its records. Delete at your own risk." link="/professor/class/{{$subject->class_token}}/delete"/>
-            </div>
+        <div class="table-container">
+            @livewire('professor.attendance-view', [$subject->id])
         </div>
     </div>
 @endsection

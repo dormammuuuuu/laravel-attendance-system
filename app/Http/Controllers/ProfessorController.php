@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Classroom;
 use Illuminate\Support\Str;
+use App\Models\ClassSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -32,7 +34,7 @@ class ProfessorController extends Controller
         ]);
 
         $user = ([
-            'UserName' => $request->UserName,
+            'username' => $request->UserName,
             'password' => $request->password
         ]);
 
@@ -41,7 +43,18 @@ class ProfessorController extends Controller
             return redirect()->route('professors.dashboard');
         }
 
-        return back()->withErrors([
+        $temp = User::where([
+            'username' => $request->UserName,
+            'password' => $request->password
+        ])->first();
+
+        if($temp){
+            if($temp->approved == 0){
+                return back()->with('error', 'Your account is not yet approved by the admin.');
+            }
+        }
+
+        return redirect()->route('professors.login')->withErrors([
             'UserName' => 'The provided credentials do not match our records.'
         ]);
     }
@@ -68,7 +81,7 @@ class ProfessorController extends Controller
 
         User::create($user);
 
-        return redirect()->route('professors.index');
+        return redirect()->route('professors.index')->with('success', 'Please wait for an admin to approve your account');
     }
 
     public function destroy($token){
@@ -79,13 +92,22 @@ class ProfessorController extends Controller
 
     public function classDashboard($token){
         $subject = Classroom::where('class_token', $token)->first();
+        
+        $student = User::where([
+            'role' => 'student',
+            'section' => $subject->class_section,
+        ])->get();
+        $students = $student->count();
 
-        return view('professors.class', compact('subject'));
+        $class = ClassSession::where(['class_token' => $token])->get();
+        $session = $class->count();
+
+        return view('professors.class', compact('subject', 'students', 'session'));
     }
 
     public function manageClass($token){
         $subject = Classroom::where('class_token', $token)->first();
-
+            
         return view('professors.manageclass', compact('subject'));
     }
 
@@ -93,5 +115,45 @@ class ProfessorController extends Controller
         $class = Classroom::where('class_token', $token)->first();
         $class->delete();
         return redirect()->route('professors.dashboard')->with('success', 'Class Deleted');
+    }
+
+    public function startClass($token){
+        $attempt = ClassSession::where([
+            'class_token' => $token,
+            'class_date' => Carbon::now()->format('Y-m-d'),
+        ])->first();
+
+        if (!$attempt) {
+            ClassSession::create([
+                'class_token' => $token,
+                'class_date' => Carbon::now()->format('Y-m-d'),
+            ]);
+        }
+
+        $subject = Classroom::where('class_token', $token)->first();
+        $token = $subject->class_token;
+//        $class = Classroom::where('class_token', $token)->first();
+//       $class->save();
+        return view('professors.start-class', compact('subject', 'token'));
+    }
+
+    public function attendance($token){
+        $date = Carbon::now()->format('Y-m-d');
+        $subject = Classroom::where('class_token', $token)->first();
+        $section = $subject->class_section;
+
+        $attempt = ClassSession::where([
+            'class_token' => $token,
+            'class_date' => $date,
+        ])->first();
+
+        if ($attempt) {
+            $students = User::where([
+                'role' => 'student',
+                'section' => $section,
+            ])->get();
+
+            return view('professors.attendance', compact('students', 'subject'));
+        }
     }
 }

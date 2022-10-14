@@ -8,7 +8,7 @@ use App\Models\Classroom;
 use App\Models\ClassStudent;
 use Livewire\WithPagination;
 
-class ManageClass extends Component
+class AttendanceView extends Component
 {
     use WithPagination;
     public ClassStudent $class;
@@ -16,6 +16,7 @@ class ManageClass extends Component
     public $sortField = 'lastname';
     public $sortDirection = 'asc';
     public $classSection;
+    public $classToken;
 
     public $listeners = ['refreshProfessors' => 'render'];
 
@@ -27,6 +28,7 @@ class ManageClass extends Component
     public function mount(Classroom $class)
     {
         $this->classSection = $class->class_section;
+        $this->classToken = $class->class_token;
     }
 
     public function sortBy($field)
@@ -41,7 +43,7 @@ class ManageClass extends Component
 
     public function render()
     {
-        return view('livewire.professor.manage-class', [
+        return view('livewire.professor.attendance-view', [
             'data' => User::where('section', $this->classSection)->orderBy($this->sortField, $this->sortDirection)->search('student_no', $this->search)->paginate(10)
         ]);
     }

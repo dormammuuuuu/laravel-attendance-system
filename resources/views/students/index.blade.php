@@ -14,6 +14,8 @@
         <div class="form-header">
             <h2>Student Registration</h2>
         </div>
+        <form action="{{ route('register.student') }}" method="POST">
+            @csrf
             <x-form-group label="Student Number" id="StudentNumber" type="text" />
             <x-form-group label="First Name" id="FirstName" type="text" />
             <div class="row">
@@ -22,5 +24,6 @@
             </div>
             <x-form-group label="Year & Section" id="Course" type="text" />
             <input id="submit" type="submit" value="Register">
+        </form>
     </div>
 @endsection

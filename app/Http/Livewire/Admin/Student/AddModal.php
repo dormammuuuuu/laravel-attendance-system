@@ -19,7 +19,7 @@ class AddModal extends ModalComponent
         'firstname' => 'required|min:3|max:30',
         'middleinitial' => 'required|min:1|max:1',
         'lastname' => 'required|min:3|max:30',
-        'student_no' => 'required|min:3|max:30|unique:users, student_no',
+        'student_no' => 'required|min:3|max:30|unique:users,student_no',
         'section' => 'required|min:3|max:30',
     ];
 
@@ -34,7 +34,7 @@ class AddModal extends ModalComponent
     public function create()
     {
         $validatedData = $this->validate();
-
+        
         $data = [
             'firstname' => $validatedData['firstname'],
             'middleinitial' => $validatedData['middleinitial'],
@@ -44,6 +44,7 @@ class AddModal extends ModalComponent
             'role' => 'student',
             'token' => Str::random(20),
         ];
+
 
         User::create($data);
         $this->closeModal();

@@ -21,7 +21,7 @@ class EditModal extends ModalComponent
             'firstname' => 'required|min:3|max:30',
             'middleinitial' => 'required|min:1|max:1',
             'lastname' => 'required|min:3|max:30',
-            'student_no' => 'required|min:3|max:30|unique:users,student_no, ' . $this->user->id . ',id',
+            'student_no' => 'required|min:3|max:30|unique:users,student_no,' . $this->user->id . ',id',
             'section' => 'required|min:3|max:30',
         ]);
 

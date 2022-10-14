@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'lastname' => $this->faker->lastName,
             'middleinitial' => ucfirst($this->faker->randomLetter),
             'student_no' => $this->faker->unique()->regexify('[0-9]{4}-[0-9]{5}-[A-Z]{2}-[0-9]'),
-            'section' => $this->faker->randomElement(['BSIT-1A', 'BSIT-1B', 'BSIT-1C', 'BSIT-2A', 'BSIT-2B', 'BSIT-2C', 'BSIT-3A', 'BSIT-3B', 'BSIT-3C', 'BSIT-4A', 'BSIT-4B', 'BSIT-4C']),
+            'section' => $this->faker->randomElement(['ICT 11-A', 'ICT 12-A', 'GAS 11-A', 'GAS 12-A']),
             'role' => $this->faker->randomElement(['student', 'professor']),
             'token' => Str::random(20),
             'username' => $this->faker->unique()->userName,

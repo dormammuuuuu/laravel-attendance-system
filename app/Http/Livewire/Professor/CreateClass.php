@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Professor;
 
+use App\Models\User;
 use App\Models\Classroom;
 use Illuminate\Support\Str;
 use LivewireUI\Modal\ModalComponent;
@@ -11,6 +12,12 @@ class CreateClass extends ModalComponent
     public $class_name;
     public $class_room;
     public $class_section;
+    public $dropdown;
+
+    public function mount(){
+        $this->dropdown = User::distinct('section')->orderBy('section', 'asc')->pluck('section');
+        $this->class_section = $this->dropdown[0];
+    }
 
     public function createClass(){
         $this->validate([
@@ -30,6 +37,10 @@ class CreateClass extends ModalComponent
         Classroom::create($data);
         $this->closeModal();
         return redirect(request()->header('Referer'))->with('success', 'Class created successfully!');
+    }
+
+    public function updateSelect($data){
+        $this->class_section = $data;
     }
 
     public function render()

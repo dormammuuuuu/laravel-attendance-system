@@ -83,4 +83,19 @@
 }
 .form-footer a {
   color: #00BBF0;
+}
+
+.dropdown-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+select {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 15px;
+  margin-top: 5px;
 }/*# sourceMappingURL=form.css.map */

@@ -26,9 +26,7 @@ class AdminController extends Controller
         $request->validate([
             'UserName' => 'required',
             'password' => 'required'
-        ]);
-
-        $credentials = $request->only('UserName', 'password');        
+        ]);     
 
         if (Auth::attempt(['username' => $request->UserName, 'password' => $request->password, 'role' => 'admin'])) {
             $request->session()->regenerate();
@@ -36,7 +34,7 @@ class AdminController extends Controller
         }
 
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'UserName' => 'The provided credentials do not match our records.',
         ]);
     }
 
