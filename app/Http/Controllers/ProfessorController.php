@@ -73,7 +73,7 @@ class ProfessorController extends Controller
             'lastname' => $request->LastName,
             'middleinitial' => $request->MiddleInitial,
             'username' => $request->UserName,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'role' => 'professor',
             'token' => Str::random(20),
             'approved' => 0,
