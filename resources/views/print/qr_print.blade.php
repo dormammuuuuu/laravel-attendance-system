@@ -45,8 +45,8 @@
 <body>
     
     <div id="qr-id" style="min-width: 200px; max-width: 300px; padding-top: 20px; height: 375px;    border-radius: 5px;    box-shadow: 0 0 10px rgba(0,0,0,0.2); text-align: center;  display: flex;    flex-direction: row;    justify-content: space-evenly;    align-items: center;  border: 1px solid #000; border-radius: 5px">
-        <div class="qr-image" style="padding: 10px;    padding-bottom: 20px; border-radius: 10px;   margin:auto;   background-color: white;">
-            <img src="data:image/png;base64, {{ base64_encode(QrCode::size(200)->generate($data->student_no)) }} ">
+        <div class="qr-image" style="padding: 20px 10px;    padding-bottom: 15px; border-radius: 10px;   margin:auto;   background-color: white;">
+            <img src="data:image/png;base64, {{ base64_encode(QrCode::size(220)->generate($data->student_no)) }} ">
         </div>
         <div class="qr-details">
             <p style="font-family: 'PoppinsBold', sans-serif; font-size: 22px;    font-weight: 600;    color: #00204a ;letter-spacing: 2px;">{{$data->student_no}}</p>
