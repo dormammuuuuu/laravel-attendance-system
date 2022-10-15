@@ -52,4 +52,28 @@
 #sidebar .sidebar-content .group ul li a i {
   margin-right: 15px;
   font-size: 15px;
+}
+#sidebar .bottom {
+  border-top: #ffffff 1px solid;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+#sidebar .bottom .name {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+#sidebar .bottom a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}
+#sidebar .bottom a i {
+  margin-right: 10px;
 }/*# sourceMappingURL=sidebar.css.map */

@@ -15,8 +15,14 @@
     <script src="{{ asset('js/admin/dashboard.js') }}"></script>
 @endsection    
 
+@php
+    $firstname = auth()->user()->firstname;
+    $lastname = auth()->user()->lastname;
+    $middleinitial = auth()->user()->middleinitial;     
+@endphp
+
 @section('content')
-    <x-sidebar.sidebar>
+    <x-sidebar.sidebar firstname="{{$firstname}}" lastname="{{$lastname}}" middleinitial="{{$middleinitial}}">
         <div class="group">
             <x-sidebar.sidebar-content-header title="Manage"/>
             <ul>

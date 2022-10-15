@@ -59,6 +59,29 @@
             }
         }
     }
-
+    .bottom{
+        border-top: #ffffff 1px solid;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 12px;
+        color: rgba(#ffffff, 0.7);
+        .name{
+            font-weight: 400;
+            font-size: 14px;
+            margin-bottom: 10px
+        }
+        a{
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            i{
+                margin-right: 10px;
+            }
+        }
+    }
     
 }
