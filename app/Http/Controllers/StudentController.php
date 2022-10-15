@@ -76,7 +76,6 @@ class StudentController extends Controller
         $pdf->setPaper($customPaper);
         $pdf->render();
         return $pdf->stream('qr_code.pdf');
-        return $pdf->download('qrcode.pdf');
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classroom;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,13 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $student = User::where('role', 'student')->count();
+        $prof = User::where([
+            ['role', 'professor'],
+            ['approved', 1]
+        ])->count();
+        $class = Classroom::count();
+        return view('admin.dashboard', compact('student', 'prof', 'class'));
     }
 
     public function authenticate(Request $request)

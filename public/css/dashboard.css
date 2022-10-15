@@ -211,6 +211,8 @@
   margin-bottom: 30px;
 }
 .prof-class .subject-card-container .subject-card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -227,17 +229,17 @@
   font-weight: 600;
 }
 .prof-class .subject-card-container .subject-card .icon {
-  width: 50px;
-  height: 50px;
+  position: absolute;
+  right: 0;
+  bottom: -15px;
   border-radius: 50%;
-  background-color: #00204A;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .prof-class .subject-card-container .subject-card .icon i {
-  font-size: 30px;
-  color: white;
+  font-size: 120px;
+  color: rgba(0, 32, 74, 0.5);
 }
 .prof-class a {
   text-decoration: none;

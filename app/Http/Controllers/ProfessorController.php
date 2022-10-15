@@ -8,6 +8,7 @@ use App\Models\Classroom;
 use Illuminate\Support\Str;
 use App\Models\ClassSession;
 use Illuminate\Http\Request;
+use App\Models\ClassAttendance;
 use Illuminate\Support\Facades\Cache;
 
 class ProfessorController extends Controller
@@ -102,7 +103,10 @@ class ProfessorController extends Controller
         $class = ClassSession::where(['class_token' => $token])->get();
         $session = $class->count();
 
-        return view('professors.class', compact('subject', 'students', 'session'));
+        $temp = ClassAttendance::where(['class_token' => $token, 'attendance_day' => Carbon::now()->format('Y-m-d')])->get();
+        $attendance = $temp->count() / $students * 100;
+        $attendance = round($attendance);
+        return view('professors.class', compact('subject', 'students', 'session', 'attendance'));
     }
 
     public function manageClass($token){
@@ -113,7 +117,10 @@ class ProfessorController extends Controller
 
     public function deleteClass($token){
         $class = Classroom::where('class_token', $token)->first();
+        ClassAttendance::where('class_token', $token)->delete();
+        ClassSession::where('class_token', $token)->delete();
         $class->delete();
+        
         return redirect()->route('professors.dashboard')->with('success', 'Class Deleted');
     }
 

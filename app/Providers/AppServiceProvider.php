@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Builder::macro('search', function ($field, $string){
             return $string ? $this->where($field, 'like', '%'.$string.'%') : $this;
         });
-        // Debugbar::disable(); 
+        Debugbar::disable(); 
 
         Paginator::defaultView('pagination::default');
  

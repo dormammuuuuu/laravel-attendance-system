@@ -24,6 +24,9 @@
 @section('content')
     <x-sidebar.sidebar firstname="{{$firstname}}" lastname="{{$lastname}}" middleinitial="{{$middleinitial}}">
         <div class="group">
+            <ul>
+                <x-sidebar.sidebar-item href="{{route('admin.dashboard')}}" icon="bx bxs-dashboard" title="Dashboard"/>
+            </ul>
             <x-sidebar.sidebar-content-header title="Manage"/>
             <ul>
                 <x-sidebar.sidebar-item href="{{route('admin.registrations')}}" icon="bx bxs-user-plus" title="Registration Request"/>

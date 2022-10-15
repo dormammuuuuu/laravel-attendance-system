@@ -1,7 +1,7 @@
 <div>
     <div class="search-container">
         <div class="button-container">
-            <button class="export">Export</button>
+            <button class="export" wire:click="exportIndividual">Export</button>
         </div>
         <input wire:model="search" type="text" name="search" id="search" placeholder="Search Student Number...">    
     </div>

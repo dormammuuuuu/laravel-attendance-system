@@ -39,7 +39,7 @@
             <div class="subject-card-container">
                 <x-subject.dashboard-card label="Students" count="{{$students}}" icon="bx bx-user" style="red"/>
                 <x-subject.dashboard-card label="Days" count="{{$session}}" icon="bx bx-sun"/>
-                <x-subject.dashboard-card label="Average Attendance" count="100%" icon="bx bx-calendar"/>
+                <x-subject.dashboard-card label="Attendance Today" count="{{$attendance}}%" icon="bx bx-calendar"/>
             </div>
             <div>
                 <x-action-card label="Start" desc="Start a session now." link="/professor/class/{{$subject->class_token}}/start"/>
