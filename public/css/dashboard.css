@@ -333,6 +333,15 @@
 .user-info.show {
   display: block;
 }
+.user-info .present, .user-info .absent {
+  background-color: #76eba5;
+  color: green;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 13px;
+}
 .user-info .heading {
   font-size: 18px;
   font-weight: 600;

@@ -347,6 +347,15 @@
     &.show{
         display: block;
     }
+    .present{
+        background-color: #76eba5;
+        color: green;
+        border: 1px solid green;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
     .heading{
         font-size: 18px;
         font-weight: 600;
