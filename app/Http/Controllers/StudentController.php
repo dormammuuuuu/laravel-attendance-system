@@ -18,12 +18,6 @@ class StudentController extends Controller
     
     public function store(Request $request)
     {
-        $studentNumber = $request->input('StudentNumber');
-        $data = User::where('student_no', $studentNumber)->first();
-        if($data){
-            $token = $data->token;
-            return redirect('/student/'.$token.'/qrcode');
-        }
 
         $request->validate([
             'FirstName' => 'required|max:30|min:2',
@@ -32,6 +26,16 @@ class StudentController extends Controller
             'Course' => 'required|max:30|min:2',
             'StudentNumber' => 'required|max:30|min:2|unique:users,student_no',
         ]);
+
+        
+        $studentNumber = $request->input('StudentNumber');
+        $data = User::where('student_no', $studentNumber)->first();
+        if($data){
+            $token = $data->token;
+            return redirect('/student/'.$token.'/qrcode');
+        }
+
+        
 
         $token = Str::random(20);
 
