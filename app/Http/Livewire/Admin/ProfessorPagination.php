@@ -35,8 +35,14 @@ class ProfessorPagination extends Component
         return view('livewire.admin.professor-pagination', [
             'data' => User::where([
                 'role' => 'professor',
-                'approved' => true
-            ])->search('username', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(10)
+                'approved' => true,
+            ])->search([
+                'firstname',
+                'lastname',
+                'username',
+            ], $this->search)
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(10)
         ]);
     }
 }

@@ -34,8 +34,32 @@ class StudentPagination extends Component
 
     public function render()
     {
+        // $data = User::search('student_no', $this->search)
+        //     ->search('firstname', $this->search)
+        //     ->search('lastname', $this->search)
+        //     ->search('section', $this->search)
+        //     ->where('role', 'student')
+        //     ->orderBy($this->sortField, $this->sortDirection)
+        //     ->paginate(10);
+
+        // return view('livewire.admin.student-pagination', [
+        //     'data' => User::where('role', 'student')
+        //         ->orderBy($this->sortField, $this->sortDirection)
+        //         ->search(['student_no', 'firstname'], $this->search)
+        //             ->paginate(10)
+        // ]);
+
         return view('livewire.admin.student-pagination', [
-            'data' => User::where('role', 'student')->orderBy($this->sortField, $this->sortDirection)->search('student_no', $this->search)->paginate(10)
+            'data' => User::where('role', 'student')
+            ->search([
+                'student_no',
+                'firstname',
+                'lastname',
+                'section',
+            ], $this->search)
+            
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(10)
         ]);
     }
 }

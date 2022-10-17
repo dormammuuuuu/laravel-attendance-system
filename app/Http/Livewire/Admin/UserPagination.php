@@ -33,11 +33,17 @@ class UserPagination extends Component
 
     public function render()
     {
-        $data = User::where([
-            'role' => 'professor',
-            'approved' => false
-        ])->search('username', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(10);
-
-        return view('livewire.admin.registration-pagination', ['data' => $data]);
+        return view('livewire.admin.registration-pagination', [
+            'data' => User::where([
+                'role' => 'professor',
+                'approved' => false,
+            ])->search([
+                'firstname',
+                'lastname',
+                'username',
+            ], $this->search)
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(10)
+        ]);
     }
 }

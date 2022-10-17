@@ -65,7 +65,16 @@ class AttendanceView extends Component
     public function render()
     {
         return view('livewire.professor.attendance-view', [
-            'data' => User::where('section', $this->classSection)->orderBy($this->sortField, $this->sortDirection)->search('student_no', $this->search)->paginate(10)
+            'data' => User::where('section', $this->classSection)
+            ->search([
+                'student_no',
+                'firstname',
+                'lastname',
+                'section',
+            ], $this->search)
+            
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(10)
         ]);
     }
 }

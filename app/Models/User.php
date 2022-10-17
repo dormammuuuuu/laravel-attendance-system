@@ -12,6 +12,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $searchableColumns = ['student_no', 'firstname', 'lastname', 'section'];
     /**
      * The attributes that are mass assignable.
      *

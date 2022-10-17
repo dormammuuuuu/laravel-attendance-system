@@ -4,7 +4,10 @@
             <button class="add" wire:click="$emit('openModal', 'admin.student.add-modal')">Add Student</button>
             <button class="export">Export</button>
         </div>
-        <input wire:model="search" type="text" name="search" id="search" placeholder="Search Student Number...">    
+        <div>
+            <input wire:model="search" type="text" name="search" id="search" placeholder="Search Student Number...">    
+            <button wire:click="$emit('openModal', 'admin.student.search-filter')"><i class='bx bx-filter-alt'></i></button>
+        </div>
     </div>
     <table>      
         <thead>
@@ -26,7 +29,6 @@
                     <td>{{ $user->section }}</td>
                     <td data-token="{{ $user->token }}">
                         <button class="action view" wire:click="$emit('openModal', 'admin.student.view-modal', {{ json_encode([$user->id]) }})">View</button>
-                        {{-- <button class="action edit" wire:click='$emit("openModal", "modal", )'>Edit User</button> --}}
                         <button class="action edit" wire:click="$emit('openModal', 'admin.student.edit-modal', {{ json_encode([$user->id]) }})">Edit</button> 
                         <a class="action delete" href="/student/{{$user->token}}/delete">Delete</a>
                     </td>
