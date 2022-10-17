@@ -30,8 +30,6 @@ Route::get('/student/{token}/qrcode/download', 'App\Http\Controllers\StudentCont
 
 
 
-
-
 //Professor Routes
     //Professor Registration
 Route::get('/professor/signup', 'App\Http\Controllers\ProfessorController@index')->name('professors.index')->middleware('guest');
@@ -58,17 +56,17 @@ Route::get('/professor/class/{token}/attendance', 'App\Http\Controllers\Professo
 Route::get('/admin/login', 'App\Http\Controllers\AdminController@login')->name('admin.login')->middleware('guest');
 Route::post('/authenticate/admin', 'App\Http\Controllers\AdminController@authenticate')->name('auth.admin');
     //Admin Dashboard
-Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard')->middleware('auth');
+Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard')->middleware('useraccess');
     //Admin Registration Management
-Route::get('/admin/registrations', 'App\Http\Controllers\AdminController@registrations')->name('admin.registrations')->middleware('auth');
+Route::get('/admin/registrations', 'App\Http\Controllers\AdminController@registrations')->name('admin.registrations')->middleware('useraccess');
     //Admin Registration Approval
-Route::get('/admin/registrations/{token}/approve', 'App\Http\Controllers\AdminController@approve')->name('admin.approve')->middleware('auth');
+Route::get('/admin/registrations/{token}/approve', 'App\Http\Controllers\AdminController@approve')->name('admin.approve')->middleware('useraccess');
     //Admin Registration Disapproval
-Route::get('/admin/registrations/{token}/reject', 'App\Http\Controllers\AdminController@disapprove')->name('admin.disapprove')->middleware('auth');
+Route::get('/admin/registrations/{token}/reject', 'App\Http\Controllers\AdminController@disapprove')->name('admin.disapprove')->middleware('useraccess');
     //Admin Professor Management
-Route::get('/admin/professors', 'App\Http\Controllers\AdminController@professors')->name('admin.professors')->middleware('auth');
+Route::get('/admin/professors', 'App\Http\Controllers\AdminController@professors')->name('admin.professors')->middleware('useraccess');
     //Admin Student Management
-Route::get('/admin/students', 'App\Http\Controllers\AdminController@students')->name('admin.students')->middleware('auth');
+Route::get('/admin/students', 'App\Http\Controllers\AdminController@students')->name('admin.students')->middleware('useraccess');
     //Admin Delete Student
 Route::get('/student/{token}/delete', 'App\Http\Controllers\StudentController@destroy')->name('student.delete');
     //Admin Delete Professor

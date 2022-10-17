@@ -38,15 +38,11 @@ class ProfessorController extends Controller
             'username' => $request->UserName,
             'password' => $request->password
         ]);
+        
 
-        if(auth()->attempt($user)){
-            $request->session()->regenerate();
-            return redirect()->route('professors.dashboard');
-        }
 
         $temp = User::where([
-            'username' => $request->UserName,
-            'password' => $request->password
+            'username'=> $request->UserName,
         ])->first();
 
         if($temp){
@@ -54,6 +50,12 @@ class ProfessorController extends Controller
                 return back()->with('error', 'Your account is not yet approved by the admin.');
             }
         }
+
+        if(auth()->attempt($user)){
+            $request->session()->regenerate();
+            return redirect()->route('professors.dashboard');
+        }
+
 
         return redirect()->route('professors.login')->withErrors([
             'UserName' => 'The provided credentials do not match our records.'
