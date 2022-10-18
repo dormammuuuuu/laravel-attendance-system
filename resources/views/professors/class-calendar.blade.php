@@ -1,6 +1,8 @@
 @extends('./layouts.main')
 
-@section('title', 'Professor | Dashboard')
+@section('title')
+    {{ $subject->class_name }} | {{ $subject->class_section }}
+@endsection
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
@@ -8,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/classCard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
 @endsection
 
@@ -23,21 +24,22 @@
 @endphp
 
 @section('content')
+
     <x-sidebar.sidebar firstname="{{$firstname}}" lastname="{{$lastname}}" middleinitial="{{$middleinitial}}">
         <div class="group">
             <x-sidebar.sidebar-content-header title="Manage"/>
             <ul>
-                <x-sidebar.sidebar-item href="#" icon="bx bxs-user-plus" title="My Class"/>
+                <x-sidebar.sidebar-item href="{{route('professors.dashboard')}}" icon="bx bxs-user-plus" title="My Class"/>
                 <x-sidebar.sidebar-item href="#" icon="bx bxs-user-plus" title="Attendance"/>
             </ul>
         </div>
     </x-sidebar.sidebar>
     <div id="main">
-        <x-navbar.navbar title="Dashboard" />
-        <div class="action-container">
-            <button class="styled-button" onclick="Livewire.emit('openModal', 'professor.create-class')"><i class='bx bx-plus'></i> Create Class</button>
+        <x-navbar.navbar title="{{$subject->class_name}} | {{ $subject->class_section }}" />
+
+        <div class="calendar-container">
+            <livewire:class-calendar :day-click-enabled="false"
+            :drag-and-drop-enabled="false"/>
         </div>
-        @livewire('professor.display-class')
     </div>
-    {{-- here --}}
 @endsection

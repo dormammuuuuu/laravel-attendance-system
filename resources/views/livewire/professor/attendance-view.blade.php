@@ -27,7 +27,7 @@
                         @php
                             $attendance = App\Models\ClassAttendance::where([
                                 'student_token' => $user->student_no,
-                                'attendance_day' => Carbon\Carbon::now()->format('Y-m-d'),
+                                'attendance_day' => $classDate,
                                 'class_token' => $classToken
                             ])->first();   
 

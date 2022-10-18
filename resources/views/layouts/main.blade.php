@@ -22,6 +22,7 @@
 <body>
     @yield('content')
     @livewireScripts
+    @livewireCalendarScripts
     @livewire('livewire-ui-modal')
 </body>
 </html>

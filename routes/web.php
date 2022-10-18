@@ -47,9 +47,10 @@ Route::get('/professor/class/{token}/manage', 'App\Http\Controllers\ProfessorCon
 Route::get('/professor/class/{token}/delete', 'App\Http\Controllers\ProfessorController@deleteClass')->name('professors.class.delete')->middleware('auth');
     //Professor Start Class
 Route::get('/professor/class/{token}/start', 'App\Http\Controllers\ProfessorController@startClass')->name('professors.class.start')->middleware('auth');
-//Professor Attendance
-Route::get('/professor/class/{token}/attendance', 'App\Http\Controllers\ProfessorController@attendance')->name('professors.class.attendance')->middleware('auth');
-
+    //Professor Attendance
+Route::get('/professor/class/{token}/calendar', 'App\Http\Controllers\ProfessorController@calendar')->name('professors.class.calendar')->middleware('auth');
+    //Professor Attendance
+Route::get('/professor/class/{token}/calendar/{date}', 'App\Http\Controllers\ProfessorController@attendance')->name('professors.class.attendance')->middleware('auth');
 
 //Admin Routes
     //Admin Login

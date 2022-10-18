@@ -20,6 +20,7 @@ class AttendanceView extends Component
     public $sortDirection = 'asc';
     public $classSection;
     public $classToken;
+    public $classDate;
 
     public $listeners = ['refreshProfessors' => 'render'];
 
@@ -30,6 +31,7 @@ class AttendanceView extends Component
 
     public function mount(Classroom $class)
     {
+        $this->classDate = request()->segment(5);
         $this->classSection = $class->class_section;
         $this->classToken = $class->class_token;
     }

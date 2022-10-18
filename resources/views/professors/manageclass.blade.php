@@ -38,4 +38,4 @@
             @livewire('professor.manage-class', [$subject->id])
         </div>
     </div>
-@endsection
+@endsectiona

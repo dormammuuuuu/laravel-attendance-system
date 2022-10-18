@@ -44,7 +44,7 @@
             <div>
                 <x-action-card label="Start" desc="Start a session now." link="/professor/class/{{$subject->class_token}}/start"/>
                 <x-action-card label="View List" desc="View full student list" link="/professor/class/{{$subject->class_token}}/manage"/>
-                <x-action-card label="Attendance" desc="View student attendance" link="/professor/class/{{$subject->class_token}}/attendance"/>
+                <x-action-card label="Attendance" desc="View student attendance" link="/professor/class/{{$subject->class_token}}/calendar"/>
                 <x-action-card label="Delete" desc="This option will delete your class and all of its records. Delete at your own risk." link="/professor/class/{{$subject->class_token}}/delete"/>
             </div>
         </div>

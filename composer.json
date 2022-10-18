@@ -4,7 +4,8 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
-    "require": {
+    "repositories": [ { "type": "vcs", "url": "https://github.com/Butochnikov/livewire-calendar" } ],
+        "require": {
         "php": "^8.0.2",
         "barryvdh/laravel-dompdf": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -14,7 +15,8 @@
         "livewire/livewire": "^2.10",
         "php-flasher/flasher-laravel": "^1.7",
         "simplesoftwareio/simple-qrcode": "~4",
-        "wire-elements/modal": "^1.0"
+        "wire-elements/modal": "^1.0",
+        "asantibanez/livewire-calendar": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

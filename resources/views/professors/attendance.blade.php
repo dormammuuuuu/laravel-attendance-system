@@ -35,7 +35,7 @@
     <div id="main">
         <x-navbar.navbar title="{{$subject->class_name}} | {{ $subject->class_section }}" />
         <div class="table-container">
-            @livewire('professor.attendance-view', [$subject->id])
+            @livewire('professor.attendance-view', [$subject->id, $date])
         </div>
     </div>
 @endsection
