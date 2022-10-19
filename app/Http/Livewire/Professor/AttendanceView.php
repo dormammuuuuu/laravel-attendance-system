@@ -37,9 +37,11 @@ class AttendanceView extends Component
     }
 
     public function exportIndividual(){
-        $professor_name = auth()->user()->firstname . ' ' . auth()->user()->lastname;
         $class_section = $this->classSection;
         $subject = Classroom::where('class_token', $this->classToken)->first()->class_name;
+        $tmp_prof = Classroom::where('class_token', $this->classToken)->first()->class_prof;
+        $tmp = User::where('token', $tmp_prof)->first();
+        $professor_name = $tmp->firstname . ' ' . $tmp->lastname;
         $date = $this->classDate;
         $token = $this->classToken;
         $data = User::where([
