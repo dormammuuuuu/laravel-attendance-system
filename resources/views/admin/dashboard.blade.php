@@ -24,13 +24,14 @@
         <div class="group">
             <ul>
                 <x-sidebar.sidebar-item href="{{route('admin.dashboard')}}" icon="bx bxs-dashboard" title="Dashboard"/>
+                <x-sidebar.sidebar-item href="{{route('professors.dashboard')}}" icon="bx bxs-dashboard" title="Prof. Dashboard"/>
             </ul>
             <x-sidebar.sidebar-content-header title="Manage"/>
             <ul>
                 <x-sidebar.sidebar-item href="{{route('admin.registrations')}}" icon="bx bxs-user-plus" title="Registration Request"/>
                 <x-sidebar.sidebar-item href="{{route('admin.professors')}}" icon="bx bxs-user" title="Professor"/>
                 <x-sidebar.sidebar-item href="{{route('admin.students')}}" icon="bx bxs-book" title="Student"/>
-                <x-sidebar.sidebar-item href="{{route('admin.classes')}}" icon="bx bxs-book" title="Class"/>
+                <x-sidebar.sidebar-item href="{{route('admin.classes')}}" icon="bx bx-chalkboard" title="Class"/>
             </ul>
         </div>
     </x-sidebar.sidebar>
@@ -49,9 +50,4 @@
             </div>
         </div>
     </div>
-
-@endsection
-
-@section('wow')
-​We are raising money for one of our friend who has a cyst located at the left part of his stomach. His name is Ramino Santos. he is currently at the last year of college at Technological University of the Philippines. He has dreams that he wanted to fulfill someday. He was sick for almost a year and his eyes were already turning yellow. We will use the funds that we can get here for his operations, laboratory tests, medications, and many more. 
 @endsection
