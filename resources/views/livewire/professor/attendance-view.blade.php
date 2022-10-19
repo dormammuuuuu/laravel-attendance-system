@@ -3,7 +3,7 @@
         <div class="button-container">
             <button class="export" wire:click="exportIndividual">Export</button>
         </div>
-        <input wire:model="search" type="text" name="search" id="search" placeholder="Search Student Number...">    
+        <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
     </div>
     <table>      
         <thead>

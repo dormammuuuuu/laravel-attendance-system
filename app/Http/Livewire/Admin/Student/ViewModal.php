@@ -14,6 +14,7 @@ class ViewModal extends ModalComponent
     public $middleinitial;
     public $section;
     public $student_no;
+    public $token;
 
     public function mount(User $user)
     {
@@ -24,6 +25,7 @@ class ViewModal extends ModalComponent
         $this->lastname = $user->lastname;
         $this->middleinitial = $user->middleinitial;
         $this->section = $user->section;
+        $this->token = $user->token;
     }
 
     public function render()

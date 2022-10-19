@@ -5,7 +5,7 @@
             <button class="export">Export</button>
         </div>
         <div>
-            <input wire:model="search" type="text" name="search" id="search" placeholder="Search Student Number...">    
+            <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
             <button wire:click="$emit('openModal', 'admin.student.search-filter')"><i class='bx bx-filter-alt'></i></button>
         </div>
     </div>

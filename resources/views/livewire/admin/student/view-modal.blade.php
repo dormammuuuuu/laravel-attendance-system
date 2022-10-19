@@ -8,5 +8,6 @@
             <p class="student-name">{{$lastname}}, {{$firstname}} {{$middleinitial}}.</p>
             <p class="student-section">{{$section}}</p>
         </div>
+        <a target="_blank" class="qr-download" href="/student/{{$token}}/qrcode/download">Download Student QR Code</a>
     </div>
 </div>

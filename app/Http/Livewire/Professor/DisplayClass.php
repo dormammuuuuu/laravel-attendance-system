@@ -13,6 +13,7 @@ class DisplayClass extends Component
     {
         return view('livewire.professor.display-class', [
             'classes'=> Classroom::where('class_prof', auth()->user()->token)->get(),
+            'param' =>  '/professor/class/',
         ]);
     }
 }

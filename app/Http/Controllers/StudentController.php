@@ -69,10 +69,6 @@ class StudentController extends Controller
     public function download($token)
     {
         $data = User::where('token', $token)->first();
-        $bg = file_get_contents(public_path('img/id_bg.jpg'));
-        $base64 = 'data:image/jpg;base64,' . base64_encode($bg);
-//        dd($base64);
-        $data->bg = $base64;
         $pdf = PDF::loadView('print.qr_print', compact('data'));
 
         $customPaper = array(0,0,360, 504);

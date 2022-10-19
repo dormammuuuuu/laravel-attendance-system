@@ -4,7 +4,7 @@
             <button class="add" wire:click="$emit('openModal', 'admin.professor.add-modal')">Add Professor</button>
             <button class="export">Export</button>
         </div>
-        <input wire:model="search" type="text" name="search" id="search" placeholder="Search username...">    
+        <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
     </div>   
     <table>      
         <thead>

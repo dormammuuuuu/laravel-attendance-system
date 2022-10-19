@@ -1,6 +1,6 @@
 <div>
     <div class="search-container right">
-        <input wire:model="search" type="text" name="search" id="search" placeholder="Search username...">    
+        <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
     </div>   
     <table>      
         <thead>

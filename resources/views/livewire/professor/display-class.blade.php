@@ -1,7 +1,8 @@
 <div class="class-card-container">
+
     @if($classes->count() > 0)
         @foreach($classes as $class)
-            <x-class-card :class="$class"/>
+            <x-class-card :class="$class" :param="$param"/>
         @endforeach
     @else
         <div class="empty">

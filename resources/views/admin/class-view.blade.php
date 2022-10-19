@@ -1,12 +1,16 @@
 @extends('./layouts.main')
 
-@section('title', 'Admin | Dashboard')
+@section('title')
+    {{ $subject->class_name }} | {{ $subject->class_section }}
+@endsection
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/classCard.css') }}">
 @endsection
 
 @section('js')
@@ -35,23 +39,18 @@
         </div>
     </x-sidebar.sidebar>
     <div id="main">
-        <x-navbar.navbar title="Dashboard"/>
+        <x-navbar.navbar title="ADMINISTRATOR | {{$subject->class_name}} | {{ $subject->class_section }}" />
         <div class="prof-class">
             <div class="subject-card-container">
-                <x-subject.dashboard-card label="Professors" count="{{$prof}}" icon="bx bx-user" style="red"/>
-                <x-subject.dashboard-card label="Students" count="{{$student}}" icon="bx bx-book-open"/>
-                <x-subject.dashboard-card label="Classes" count="{{$class}}" icon="bx bx-book-alt"/>
+                <x-subject.dashboard-card label="Students" count="{{$students}}" icon="bx bx-user" style="red"/>
+                <x-subject.dashboard-card label="Days" count="{{$session}}" icon="bx bx-sun"/>
+                <x-subject.dashboard-card label="Attendance Today" count="{{$attendance}}%" icon="bx bx-calendar"/>
             </div>
             <div>
-                <x-action-card label="Professors" desc="Browse and manage the list of professors who are currently registered." link="{{route('admin.professors')}}"/>
-                <x-action-card label="Students" desc="Browse and manage the list of students who are currently registered." link="{{route('admin.students')}}"/>
-                <x-action-card label="Pending Registration" desc="Accept or reject registration requests. (Professors)" link="{{route('admin.registrations')}}"/>
+                <x-action-card label="View List" desc="View full student list" link="/professor/class/{{$subject->class_token}}/manage"/>
+                <x-action-card label="Attendance" desc="View student attendance" link="/professor/class/{{$subject->class_token}}/calendar"/>
+                <x-action-card label="Delete" desc="This option will delete your class and all of its records. Delete at your own risk." link="/professor/class/{{$subject->class_token}}/delete"/>
             </div>
         </div>
     </div>
-
-@endsection
-
-@section('wow')
-​We are raising money for one of our friend who has a cyst located at the left part of his stomach. His name is Ramino Santos. he is currently at the last year of college at Technological University of the Philippines. He has dreams that he wanted to fulfill someday. He was sick for almost a year and his eyes were already turning yellow. We will use the funds that we can get here for his operations, laboratory tests, medications, and many more. 
 @endsection

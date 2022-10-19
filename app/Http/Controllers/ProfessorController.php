@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use App\Models\ClassSession;
 use Illuminate\Http\Request;
 use App\Models\ClassAttendance;
-use Illuminate\Support\Facades\Cache;
 
 class ProfessorController extends Controller
 {
@@ -141,31 +140,10 @@ class ProfessorController extends Controller
 
         $subject = Classroom::where('class_token', $token)->first();
         $token = $subject->class_token;
-//        $class = Classroom::where('class_token', $token)->first();
-//       $class->save();
         return view('professors.start-class', compact('subject', 'token'));
     }
 
     public function calendar($token){
-        /*
-            $date = Carbon::now()->format('Y-m-d');
-            $subject = Classroom::where('class_token', $token)->first();
-            $section = $subject->class_section;
-
-            $attempt = ClassSession::where([
-                'class_token' => $token,
-                'class_date' => $date,
-            ])->first();
-
-            if ($attempt) {
-                $students = User::where([
-                    'role' => 'student',
-                    'section' => $section,
-                ])->get();
-
-                return view('professors.class-calendar', compact('students', 'subject'));
-            }
-        */
         $subject = Classroom::where('class_token', $token)->first();
         return view('professors.class-calendar', compact('subject'));
     }

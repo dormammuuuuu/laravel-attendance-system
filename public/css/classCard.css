@@ -29,6 +29,11 @@
   font-weight: 400;
   color: #00204a;
 }
+.class-card .subject.prof {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #00204a;
+}
 
 .empty {
   display: flex;

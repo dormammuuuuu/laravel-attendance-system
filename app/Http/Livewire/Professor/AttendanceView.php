@@ -40,7 +40,7 @@ class AttendanceView extends Component
         $professor_name = auth()->user()->firstname . ' ' . auth()->user()->lastname;
         $class_section = $this->classSection;
         $subject = Classroom::where('class_token', $this->classToken)->first()->class_name;
-        $date = Carbon::now()->format('Y-m-d');
+        $date = $this->classDate;
         $token = $this->classToken;
         $data = User::where([
             'section' => $this->classSection,
@@ -67,7 +67,7 @@ class AttendanceView extends Component
     public function render()
     {
         return view('livewire.professor.attendance-view', [
-            'data' => User::where('section', $this->classSection)
+            'data' => User::where(['section' => $this->classSection, 'role' => 'student'])
             ->search([
                 'student_no',
                 'firstname',

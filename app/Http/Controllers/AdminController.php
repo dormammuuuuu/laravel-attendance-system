@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classroom;
+use Carbon\Carbon;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Redirect,Response;
+use App\Models\Classroom;
+use App\Models\ClassSession;
+use Illuminate\Http\Request;
+use App\Models\ClassAttendance;
+use Illuminate\Support\Facades\Auth;
 
 
 class AdminController extends Controller
@@ -87,5 +90,29 @@ class AdminController extends Controller
     public function edit(Request $request){
         $user = User::where('token', $request->token)->first();
         return response()->json(['data'=>$user]);
+    }
+
+    public function classes(){
+        $data = Classroom::paginate(10);
+        return view('admin.classes');
+    }
+
+public function classView($token){
+        $subject = Classroom::where('class_token', $token)->first();
+        
+        $student = User::where([
+            'role' => 'student',
+            'section' => $subject->class_section,
+        ])->get();
+        $students = $student->count();
+
+        $class = ClassSession::where(['class_token' => $token])->get();
+        $session = $class->count();
+
+        $temp = ClassAttendance::where(['class_token' => $token, 'attendance_day' => Carbon::now()->format('Y-m-d')])->get();
+        $attendance = $temp->count() / $students * 100;
+        $attendance = round($attendance);
+        return view('admin.class-view', compact('subject', 'students', 'session', 'attendance'));
+
     }
 }

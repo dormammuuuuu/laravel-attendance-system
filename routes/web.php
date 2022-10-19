@@ -68,11 +68,14 @@ Route::get('/admin/registrations/{token}/reject', 'App\Http\Controllers\AdminCon
 Route::get('/admin/professors', 'App\Http\Controllers\AdminController@professors')->name('admin.professors')->middleware('useraccess');
     //Admin Student Management
 Route::get('/admin/students', 'App\Http\Controllers\AdminController@students')->name('admin.students')->middleware('useraccess');
+    //Admin Class Management
+Route::get('/admin/classes', 'App\Http\Controllers\AdminController@classes')->name('admin.classes')->middleware('useraccess');
+    //Admin Class View
+Route::get('/admin/classes/{token}', 'App\Http\Controllers\AdminController@classView')->name('admin.class.view')->middleware('useraccess');
     //Admin Delete Student
 Route::get('/student/{token}/delete', 'App\Http\Controllers\StudentController@destroy')->name('student.delete');
     //Admin Delete Professor
 Route::get('/professor/{token}/delete', 'App\Http\Controllers\ProfessorController@destroy')->name('professor.delete');
-
 //Admin Get User
 Route::post('/admin/user/get', 'App\Http\Controllers\AdminController@edit')->name('admin.edit');
 
