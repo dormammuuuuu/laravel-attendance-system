@@ -30,8 +30,5 @@
         <div class="table-container">   
             @livewire('admin.student-pagination')
         </div>
-
     </div>
-
-    
 @endsection

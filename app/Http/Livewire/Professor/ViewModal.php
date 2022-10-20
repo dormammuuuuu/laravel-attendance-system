@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Student;
+namespace App\Http\Livewire\Professor;
 
 use App\Models\User;
 use LivewireUI\Modal\ModalComponent;
 
 class ViewModal extends ModalComponent
 {
-
     public User $user;
     public $firstname;
     public $lastname;
@@ -29,6 +28,6 @@ class ViewModal extends ModalComponent
 
     public function render()
     {
-        return view('livewire.admin.student.view-modal');
+        return view('livewire.professor.view-modal');
     }
 }

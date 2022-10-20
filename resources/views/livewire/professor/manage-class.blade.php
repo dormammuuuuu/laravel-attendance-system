@@ -1,7 +1,7 @@
 <div>
     <div class="search-container">
         <div class="button-container">
-            <button class="export">Export</button>
+            <button class="export" wire:click="exportMasterList">Export Master List</button>
         </div>
         <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
     </div>
@@ -24,10 +24,7 @@
                     <td>{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
                     <td>{{ $user->section }}</td>
                     <td data-token="{{ $user->token }}">
-                        ------------
-                        {{-- <button class="action view">View</button>
-                        <button class="action edit">Edit</button> 
-                        <a class="action delete" href="/student/{{$user->token}}/delete">Delete</a> --}}
+                        <button class="action view" wire:click="$emit('openModal', 'professor.view-modal', {{ json_encode([$user->id]) }})">View</button>
                     </td>
                 </tr>
             @endforeach

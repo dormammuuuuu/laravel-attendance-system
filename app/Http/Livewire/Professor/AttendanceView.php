@@ -8,9 +8,7 @@ use App\Models\User;
 use Livewire\Component;
 use App\Models\Classroom;
 use App\Models\ClassStudent;
-use Carbon\CarbonPeriod;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\App;
 
 class AttendanceView extends Component
 {
