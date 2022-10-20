@@ -2,6 +2,7 @@
     <div class="search-container">
         <div class="button-container">
             <button class="export" wire:click="exportIndividual">Export</button>
+            <button class="export" wire:click="exportWeekly">Export Weekly</button>
         </div>
         <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
     </div>

@@ -15,7 +15,6 @@
         @endif
     </div>
     {{  $classes->links()  }}
-
 </div>
 
 

@@ -71,6 +71,11 @@ class AdminController extends Controller
         $data = User::where('role', 'student')->paginate(10);
         return view('admin.students')->with('data', $data);
     }
+
+    public function admins(){
+        $data = User::where('role', 'admin')->paginate(10);
+        return view('admin.admins')->with('data', $data);
+    }
     
     public function approve($token)
     {
@@ -97,7 +102,7 @@ class AdminController extends Controller
         return view('admin.classes');
     }
 
-public function classView($token){
+    public function classView($token){
         $subject = Classroom::where('class_token', $token)->first();
         
         $student = User::where([

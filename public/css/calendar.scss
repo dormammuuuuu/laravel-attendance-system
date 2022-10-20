@@ -2,6 +2,22 @@
     margin: 5rem;
 }
 
+.calendar-header{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 2rem;
+    max-width: 300px;
+    button{
+        background: none;
+        border: none;
+        font-size: 25px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+}
+
 .my-padding{
     padding: 1rem;
 }

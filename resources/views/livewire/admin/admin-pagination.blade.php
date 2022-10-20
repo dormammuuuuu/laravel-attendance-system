@@ -1,7 +1,7 @@
 <div>
     <div class="search-container">
         <div class="button-container">
-            <button class="add" wire:click="$emit('openModal', 'admin.professor.add-modal')">Add Professor</button>
+            <button class="add" wire:click="$emit('openModal', 'admin.admins.add-modal')">Add Admin</button>
         </div>
         <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
     </div>   
@@ -9,21 +9,22 @@
         <thead>
             <th sortable wire:click="sortBy('lastname')">Name <i class='bx bxs-sort-alt'></i></th>
             <th sortable wire:click="sortBy('username')">Username <i class='bx bxs-sort-alt'></i></th>
+            <th sortable wire:click="sortBy('created_at')">Date created <i class='bx bxs-sort-alt'></i></th>
             <th>Actions</th>
         </thead>
         <tbody> 
             @if ($data->count() == 0)
             <tr>
-                <td colspan="3">No users to display.</td>
+                <td colspan="4">No users to display.</td>
             </tr>
             @endif
             @foreach ($data as $user)
                 <tr>
                     <td>{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
                     <td>{{ $user->username }}</td>
+                    <td>{{ $user->created_at }}</td>
                     <td>
-                        <a class="action view" href="#">View</a>
-                        <button class="action edit" wire:click="$emit('openModal', 'admin.professor.edit-modal', {{ json_encode([$user->id]) }})">Edit</button>
+                        <button class="action edit" wire:click="$emit('openModal', 'admin.admins.edit-modal', {{ json_encode([$user->id]) }})">Edit</button>
                         <a class="action delete" href="/professor/{{$user->token}}/delete">Delete</a>
                     </td>
                 </tr>

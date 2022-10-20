@@ -25,16 +25,7 @@
 
 @section('content')
     <x-sidebar.sidebar firstname="{{$firstname}}" lastname="{{$lastname}}" middleinitial="{{$middleinitial}}">
-        <div class="group">
-            <ul>
-                <x-sidebar.sidebar-item href="{{route('admin.dashboard')}}" icon="bx bxs-dashboard" title="Admin Dashboard"/>
-            </ul>
-            <x-sidebar.sidebar-content-header title="Manage"/>
-            <ul>
-                <x-sidebar.sidebar-item href="{{route('professors.dashboard')}}" icon="bx bxs-user-plus" title="My Class"/>
-                <x-sidebar.sidebar-item href="#" icon="bx bxs-user-plus" title="Attendance"/>
-            </ul>
-        </div>
+        <x-sidebar.professor-sidebar/>
     </x-sidebar.sidebar>
     <div id="main">
         <x-navbar.navbar title="{{$subject->class_name}} | {{ $subject->class_section }}" />

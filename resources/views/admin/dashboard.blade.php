@@ -21,19 +21,7 @@
 
 @section('content')
     <x-sidebar.sidebar firstname="{{$firstname}}" lastname="{{$lastname}}" middleinitial="{{$middleinitial}}">
-        <div class="group">
-            <ul>
-                <x-sidebar.sidebar-item href="{{route('admin.dashboard')}}" icon="bx bxs-dashboard" title="Dashboard"/>
-                <x-sidebar.sidebar-item href="{{route('professors.dashboard')}}" icon="bx bxs-dashboard" title="Prof. Dashboard"/>
-            </ul>
-            <x-sidebar.sidebar-content-header title="Manage"/>
-            <ul>
-                <x-sidebar.sidebar-item href="{{route('admin.registrations')}}" icon="bx bxs-user-plus" title="Registration Request"/>
-                <x-sidebar.sidebar-item href="{{route('admin.professors')}}" icon="bx bxs-user" title="Professor"/>
-                <x-sidebar.sidebar-item href="{{route('admin.students')}}" icon="bx bxs-book" title="Student"/>
-                <x-sidebar.sidebar-item href="{{route('admin.classes')}}" icon="bx bx-chalkboard" title="Class"/>
-            </ul>
-        </div>
+        <x-sidebar.admin-sidebar/>
     </x-sidebar.sidebar>
     <div id="main">
         <x-navbar.navbar title="Dashboard"/>
@@ -44,6 +32,7 @@
                 <x-subject.dashboard-card label="Classes" count="{{$class}}" icon="bx bx-book-alt"/>
             </div>
             <div>
+                <x-action-card label="Class" desc="Browse and manage the list of classes." link="{{route('admin.classes')}}"/>
                 <x-action-card label="Professors" desc="Browse and manage the list of professors who are currently registered." link="{{route('admin.professors')}}"/>
                 <x-action-card label="Students" desc="Browse and manage the list of students who are currently registered." link="{{route('admin.students')}}"/>
                 <x-action-card label="Pending Registration" desc="Accept or reject registration requests. (Professors)" link="{{route('admin.registrations')}}"/>

@@ -72,6 +72,9 @@ Route::get('/admin/students', 'App\Http\Controllers\AdminController@students')->
 Route::get('/admin/classes', 'App\Http\Controllers\AdminController@classes')->name('admin.classes')->middleware('useraccess');
     //Admin Class View
 Route::get('/admin/classes/{token}', 'App\Http\Controllers\AdminController@classView')->name('admin.class.view')->middleware('useraccess');
+    //Admin Admin Management
+Route::get('/admin/admins', 'App\Http\Controllers\AdminController@admins')->name('admin.admins')->middleware('useraccess');
+
     //Admin Delete Student
 Route::get('/student/{token}/delete', 'App\Http\Controllers\StudentController@destroy')->name('student.delete');
     //Admin Delete Professor
