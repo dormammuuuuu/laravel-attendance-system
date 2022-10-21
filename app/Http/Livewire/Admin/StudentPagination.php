@@ -14,8 +14,12 @@ class StudentPagination extends Component
     public $sortField = 'lastname';
     public $sortDirection = 'asc';
     public $showEditModal = false;
+    public $filterString = '';
 
-    public $listeners = ['refreshStudents' => 'render'];
+    public $listeners = [
+        'refreshStudents' => 'render',
+        'getFilter' => 'getFilter'
+    ];
 
     public function sortBy($field)
     {
@@ -27,6 +31,11 @@ class StudentPagination extends Component
         } 
     }
 
+    public function getFilter($string)
+    {   
+        $this->filterString = $string;
+    }
+
     public function paginationView()
     {
         return 'pagination::default';
@@ -34,30 +43,29 @@ class StudentPagination extends Component
 
     public function render()
     {
-        // $data = User::search('student_no', $this->search)
-        //     ->search('firstname', $this->search)
-        //     ->search('lastname', $this->search)
-        //     ->search('section', $this->search)
-        //     ->where('role', 'student')
-        //     ->orderBy($this->sortField, $this->sortDirection)
-        //     ->paginate(10);
-
-        // return view('livewire.admin.student-pagination', [
-        //     'data' => User::where('role', 'student')
-        //         ->orderBy($this->sortField, $this->sortDirection)
-        //         ->search(['student_no', 'firstname'], $this->search)
-        //             ->paginate(10)
-        // ]);
-
-        return view('livewire.admin.student-pagination', [
-            'data' => User::where('role', 'student')
+        if ($this->filterString == ''){
+            $data = User::where('role', 'student')
             ->search([
                 'student_no',
                 'firstname',
                 'lastname',
                 'section',
-            ], $this->search)
-            
+            ], $this->search);
+        } else {
+            $data = User::where([
+                ['role', 'student'],
+                ['section', $this->filterString]
+            ])
+            ->where('section', $this->filterString)
+            ->search([
+                'student_no',
+                'firstname',
+                'lastname',
+            ], $this->search);
+        }
+
+        return view('livewire.admin.student-pagination', [
+            'data' => $data            
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10)
         ]);

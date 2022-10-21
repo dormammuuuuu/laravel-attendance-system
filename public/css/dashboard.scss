@@ -1,3 +1,7 @@
+$clouds: #ecf0f1;
+$midnight: #2c3e50;
+
+
 #main{
     margin-left: 0;
     transition: margin-left 0.3s ease-in-out;
@@ -25,7 +29,7 @@
         .button-container{
             button{
                 margin-right: 5px;
-                padding: 5px 10px;
+                padding: 6px 10px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
                 background-color: #fff;
@@ -90,15 +94,10 @@
     }
 
     .table-container{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         max-width: 1000px;
-        width: 100%;
-        border-radius: 5px;
+        margin: 20px auto;
+        border-radius: 7px;
         overflow: hidden;
-
         table{
             background: white;
             width: 100%;
@@ -410,5 +409,86 @@
 .absent{
     @extend .present;
     background-color: #ff4444;
+}
+
+.error{
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 5px;    
+}
+
+.radio-heading{
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.radio-container{
+    margin-bottom: 1.5em;
+}
+
+.radio-group{
+    display: flex;
+    align-items: center;
+    input[type="checkbox"],
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
+    label {
+        position: relative;
+        margin-right: 1em;
+        padding-left: 2em;
+        padding-right: 1em;
+        line-height: 2;
+        cursor: pointer;
+        &:before {
+            box-sizing: border-box;
+            content: " ";
+            position: absolute;
+            top: 0.3em;
+            left: 0;
+            display: block;
+            width: 1.4em;
+            height: 1.4em;
+            border: 2px solid #4285F4;
+            border-radius: .25em;
+            z-index: -1;
+        }
+    }
+    input[type="radio"] + label::before {
+        border-radius: 1em;
+    }
+    /* Checked */
+    input[type="checkbox"]:checked + label,
+    input[type="radio"]:checked + label {
+        padding-left: 1em;
+        color: #fff;
+        &:before {
+            top: 0;
+            width: 100%;
+            height: 2em;
+            background: #4285F4;
+        }
+    }
+
+    /* Transition */
+    label,
+    label::before {
+        -webkit-transition: .25s all ease;
+        -o-transition: .25s all ease;
+        transition: .25s all ease;
+    }
+}
+
+.filter{
+    margin-right: 5px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
 }
 

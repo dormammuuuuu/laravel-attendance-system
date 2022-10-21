@@ -32,7 +32,7 @@
                 <td colspan="1">
                     Displaying {{$data->count()}} of {{ $data->total() }} user(s).
                 </td>
-                <td colspan="2">
+            <td colspan="2">
                     {{ $data->links() }}
                 </td>
             </tr>

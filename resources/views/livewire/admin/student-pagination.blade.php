@@ -6,7 +6,7 @@
         </div>
         <div>
             <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
-            <button wire:click="$emit('openModal', 'admin.student.search-filter')"><i class='bx bx-filter-alt'></i></button>
+            <button class="filter" wire:click="$emit('openModal', 'admin.student.search-filter')"><i class='bx bx-filter-alt'></i></button>
         </div>
     </div>
     <table>      
@@ -35,10 +35,10 @@
                 </tr>
             @endforeach
             <tr class="footer">
-                <td colspan="2">
+                <td colspan="1">
                     Displaying {{$data->count()}} of {{ $data->total() }} user(s).
                 </td>
-                <td colspan="2">
+                <td colspan="3">
                     {{ $data->links() }}
                 </td>
             </tr>

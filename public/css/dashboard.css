@@ -25,7 +25,7 @@
 }
 #main .search-container .button-container button {
   margin-right: 5px;
-  padding: 5px 10px;
+  padding: 6px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
@@ -86,13 +86,9 @@
   color: white;
 }
 #main .table-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   max-width: 1000px;
-  width: 100%;
-  border-radius: 5px;
+  margin: 20px auto;
+  border-radius: 7px;
   overflow: hidden;
 }
 #main .table-container table {
@@ -395,4 +391,83 @@
 
 .absent {
   background-color: #ff4444;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.radio-heading {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.radio-container {
+  margin-bottom: 1.5em;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  /* Checked */
+  /* Transition */
+}
+.radio-group input[type=checkbox],
+.radio-group input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.radio-group label {
+  position: relative;
+  margin-right: 1em;
+  padding-left: 2em;
+  padding-right: 1em;
+  line-height: 2;
+  cursor: pointer;
+}
+.radio-group label:before {
+  box-sizing: border-box;
+  content: " ";
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  display: block;
+  width: 1.4em;
+  height: 1.4em;
+  border: 2px solid #4285F4;
+  border-radius: 0.25em;
+  z-index: -1;
+}
+.radio-group input[type=radio] + label::before {
+  border-radius: 1em;
+}
+.radio-group input[type=checkbox]:checked + label,
+.radio-group input[type=radio]:checked + label {
+  padding-left: 1em;
+  color: #fff;
+}
+.radio-group input[type=checkbox]:checked + label:before,
+.radio-group input[type=radio]:checked + label:before {
+  top: 0;
+  width: 100%;
+  height: 2em;
+  background: #4285F4;
+}
+.radio-group label,
+.radio-group label::before {
+  transition: 0.25s all ease;
+}
+
+.filter {
+  margin-right: 5px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
 }/*# sourceMappingURL=dashboard.css.map */

@@ -16,7 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(150)->create();
+        User::factory(500)->create();
+
+        //seed 10 professors
+        User::factory(20)->create([
+            'role' => 'professor',
+            'password' => bcrypt('123'),
+        ]);
+
+        //seed 10 professors approved
+        User::factory(20)->create([
+            'role' => 'professor',
+            'password' => bcrypt('123'),
+            'approved' => true,
+        ]);
 
         User::create([
             'firstname' => 'Foo',
@@ -29,18 +42,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'token' => Str::random(20),
             'approved' => 1,
-        ]);
-
-        User::create([
-            'firstname' => 'Foo',
-            'lastname' => 'Bar',
-            'middleinitial' => 'B',
-            'student_no' => '20182-00000-MN-0',
-            'section' => 'BSIT-1A',
-            'username' => 'prof',
-            'password' => bcrypt('prof'),
-            'role' => 'professor',
-            'token' => Str::random(20)
         ]);
     }
 }
