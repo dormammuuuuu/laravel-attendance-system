@@ -53,3 +53,10 @@
         opacity: .6;
     }
 }
+
+//media query 500px
+@media screen and (max-width: 500px){
+    .class-card-container{
+        grid-template-columns: repeat(1, 1fr );
+    }
+}

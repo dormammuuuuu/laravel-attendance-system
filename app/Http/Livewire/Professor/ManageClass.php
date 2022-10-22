@@ -56,7 +56,6 @@ class ManageClass extends Component
             'role' => 'student'
         ])->orderBy('lastname', 'asc')->get()->toArray();
         $pdfContent = PDF::loadView('print.master_list', compact('data', 'token', 'professor_name', 'class_section', 'date', 'subject'))->output();
-
         return response()->streamDownload(
              fn () => print($pdfContent),
              "master_list.pdf"

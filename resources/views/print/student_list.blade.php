@@ -59,21 +59,14 @@
     </style>
 </head>
 <body>
-    @php
-        $sessions = App\Models\ClassSession::where('class_token', $token)->get()->count();
-    @endphp
     <div class="details">
         <table>
             <tr>
-                <td>Subject: {{$subject}}</td>
-                <td>Professor: {{$professor_name}}</td>
-            </tr>
-            <tr>
-                <td>Section: {{$class_section}}</td>
+                <td>ADMIN EXCLUSIVE EXPORT</td>
                 <td>Date: {{$date}}</td>
             </tr>
             <tr>
-                <td>Number of Sessions: {{$sessions}}</td>
+                <td>Admin: {{auth()->user()->lastname}}, {{auth()->user()->firstname}} {{auth()->user()->middleinitial}}</td>
             </tr>
         </table>
     </div>
@@ -81,27 +74,20 @@
         <thead>
             <th>Student Number</th>
             <th>Name</th>
-            <th>Days Present</th>
-            <th>Days Absent</th>
-            <th>Attendance %</th>
+            <th>Section</th>
         </thead>
-        <tbody> 
-            
+        <tbody>
             @foreach ($data as $user)
-                @php
-                    $attendance = App\Models\ClassAttendance::where([
-                        'student_token' => $user['student_no'],
-                        'class_token' => $token,
-                    ])->get()->count();
-                    $percentage = ($attendance / $sessions) * 100;
-                @endphp
                 <tr>
+                    <td>{{$user->student_no}}</td>
+                    <td>{{$user->lastname}}, {{$user->firstname}} {{$user->middleinitial}}</td>
+                    <td>{{$user->section}}</td>
+                </tr>
+                {{-- <tr>
                     <td>{{ $user['student_no'] }}</td>
                     <td>{{ $user['lastname'] }}, {{ $user['firstname'] }} {{ $user['middleinitial'] }}</td>
-                    <td>{{ $attendance }}</td>
-                    <td>{{ $sessions - $attendance }}</td>
-                    <td>{{ $percentage }}%</td>
-                </tr>
+                    <td>{{ $user['section'] }}</td>
+                </tr> --}}
             @endforeach
         </tbody>
     </table>

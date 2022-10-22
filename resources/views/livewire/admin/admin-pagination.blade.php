@@ -20,9 +20,9 @@
             @endif
             @foreach ($data as $user)
                 <tr>
-                    <td>{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
-                    <td>{{ $user->username }}</td>
-                    <td>{{ $user->created_at }}</td>
+                    <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
+                    <td data-label="Username">{{ $user->username }}</td>
+                    <td data-label="Date created">{{ $user->created_at }}</td>
                     <td>
                         <button class="action edit" wire:click="$emit('openModal', 'admin.admins.edit-modal', {{ json_encode([$user->id]) }})">Edit</button>
                         <a class="action delete" href="/professor/{{$user->token}}/delete">Delete</a>
@@ -33,7 +33,7 @@
                 <td colspan="1">
                     Displaying {{$data->count()}} of {{ $data->total() }} user(s).
                 </td>
-                <td colspan="2">
+                <td colspan="3">
                     {{ $data->links() }}
                 </td>
             </tr>

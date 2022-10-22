@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Admin;
 
+use \PDF;
+use Carbon\Carbon;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -29,6 +31,35 @@ class StudentPagination extends Component
             $this->sortField = $field;
             $this->sortDirection = 'asc';
         } 
+    }
+
+    public function exportStudents(){
+        $date = Carbon::now()->format('F d, Y'); 
+        if ($this->filterString == ''){
+            $data = User::where('role', 'student')
+            ->search([
+                'student_no',
+                'firstname',
+                'lastname',
+                'section',
+            ], $this->search)->get();
+        } else {
+            $data = User::where([
+                ['role', 'student'],
+                ['section', $this->filterString]
+            ])
+            ->where('section', $this->filterString)
+            ->search([
+                'student_no',
+                'firstname',
+                'lastname',
+            ], $this->search)->get();
+        }
+        $pdfContent = PDF::loadView('print.student_list', compact('data', 'date'))->output();
+        return response()->streamDownload(
+             fn () => print($pdfContent),
+             'student_list.pdf'
+        );
     }
 
     public function getFilter($string)
@@ -67,7 +98,7 @@ class StudentPagination extends Component
         return view('livewire.admin.student-pagination', [
             'data' => $data            
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(10)
+        ->paginate(10)
         ]);
     }
 }

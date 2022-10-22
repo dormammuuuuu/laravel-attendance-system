@@ -21,10 +21,10 @@
             @endif
             @foreach ($data as $user)
                 <tr>
-                    <td>{{ $user->student_no }}</td>
-                    <td>{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
-                    <td>{{ $user->section }}</td>
-                    <td data-token="{{ $user->token }}">
+                    <td data-label="Student number">{{ $user->student_no }}</td>
+                    <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
+                    <td data-label="Section">{{ $user->section }}</td>
+                    <td data-label="Status" data-token="{{ $user->token }}">
                         @php
                             $attendance = App\Models\ClassAttendance::where([
                                 'student_token' => $user->student_no,

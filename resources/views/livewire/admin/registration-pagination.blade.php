@@ -17,11 +17,10 @@
             @endif
             @foreach ($data as $user)
                 <tr>
-                    <td>{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
-                    
-                    <td>{{ $user->username }}</td>
-                    <td>{{ $user->created_at }}</td> 
-                    <td>
+                    <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
+                    <td data-label="Username">{{ $user->username }}</td>
+                    <td data-label="Date created">{{ $user->created_at }}</td> 
+                    <td data-label="Action">
                         <a class="action reject" href="/admin/registrations/{{ $user->token }}/reject">Decline</a>
                         <a class="action approve" href="/admin/registrations/{{ $user->token }}/approve">Accept</a>
                     </td>

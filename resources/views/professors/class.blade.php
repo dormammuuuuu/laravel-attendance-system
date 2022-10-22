@@ -37,8 +37,8 @@
             </div>
             <div>
                 <x-action-card label="Start" desc="Start a session now." link="/professor/class/{{$subject->class_token}}/start"/>
-                <x-action-card label="View List" desc="View full student list" link="/professor/class/{{$subject->class_token}}/manage"/>
-                <x-action-card label="Attendance" desc="View student attendance" link="/professor/class/{{$subject->class_token}}/calendar"/>
+                <x-action-card label="View Class" desc="View the student list and export data, including the attendance for the entire semester." link="/professor/class/{{$subject->class_token}}/manage"/>
+                <x-action-card label="Calendar" desc="View student attendance at the calendar" link="/professor/class/{{$subject->class_token}}/calendar"/>
                 <x-action-card label="Delete" desc="This option will delete your class and all of its records. Delete at your own risk." link="/professor/class/{{$subject->class_token}}/delete"/>
             </div>
         </div>

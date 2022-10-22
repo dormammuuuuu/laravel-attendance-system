@@ -11,4 +11,5 @@
 body {
   background: #fff url("../img/BG.svg") no-repeat fixed center;
   background-size: cover;
+  overflow-x: hidden;
 }/*# sourceMappingURL=index.css.map */

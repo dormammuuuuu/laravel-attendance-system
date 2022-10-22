@@ -2,7 +2,7 @@
     <div class="search-container">
         <div class="button-container">
             <button class="add" wire:click="$emit('openModal', 'admin.student.add-modal')">Add Student</button>
-            <button class="export">Export</button>
+            <button class="export" wire:click="exportStudents">Export</button>
         </div>
         <div>
             <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
@@ -24,10 +24,10 @@
             @endif
             @foreach ($data as $user)
                 <tr>
-                    <td>{{ $user->student_no }}</td>
-                    <td>{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
-                    <td>{{ $user->section }}</td>
-                    <td data-token="{{ $user->token }}">
+                    <td data-label="Student Number">{{ $user->student_no }}</td>
+                    <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
+                    <td data-label="Section">{{ $user->section }}</td>
+                    <td data-label="Action" data-token="{{ $user->token }}">
                         <button class="action view" wire:click="$emit('openModal', 'admin.student.view-modal', {{ json_encode([$user->id]) }})">View</button>
                         <button class="action edit" wire:click="$emit('openModal', 'admin.student.edit-modal', {{ json_encode([$user->id]) }})">Edit</button> 
                         <a class="action delete" href="/student/{{$user->token}}/delete">Delete</a>
@@ -39,7 +39,7 @@
                     Displaying {{$data->count()}} of {{ $data->total() }} user(s).
                 </td>
                 <td colspan="3">
-                    {{ $data->links() }}
+                    {{ $data->onEachSide(1)->links() }}
                 </td>
             </tr>
         </tbody>

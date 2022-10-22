@@ -3,6 +3,7 @@
   transition: margin-left 0.3s ease-in-out;
   position: relative;
   height: 100vh;
+  width: 100vw;
 }
 #main.active {
   margin-left: 250px;
@@ -267,7 +268,7 @@
   justify-content: space-between;
 }
 .prof-class a .action-card .title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #00204A;
   margin-bottom: 5px;
@@ -470,4 +471,65 @@
   background-color: #fff;
   outline: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .prof-class .subject-card-container .subject-card .icon i {
+    font-size: 0;
+  }
+}
+@media screen and (max-width: 650px) {
+  #main .search-container {
+    flex-direction: column-reverse;
+  }
+  #main .search-container .button-container {
+    margin-top: 10px;
+  }
+  #main .table-container table thead {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+  }
+  #main .table-container table tbody tr td {
+    display: block;
+    padding: 5px 20px;
+  }
+  #main .table-container table tbody tr td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+  #main .table-container table tbody tr:nth-child(even) {
+    background: #F6F6F6;
+  }
+}
+@media screen and (max-width: 500px) {
+  .row {
+    display: block;
+  }
+  .prof-class .subject-card-container {
+    grid-gap: 10px;
+  }
+  .prof-class .subject-card-container .subject-card {
+    height: 100px;
+    padding: 15px;
+  }
+  .prof-class .subject-card-container .subject-card .count {
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 500px) {
+  #main .pagination li {
+    margin: 0 2px;
+    padding: 5px 5px;
+  }
+  .prof-class .subject-card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .prof-class .subject-card-container .subject-card .icon i {
+    font-size: 100px;
+  }
 }/*# sourceMappingURL=dashboard.css.map */

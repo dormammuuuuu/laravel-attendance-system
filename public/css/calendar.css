@@ -1,5 +1,9 @@
 .calendar-container {
-  margin: 5rem;
+  margin: 2rem 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-bottom: 2rem;
 }
 
 .calendar-header {
