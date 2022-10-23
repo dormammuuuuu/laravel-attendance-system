@@ -36,8 +36,8 @@
                 <x-subject.dashboard-card label="Attendance Today" count="{{$attendance}}%" icon="bx bx-calendar"/>
             </div>
             <div>
-                <x-action-card label="View List" desc="View full student list" link="/professor/class/{{$subject->class_token}}/manage"/>
-                <x-action-card label="Attendance" desc="View student attendance" link="/professor/class/{{$subject->class_token}}/calendar"/>
+                <x-action-card target="_blank" label="View List" desc="View full student list" link="/professor/class/{{$subject->class_token}}/manage"/>
+                <x-action-card target="_blank" label="Calendar" desc="View student attendance" link="/professor/class/{{$subject->class_token}}/calendar"/>
                 <x-action-card label="Delete" desc="This option will delete your class and all of its records. Delete at your own risk." link="/professor/class/{{$subject->class_token}}/delete"/>
             </div>
         </div>

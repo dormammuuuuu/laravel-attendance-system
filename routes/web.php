@@ -51,6 +51,9 @@ Route::get('/professor/class/{token}/start', 'App\Http\Controllers\ProfessorCont
 Route::get('/professor/class/{token}/calendar', 'App\Http\Controllers\ProfessorController@calendar')->name('professors.class.calendar')->middleware('auth');
     //Professor Attendance
 Route::get('/professor/class/{token}/calendar/{date}', 'App\Http\Controllers\ProfessorController@attendance')->name('professors.class.attendance')->middleware('auth');
+    //Professor Export
+Route::get('/professor/class/{token}/calendar/{date}/export', 'App\Http\Controllers\ProfessorController@export')->name('professors.class.export')->middleware('auth');
+
 
 //Admin Routes
     //Admin Login

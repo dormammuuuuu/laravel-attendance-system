@@ -28,7 +28,7 @@ $midnight: #2c3e50;
             outline: none;
         }
         .button-container{
-            button{
+            button, a{
                 margin-right: 5px;
                 padding: 6px 10px;
                 border: 1px solid #ccc;
@@ -36,6 +36,9 @@ $midnight: #2c3e50;
                 background-color: #fff;
                 outline: none;
                 cursor: pointer;
+                font-size: 13px;
+                color: black;
+                text-decoration: none;
                 &.add{
                     background-color: #4285F4;
                     color: #fff;
@@ -96,7 +99,7 @@ $midnight: #2c3e50;
 
     .table-container{
         max-width: 1000px;
-        margin: 20px auto;
+        margin: 30px auto;
         border-radius: 7px;
         overflow: hidden;
         table{

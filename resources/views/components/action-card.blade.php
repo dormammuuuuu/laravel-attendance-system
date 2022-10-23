@@ -1,10 +1,11 @@
 @props([
     'label' => 'label',
     'desc' => 'desc',
-    'link' => 'link'
+    'link' => 'link',
+    'target' => 'target'
 ])
 
-<a href="{{$link}}">
+<a href="{{$link}}" target="{{$target}}">
     <div class="action-card">
         <div>
             <p class="title">{{$label}}</p>

@@ -24,7 +24,7 @@
   padding: 0 10px;
   outline: none;
 }
-#main .search-container .button-container button {
+#main .search-container .button-container button, #main .search-container .button-container a {
   margin-right: 5px;
   padding: 6px 10px;
   border: 1px solid #ccc;
@@ -32,8 +32,11 @@
   background-color: #fff;
   outline: none;
   cursor: pointer;
+  font-size: 13px;
+  color: black;
+  text-decoration: none;
 }
-#main .search-container .button-container button.add {
+#main .search-container .button-container button.add, #main .search-container .button-container a.add {
   background-color: #4285F4;
   color: #fff;
   border: 1px solid #4285F4;
@@ -88,7 +91,7 @@
 }
 #main .table-container {
   max-width: 1000px;
-  margin: 20px auto;
+  margin: 30px auto;
   border-radius: 7px;
   overflow: hidden;
 }

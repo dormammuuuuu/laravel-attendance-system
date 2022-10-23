@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use Carbon\CarbonPeriod;
 use App\Models\Classroom;
 use Illuminate\Support\Str;
 use App\Models\ClassSession;
 use Illuminate\Http\Request;
 use App\Models\ClassAttendance;
+use App\Exports\AttendanceExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProfessorController extends Controller
 {
@@ -168,5 +171,23 @@ class ProfessorController extends Controller
         else {
             abort(404);
         }
+    }
+
+    public function export($token, $date){
+        $class = Classroom::where('class_token', $token)->get()->toArray();
+        $section = $class[0]['class_section'];
+        $students = User::where([
+            'role' => 'student',
+            'section' => $section,
+        ])->orderBy('lastname', 'asc')->get();
+        $dates = ClassSession::where('class_token', $token)->orderBy('class_date', 'asc')->get()->toArray();
+        $firstDate = $dates[0]['class_date'];
+        $lastDate = $dates[count($dates) - 1]['class_date'];
+
+        $dates = CarbonPeriod::create($firstDate, $lastDate)->toArray();
+        $dates = array_map(function($date){
+            return $date->format('Y-m-d');
+        }, $dates);
+        return Excel::download(new AttendanceExport($students, $dates, $token, $section), 'attendance.xlsx');
     }
 }

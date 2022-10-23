@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .present{
+            color: greenyellow;
+        }
+        .absent{
+            color: red;
+        }
+
+        td{
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th><strong>Student Name</strong></th>
+            @foreach ($dates as $date)
+                <th><strong>{{ \Carbon\Carbon::parse($date)->format('F d') }}</strong></th>
+            @endforeach
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($students as $student)
+            <tr>
+                <td>{{$student->lastname}}, {{$student->firstname}} {{$student->middleinitial}}.</td>
+                @foreach ($dates as $date)
+                    <td>
+
+                        @php
+                            $attendance = App\Models\ClassAttendance::where([
+                                'student_token' => $student->student_no,
+                                'attendance_day' => $date,
+                                'class_token' => $token
+                            ])->first();   
+        
+                            if ($attendance) {
+                                echo '<span class="present">P</span>';
+                            } else {
+                                echo '<span class="absent">A</span>';
+                            }
+                        @endphp
+                    </td>
+                @endforeach
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</body>
+</html>

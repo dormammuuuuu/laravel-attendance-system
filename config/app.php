@@ -197,7 +197,7 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Flasher\Laravel\FlasherServiceProvider::class,
-        // \Asantibanez\LivewireCalendar\LivewireCalendarServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class
     ],
 
     /*
@@ -216,7 +216,7 @@ return [
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Flasher' => Flasher\Laravel\Facade\Flasher::class,
-        // "LivewireCalendar" => \Asantibanez\LivewireCalendar\LivewireCalendarFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];
