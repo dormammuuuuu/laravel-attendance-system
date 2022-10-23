@@ -6,7 +6,9 @@
     @endif
     <x-sidebar.sidebar-content-header title="Manage"/>
     <ul>
-        <x-sidebar.sidebar-item href="{{route('professors.dashboard')}}" icon="bx bxs-user-plus" title="My Class"/>
-        <x-sidebar.sidebar-item href="#" icon="bx bxs-user-plus" title="Attendance"/>
+        <x-sidebar.sidebar-item href="{{route('professors.dashboard')}}" icon="bx bxs-chalkboard" title="My Class"/>
+        <x-sidebar.sidebar-item href="#" icon="bx bxs-file-doc" title="Export Tool"/>
+        <x-sidebar.sidebar-item href="#" icon="bx bxs-cog" title="Account Settings"/>
+
     </ul>
 </div>
