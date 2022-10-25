@@ -24,7 +24,7 @@ class DisplayClass extends Component
                 'class_section',
                 'class_prof',
                 'class_room',
-            ], $this->search)->paginate(8),
+            ], $this->search)->paginate(12),
             'param' =>  '/admin/classes/',
         ]);
     }

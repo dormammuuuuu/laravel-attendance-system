@@ -10,6 +10,9 @@
                 <option value="{{ $value }}">{{ $value }}</option>
             @endforeach
         </select>
+        @error('class_section')
+            <p class="error">{{ $message }}</p>
+        @enderror
         <input id="submit" type="submit" value="Create Class">
     </form>
 </div>

@@ -8,10 +8,14 @@
                 <label for="ABM">ABM</label>
                 <input type="radio" wire:model="track" name="track" value="GAS" id="GAS" />
                 <label for="GAS">GAS</label>
+                <input type="radio" wire:model="track" name="track" value="HUMSS" id="HUMSS" />
+                <label for="HUMSS">HUMSS</label>
                 <input type="radio" wire:model="track" name="track" value="ICT" id="ICT" />
                 <label for="ICT">ICT</label>
                 <input type="radio" wire:model="track" name="track" value="STEM" id="STEM" />
                 <label for="STEM">STEM</label>
+                <input type="radio" wire:model="track" name="track" value="SPORT" id="SPORT" />
+                <label for="SPORT">SPORT</label>
             </div>
             @error('track') <span class="error">{{ $message }}</span> @enderror
         </div>

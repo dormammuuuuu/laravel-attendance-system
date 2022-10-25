@@ -7,8 +7,8 @@
             <x-form-group label="Middle Initial" id="MiddleInitial" type="text" value="middleinitial"/>
         </div>
         <x-form-group label="Username" id="UserName" type="text" value="username" />
-        <x-form-group label="Password" id="password" type="password" value="password"/>
-        <x-form-group label="Confirm Password" id="password_confirmation" type="password" value="password_confirmation" />
+        <x-form-group label="Password" id="Password" type="password" value="password"/>
+        <x-form-group label="Confirm Password" id="PasswordConfirmation" type="password" value="password_confirmation" />
         <input id="submit" type="submit" value="Create Account">
     </form>
 </div>

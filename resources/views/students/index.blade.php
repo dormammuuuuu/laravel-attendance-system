@@ -22,7 +22,16 @@
                 <x-form-group label="Last Name" id="LastName" type="text" />
                 <x-form-group label="Middle Initial" id="MiddleInitial" type="text" />
             </div>
-            <x-form-group label="Year & Section" id="Course" type="text" />
+            <label class="dropdown-label" for="Course">Section</label>
+            <select name="Course" id="Course">
+                <option></option>
+                @foreach($tracks as $track)
+                    <option value="{{ $track }}">{{ $track }}</option>
+                @endforeach
+            </select>
+            @error('Course')
+                <p class="error">{{ $message }}</p>
+            @enderror
             <input id="submit" type="submit" value="Register">
         </form>
     </div>

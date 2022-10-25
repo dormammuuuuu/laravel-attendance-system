@@ -7,7 +7,16 @@
             <x-form-group label="Last Name" id="LastName" type="text" value="lastname"/>
             <x-form-group label="Middle Initial" id="MiddleInitial" type="text" value="middleinitial"/>
         </div>
-        <x-form-group label="Year & Section" id="Course" type="text" value="section"/>
+        <label class="dropdown-label" for="Course">Year & Section</label>
+        <select wire-model="section" name="Course" id="Course">
+            <option></option>
+            @foreach($tracks as $track)
+                <option value="{{ $track }}">{{ $track }}</option>
+            @endforeach
+        </select>
+        @error('Course')
+            <p class="error">{{ $message }}</p>
+        @enderror
         <input id="submit" type="submit" value="Create Account">
     </form>
 </div>

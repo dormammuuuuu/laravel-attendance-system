@@ -54,7 +54,8 @@
   border: 1px solid #B8E8F5;
   box-shadow: 0 0 4px #B8E8F5;
 }
-.form-group .error {
+
+.error {
   color: red;
   font-size: 12px;
   font-weight: 400;
@@ -74,6 +75,7 @@
   width: -webkit-fill-available;
   width: -moz-available;
   text-transform: uppercase;
+  margin-top: 30px;
 }
 
 .form-footer {
@@ -97,6 +99,5 @@ select {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   padding: 5px;
-  margin-bottom: 15px;
   margin-top: 5px;
 }/*# sourceMappingURL=form.css.map */

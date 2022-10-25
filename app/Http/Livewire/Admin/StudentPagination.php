@@ -48,7 +48,6 @@ class StudentPagination extends Component
                 ['role', 'student'],
                 ['section', $this->filterString]
             ])
-            ->where('section', $this->filterString)
             ->search([
                 'student_no',
                 'firstname',
@@ -56,6 +55,7 @@ class StudentPagination extends Component
             ], $this->search)->get();
         }
         $pdfContent = PDF::loadView('print.student_list', compact('data', 'date'))->output();
+
         return response()->streamDownload(
              fn () => print($pdfContent),
              'student_list.pdf'
@@ -102,3 +102,4 @@ class StudentPagination extends Component
         ]);
     }
 }
+// select * from `users` where (`role` = 'student' and `section` = 'ABM 11-B') and (`student_no` like '%%' or `firstname` like '%%' or `lastname` like '%%')

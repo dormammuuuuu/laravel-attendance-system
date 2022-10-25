@@ -6,8 +6,8 @@ $midnight: #2c3e50;
     margin-left: 0;
     transition: margin-left 0.3s ease-in-out;
     position: relative;
-    height: 100vh;
     width: 100vw;
+    margin-bottom: 3rem;
     &.active{
         margin-left: 250px;
     }
@@ -435,7 +435,8 @@ $midnight: #2c3e50;
 }
 
 .radio-group{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
     input[type="checkbox"],
     input[type="radio"] {
@@ -449,6 +450,7 @@ $midnight: #2c3e50;
         padding-left: 2em;
         padding-right: 1em;
         line-height: 2;
+        width: fit-content;
         cursor: pointer;
         &:before {
             box-sizing: border-box;
