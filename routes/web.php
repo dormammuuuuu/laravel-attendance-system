@@ -53,7 +53,7 @@ Route::get('/professor/class/{token}/calendar', 'App\Http\Controllers\ProfessorC
 Route::get('/professor/class/{token}/calendar/{date}', 'App\Http\Controllers\ProfessorController@attendance')->name('professors.class.attendance')->middleware('auth');
     //Professor Export
 Route::get('/professor/class/{token}/calendar/{date}/export', 'App\Http\Controllers\ProfessorController@export')->name('professors.class.export')->middleware('auth');
-
+    
 
 //Admin Routes
     //Admin Login
@@ -84,6 +84,8 @@ Route::get('/student/{token}/delete', 'App\Http\Controllers\StudentController@de
 Route::get('/professor/{token}/delete', 'App\Http\Controllers\ProfessorController@destroy')->name('professor.delete');
 //Admin Get User
 Route::post('/admin/user/get', 'App\Http\Controllers\AdminController@edit')->name('admin.edit');
+//Professor View Profile
+Route::get('/admin/professors/{token}/view', 'App\Http\Controllers\AdminController@profile')->name('admin.professors.profile')->middleware('useraccess');
 
 //Logout Route
 Route::get('/logout', function(){

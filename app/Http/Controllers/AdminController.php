@@ -118,6 +118,10 @@ class AdminController extends Controller
         $attendance = $temp->count() / $students * 100;
         $attendance = round($attendance);
         return view('admin.class-view', compact('subject', 'students', 'session', 'attendance'));
+    }
 
+    public function profile($token){
+        $user = User::where('token', $token)->first();
+        return view('admin.professors-profile', compact('user', 'token'));
     }
 }

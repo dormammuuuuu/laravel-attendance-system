@@ -22,7 +22,7 @@
                     <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
                     <td data-label="Username">{{ $user->username }}</td>
                     <td data-label="Action">
-                        <a class="action view" href="#">View</a>
+                        <a class="action view" href="/admin/professors/{{$user->token}}/view">View</a>
                         <button class="action edit" wire:click="$emit('openModal', 'admin.professor.edit-modal', {{ json_encode([$user->id]) }})">Edit</button>
                         <a class="action delete" href="/professor/{{$user->token}}/delete">Delete</a>
                     </td>

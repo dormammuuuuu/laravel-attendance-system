@@ -202,7 +202,7 @@ $midnight: #2c3e50;
 
 .action-container{
     width: 100%;
-    padding: 20px;
+    padding: 20px 30px;
     margin-top: 30px;
     .styled-button{
         display: flex;
@@ -300,6 +300,9 @@ $midnight: #2c3e50;
             i{
                 font-size: 30px;
                 color: rgba(0,0,0,0.5);
+            }
+            &:hover{
+                background-color: rgba(0,0,0,0.1);
             }
         }
     }
@@ -494,6 +497,37 @@ $midnight: #2c3e50;
     background-color: #fff;
     outline: none;
     cursor: pointer;
+}
+
+.profile{
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 7px;
+    padding-bottom: 30px;
+    min-height: 80vh;
+    .details{
+        padding: 25px;
+        .name{
+            font-size: 18px;
+            font-weight: 600;
+            color: #00204A;
+            margin-bottom: 5px;
+        }
+    }
+    .label{
+        padding: 20px 30px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #00204A;
+    }
+    .profile-paginate{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 //media query for 800px
