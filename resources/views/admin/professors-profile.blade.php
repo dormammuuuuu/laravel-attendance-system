@@ -27,6 +27,9 @@
     </x-sidebar.sidebar>
     <div id="main">
         <x-navbar.navbar title="Professor Profile" />
+        <div class="profile-breadcrumbs">
+            {{ Breadcrumbs::render('professor-profile', $user->firstname, $user->lastname, $user->middleinitial) }}
+        </div>
         <div class="profile">
             <div class="details">
                 <p class="name">{{$user->lastname}}, {{$user->firstname}} {{$user->middleinitial}}.</p>

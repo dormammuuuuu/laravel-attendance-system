@@ -30,6 +30,7 @@
     <div id="main">
         <x-navbar.navbar title="ADMINISTRATOR | {{$subject->class_name}} | {{ $subject->class_section }}" />
         <div class="prof-class">
+            {{ Breadcrumbs::render('class', $subject) }}
             <div class="subject-card-container">
                 <x-subject.dashboard-card label="Students" count="{{$students}}" icon="bx bx-user" style="red"/>
                 <x-subject.dashboard-card label="Days" count="{{$session}}" icon="bx bx-sun"/>

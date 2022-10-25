@@ -26,6 +26,7 @@
     <div id="main">
         <x-navbar.navbar title="Approve registration" />
         <div class="table-container">
+            {{ Breadcrumbs::render('registrations') }}
             @livewire('admin.user-pagination')
         </div>
     </div>

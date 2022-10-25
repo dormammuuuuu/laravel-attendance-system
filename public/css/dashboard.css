@@ -1,8 +1,31 @@
+.profile-breadcrumbs {
+  max-width: 1240px;
+  margin: 20px auto;
+  margin-bottom: 0;
+  padding: 0 20px;
+}
+
+.breadcrumb-container {
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.breadcrumb a {
+  text-decoration: none;
+}
+.breadcrumb .divider {
+  margin: 0 5px;
+}
+
 #main {
   margin-left: 0;
   transition: margin-left 0.3s ease-in-out;
   position: relative;
-  width: 100vw;
   margin-bottom: 3rem;
 }
 #main.active {
@@ -15,6 +38,7 @@
   align-items: center;
   background-color: #fff;
   padding: 15px;
+  border-radius: 7px;
 }
 #main .search-container #search {
   width: 300px;
@@ -185,8 +209,8 @@
 
 .action-container {
   width: 100%;
-  padding: 20px 30px;
-  margin-top: 30px;
+  margin-top: 40px;
+  margin-left: 30px;
 }
 .action-container .styled-button {
   display: flex;

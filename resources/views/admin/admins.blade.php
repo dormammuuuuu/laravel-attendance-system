@@ -28,6 +28,7 @@
     <div id="main">
         <x-navbar.navbar title="Administrators" />
         <div class="table-container">
+            {{ Breadcrumbs::render('admin') }}
             @livewire('admin.admin-pagination')
         </div>
     </div>
