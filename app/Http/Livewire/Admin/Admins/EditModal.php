@@ -12,6 +12,7 @@ class EditModal extends ModalComponent
     public $firstname;
     public $lastname;
     public $middleinitial;
+    public $email;
     public $username;
 
     public function update(){
@@ -19,6 +20,7 @@ class EditModal extends ModalComponent
             'firstname' => 'required|min:3|max:30',
             'middleinitial' => 'required|min:1|max:1',
             'lastname' => 'required|min:3|max:30',
+            'email' => 'required|email|unique:users,email,'.$this->user->id,
             'username' => 'required|min:3|max:30|unique:users,username, ' . $this->user->id . ',id',
         ]);
 
@@ -26,6 +28,7 @@ class EditModal extends ModalComponent
             'firstname' => $this->firstname,
             'middleinitial' => $this->middleinitial,
             'lastname' => $this->lastname,
+            'email' => $this->email,
             'username' => $this->username,
         ]);
 
@@ -40,6 +43,7 @@ class EditModal extends ModalComponent
         $this->firstname = $user->firstname;
         $this->lastname = $user->lastname;
         $this->middleinitial = $user->middleinitial;
+        $this->email = $user->email;
         $this->username = $user->username;
     }
 

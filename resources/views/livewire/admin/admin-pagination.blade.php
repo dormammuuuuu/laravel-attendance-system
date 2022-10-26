@@ -9,19 +9,21 @@
         <thead>
             <th sortable wire:click="sortBy('lastname')">Name <i class='bx bxs-sort-alt'></i></th>
             <th sortable wire:click="sortBy('username')">Username <i class='bx bxs-sort-alt'></i></th>
+            <th sortable wire:click="sortBy('email')">Email <i class='bx bxs-sort-alt'></i></th>
             <th sortable wire:click="sortBy('created_at')">Date created <i class='bx bxs-sort-alt'></i></th>
             <th>Actions</th>
         </thead>
         <tbody> 
             @if ($data->count() == 0)
             <tr>
-                <td colspan="4">No users to display.</td>
+                <td colspan="5">No users to display.</td>
             </tr>
             @endif
             @foreach ($data as $user)
                 <tr>
                     <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
                     <td data-label="Username">{{ $user->username }}</td>
+                    <td data-label="Email">{{ $user->email }}</td>
                     <td data-label="Date created">{{ $user->created_at }}</td>
                     <td>
                         <button class="action edit" wire:click="$emit('openModal', 'admin.admins.edit-modal', {{ json_encode([$user->id]) }})">Edit</button>
@@ -33,7 +35,7 @@
                 <td colspan="1">
                     Displaying {{$data->count()}} of {{ $data->total() }} user(s).
                 </td>
-                <td colspan="3">
+                <td colspan="4">
                     {{ $data->links() }}
                 </td>
             </tr>

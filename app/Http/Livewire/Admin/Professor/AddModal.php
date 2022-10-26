@@ -12,6 +12,7 @@ class AddModal extends ModalComponent
     public $firstname;
     public $middleinitial;
     public $lastname;
+    public $email;
     public $username;
     public $password;
     public $password_confirmation;
@@ -20,6 +21,7 @@ class AddModal extends ModalComponent
         'firstname' => 'required|min:3|max:30',
         'middleinitial' => 'required|min:1|max:1',
         'lastname' => 'required|min:3|max:30',
+        'email' => 'required|email|unique:users,email',
         'username' => 'required|min:3|max:30|unique:users,username',
         'password' => 'required|min:3|max:30|confirmed',
     ];

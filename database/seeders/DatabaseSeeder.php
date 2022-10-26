@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(500)->create();
+        User::factory(700)->create();
 
         //seed 10 professors
         User::factory(20)->create([
@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Foo',
             'lastname' => 'Bar',
             'middleinitial' => 'B',
+            'email' => 'admin@ashmr.com',
             'student_no' => '2018-00000-MN-0',
             'section' => 'BSIT-1A',
             'username' => 'admin',

@@ -20,6 +20,7 @@ class EditModal extends ModalComponent
             'middleinitial' => 'required|min:1|max:1',
             'lastname' => 'required|min:3|max:30',
             'username' => 'required|min:3|max:30|unique:users,username, ' . $this->user->id . ',id',
+            'email' => 'required|email|unique:users,email, ' . $this->user->id . ',id',
         ]);
 
         $this->user->update([
@@ -27,6 +28,7 @@ class EditModal extends ModalComponent
             'middleinitial' => $this->middleinitial,
             'lastname' => $this->lastname,
             'username' => $this->username,
+            'email' => $this->email,
         ]);
 
         $this->closeModalWithEvents([
@@ -40,6 +42,7 @@ class EditModal extends ModalComponent
         $this->firstname = $user->firstname;
         $this->lastname = $user->lastname;
         $this->middleinitial = $user->middleinitial;
+        $this->email = $user->email;
         $this->username = $user->username;
     }
 

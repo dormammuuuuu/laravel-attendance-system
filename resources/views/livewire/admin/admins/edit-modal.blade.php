@@ -6,6 +6,7 @@
             <x-form-group label="Last Name" id="LastName" type="text" value="lastname"/>
             <x-form-group label="Middle Initial" id="MiddleInitial" type="text" value="middleinitial"/>
         </div>
+        <x-form-group label="Email" id="Email" type="email" value="email" />
         <x-form-group label="Username" id="UserName" type="text" value="username"/>
         <input id="submit" type="submit" value="Save User Data">
     </form>

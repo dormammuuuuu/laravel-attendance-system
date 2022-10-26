@@ -43,19 +43,24 @@ class ProfessorController extends Controller
         
 
 
-        $temp = User::where([
-            'username'=> $request->UserName,
-        ])->first();
+        // $temp = User::where([
+        //     'username'=> $request->UserName,
+        // ])->first();
 
-        if($temp){
-            if($temp->approved == 0){
-                return back()->with('error', 'Your account is not yet approved by the admin.');
-            }
-        }
+        // if($temp){
+        //     if($temp->approved == 0){
+        //         return back()->with('error', 'Your account is not yet approved by the admin.');
+        //     }
+        // }
 
         if(auth()->attempt($user)){
             $request->session()->regenerate();
-            return redirect()->route('professors.dashboard');
+            if (auth()->user()->approved == false) {
+                return redirect()->route('professors.verification');
+            }
+            else{
+                return redirect()->route('professors.dashboard');
+            }
         }
 
 
@@ -64,11 +69,16 @@ class ProfessorController extends Controller
         ]);
     }
 
+    public function requirements(){
+        return view('professors.requirements');
+    }
+
     public function store(Request $request){
         $request->validate([
             'FirstName' => 'required|max:30|min:2',
             'LastName' => 'required|max:30|min:2',
             'MiddleInitial' => 'required|max:1|min:1',
+            'Email' => 'required|email|unique:users,email',
             'UserName' => 'required|max:30|min:2|unique:users,username',
             'password' => 'required|max:30|min:6|confirmed',
         ]);
@@ -77,6 +87,7 @@ class ProfessorController extends Controller
             'firstname' => $request->FirstName,
             'lastname' => $request->LastName,
             'middleinitial' => $request->MiddleInitial,
+            'email' => $request->Email,
             'username' => $request->UserName,
             'password' => bcrypt($request->password),
             'role' => 'professor',
@@ -85,7 +96,7 @@ class ProfessorController extends Controller
         ]);
 
         User::create($user);
-
+        
         return redirect()->route('professors.index')->with('success', 'Please wait for an admin to approve your account');
     }
 

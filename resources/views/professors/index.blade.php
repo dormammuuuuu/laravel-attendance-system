@@ -21,9 +21,12 @@
                 <x-form-group label="Last Name" id="LastName" type="text" />
                 <x-form-group label="Middle Initial" id="MiddleInitial" type="text" />
             </div>
+            <x-form-group label="Email" id="Email" type="text" />
             <x-form-group label="Username" id="UserName" type="text" />
-            <x-form-group label="Password" id="password" type="password" />
-            <x-form-group label="Confirm Password" id="password_confirmation" type="password" />
+            <div class="row">
+                <x-form-group label="Password" id="password" type="password" />
+                <x-form-group label="Confirm Password" id="password_confirmation" type="password" />
+            </div>
             <input id="submit" type="submit" value="Register">
         </form>
         <div class="form-footer">

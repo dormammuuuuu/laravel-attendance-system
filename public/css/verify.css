@@ -1,0 +1,141 @@
+.card-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 70vh;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 7px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 0;
+}
+.card-container .left {
+  display: flex;
+  align-items: center;
+  height: auto;
+}
+.card-container .left img {
+  width: -webkit-fill-available;
+  height: 400px;
+}
+.card-container .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10%;
+}
+.card-container .right h1 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+.card-container .right .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+.card-container .right .row a {
+  text-align: center;
+  text-decoration: none;
+  color: #00204a;
+  padding: 10px 0;
+  font-weight: 500;
+  border-radius: 7px;
+}
+.card-container .right .row a:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.card-container .right .row #submit {
+  cursor: pointer;
+  background-color: #00204a;
+  border: none;
+  font-weight: 500;
+  padding: 10px 0;
+  color: white;
+  border-radius: 7px;
+}
+.card-container .right .row #submit:hover {
+  background: #001a3c;
+}
+
+.waiting {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 10%;
+  text-align: center;
+}
+.waiting .title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #00204a;
+  margin-bottom: 10px;
+}
+.waiting .description {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 0.7);
+  margin-bottom: 10px;
+}
+.waiting a {
+  text-align: center;
+  text-decoration: none;
+  color: #00204a;
+  padding: 10px 0;
+  font-weight: 500;
+  border-radius: 7px;
+  width: 100%;
+}
+.waiting a:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper .file-upload {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid #00204a;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, #FFFFFF 50%, #00204a 50%);
+  background-size: 100% 200%;
+  transition: all 1s;
+  color: #00204a;
+  font-size: 50px;
+}
+.wrapper .file-upload input[type=file] {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.wrapper .file-upload:hover {
+  background-position: 0 -100%;
+  color: #FFF;
+}
+
+.filename {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #00204a;
+}/*# sourceMappingURL=verify.css.map */
