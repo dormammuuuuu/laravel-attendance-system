@@ -30,7 +30,9 @@
     </x-sidebar.sidebar>
     <div id="main">
         <x-navbar.navbar title="{{$subject->class_name}} | {{ $subject->class_section }}" />
-
+        <div class="calendar-breadcrumbs">
+            {{ Breadcrumbs::render('calendar', $subject) }}
+        </div>
         <div class="calendar-container">
             <livewire:class-calendar 
             :day-click-enabled="false"

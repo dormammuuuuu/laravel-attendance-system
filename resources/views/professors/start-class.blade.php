@@ -15,8 +15,6 @@
 
 @section('qr-cam')
     <script type="text/javascript" src="{{ asset('js/qr/instascan.min.js') }}"></script>
-    {{-- <script src="{{ asset('js/qr/vue.min.js') }}"></script>
-    <script src="{{ asset('js/qr/adapter.min.js') }}"></script> --}}
 @endsection
 
 @section('js')
@@ -35,7 +33,9 @@
     </x-sidebar.sidebar>
     <div id="main">
         <x-navbar.navbar title="Session: {{$subject->class_name}} | {{ $subject->class_section }}" />
-        {{-- @livewire('qr.qr-live', token="$token") --}}
+        {{-- <div class="session-breadcrumbs">
+            {{ Breadcrumbs::render('professor-session', $subject) }}
+        </div> --}}
         <livewire:qr.qr-live :token="$token" />
     </div>
     <script type="text/javascript">

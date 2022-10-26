@@ -29,6 +29,7 @@
     <div id="main">
         <x-navbar.navbar title="{{$subject->class_name}} | {{ $subject->class_section }}" />
         <div class="table-container">
+            {{ Breadcrumbs::render('master-list', $subject) }}
             @livewire('professor.manage-class', [$subject->id])
         </div>
     </div>

@@ -40,7 +40,14 @@ class QrLive extends Component
             'attendance_day' => now()->format('Y-m-d'),
         ];
 
+
         $user = User::where('student_no', $data['student_token'])->first();
+        
+        if (!$user){
+            $this->addError('qrlive', 'User not found');
+            return;
+        }
+
         $this->firstname = $user->firstname;
         $this->lastname = $user->lastname;
         $this->middleinitial = $user->middleinitial;

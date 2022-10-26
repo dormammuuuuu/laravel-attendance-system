@@ -1,3 +1,4 @@
+
 <div class="calendar-header">
     <button wire:click="goToPreviousMonth"><i class="bx bx-chevron-left"></i></button>
     <h2 class="">{{ $this->startsAt->format('F Y') }} </h2>

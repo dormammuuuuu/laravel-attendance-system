@@ -1,9 +1,14 @@
 <?php
 
+use Carbon\Carbon;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push('Dashboard', route('admin.dashboard'));
+});
+
+Breadcrumbs::for('professor-dashboard', function ($trail) {
+    $trail->push('Dashboard', route('professors.dashboard'));
 });
 
 Breadcrumbs::for('students', function ($trail) {
@@ -38,6 +43,33 @@ Breadcrumbs::for('professor-profile', function ($trail, $firstname, $lastname, $
 
 Breadcrumbs::for('class', function ($trail, $subject) {
     $trail->parent('classes');
-    $trail->push($subject->class_name);
+    $trail->push($subject->class_name . ' - ' . $subject->class_section);
+});
+
+Breadcrumbs::for('professor-class', function($trail, $subject) {
+    $token = $subject->class_token;
+    $trail->parent('professor-dashboard');
+    $trail->push($subject->class_name . ' - ' . $subject->class_section, route('professors.class.dashboard', $token));
+});
+
+Breadcrumbs::for('master-list', function($trail, $subject) {
+    $trail->parent('professor-class', $subject);
+    $trail->push('View Class');
+});
+
+Breadcrumbs::for('calendar', function($trail, $subject) {
+    $trail->parent('professor-class', $subject);
+    $trail->push('Class Calendar', route('professors.class.calendar', $subject->class_token));
+});
+
+Breadcrumbs::for('calendar-daily', function($trail, $subject, $date) {
+    $trail->parent('calendar', $subject);
+    $formalDate = Carbon::parse($date)->format('F d, Y');
+    $trail->push($formalDate);
+});
+
+Breadcrumbs::for('professor-session', function($trail, $subject,) {
+    $trail->parent('professor-class', $subject);
+    $trail->push("Session");
 });
 

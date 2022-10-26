@@ -13,6 +13,14 @@ $midnight: #2c3e50;
     margin-bottom: 20px;
 }
 
+.calendar-breadcrumbs, .session-breadcrumbs {
+    margin-bottom: 20px;
+    max-width: 70rem;
+    width: 100%;
+    margin: 30px auto;
+    margin-bottom: 10px;
+}
+
 .breadcrumb{
     list-style: none;
     display: flex;
@@ -227,6 +235,9 @@ $midnight: #2c3e50;
     width: 100%;
     margin-top: 40px;
     margin-left: 30px;
+    &.bottom{
+        margin-bottom: 20px;
+    }
     .styled-button{
         display: flex;
         align-items: center;
@@ -406,7 +417,7 @@ $midnight: #2c3e50;
         display: block;
     }
     .present{
-        background-color: #76eba5;
+        background-color: #76eba585;
         color: green;
         border: 1px solid green;
         border-radius: 5px;
