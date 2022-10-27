@@ -26,10 +26,11 @@ class IdVerification extends Component
     public function save()
     {
         $userToken = auth()->user()->token;
-        $this->photo->storeAs('photos', $userToken . '.png');
+        $fileExtension = $this->photo->getClientOriginalExtension();
+        $this->photo->storeAs('photos', $userToken . '.' . $fileExtension);
         VerificationId::create([
             'user_token' => $userToken,
-            'photo' => $userToken . '.png',
+            'photo' => $userToken . '.' . $fileExtension,
         ]);
         return redirect(request()->header('Referer'))->with('success', 'Your ID has been submitted for verification.');
     }

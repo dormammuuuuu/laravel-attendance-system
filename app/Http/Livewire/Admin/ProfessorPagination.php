@@ -40,6 +40,7 @@ class ProfessorPagination extends Component
                 'firstname',
                 'lastname',
                 'username',
+                'email',
             ], $this->search)
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10)

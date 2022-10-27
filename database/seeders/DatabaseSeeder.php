@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(700)->create();
-
         //seed 10 professors
         User::factory(20)->create([
             'role' => 'professor',

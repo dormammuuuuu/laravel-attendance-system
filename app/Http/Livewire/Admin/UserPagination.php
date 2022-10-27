@@ -16,6 +16,10 @@ class UserPagination extends Component
     public $sortField = 'lastname';
     public $sortDirection = 'asc';
 
+    public $listeners = [
+        'refreshList' => 'render',
+    ];
+
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
@@ -41,6 +45,7 @@ class UserPagination extends Component
                 'firstname',
                 'lastname',
                 'username',
+                'email',
             ], $this->search)
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10)

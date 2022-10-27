@@ -23,9 +23,9 @@
                     <td data-label="Email">{{ $user->email }}</td>
                     <td data-label="Date created">{{ $user->created_at }}</td> 
                     <td data-label="Action">
-                        
-                        <a class="action reject" href="/admin/registrations/{{ $user->token }}/reject">Decline</a>
-                        <a class="action approve" href="/admin/registrations/{{ $user->token }}/approve">Accept</a>
+                        <button class="action view" wire:click="$emit('openModal', 'admin.professor.registrations-view', {{ json_encode([$user->id]) }})">View</button>  
+                        {{-- <a class="action reject" href="/admin/registrations/{{ $user->token }}/reject">Decline</a>
+                        <a class="action approve" href="/admin/registrations/{{ $user->token }}/approve">Accept</a> --}}
                     </td>
                 </tr>
             @endforeach

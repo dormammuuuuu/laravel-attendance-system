@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\VerificationMailer;
 use Illuminate\Support\Facades\Route;
 
 /*

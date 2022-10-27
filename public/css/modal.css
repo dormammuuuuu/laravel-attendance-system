@@ -68,4 +68,68 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.verification-container {
+  text-align: center;
+}
+.verification-container .id-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+.verification-container .id-container .id-view {
+  width: auto;
+  height: auto;
+  max-height: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+.verification-container .name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+.verification-container .username {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+.verification-container .email {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+.verification-container .button-container {
+  margin: 30px 0;
+  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+.verification-container .button-container button {
+  padding: 10px 0;
+  border-radius: 7px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background-color: transparent;
+}
+.verification-container .button-container button.reject {
+  color: #00204A;
+}
+.verification-container .button-container button.reject:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.verification-container .button-container button.approve {
+  background-color: #00204a;
+}
+.verification-container .button-container button.approve:hover {
+  background-color: rgba(0, 32, 74, 0.8);
 }/*# sourceMappingURL=modal.css.map */

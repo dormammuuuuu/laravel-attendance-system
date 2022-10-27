@@ -70,6 +70,9 @@ class ProfessorController extends Controller
     }
 
     public function requirements(){
+        if (auth()->user()->approved == true && auth()->user()->role == 'professor') {
+            return redirect()->route('professors.dashboard');
+        }
         return view('professors.requirements');
     }
 

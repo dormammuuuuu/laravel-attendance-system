@@ -34,7 +34,7 @@
   margin-left: 0;
   transition: margin-left 0.3s ease-in-out;
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 5em;
 }
 #main.active {
   margin-left: 250px;

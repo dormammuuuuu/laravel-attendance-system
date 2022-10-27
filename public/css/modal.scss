@@ -75,3 +75,70 @@
     }
 }
 
+.verification-container{
+    text-align: center;
+    .id-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px;
+        .id-view{
+            width: auto;
+            height: auto;
+            max-height: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+            border: 1px solid rgb(0 0 0 / 0.4);
+        }
+    }
+
+    .name{
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .username{
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .email{
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .button-container{
+        margin: 30px 0;
+        margin-bottom: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        button{
+            padding: 10px 0;
+            border-radius: 7px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            background-color: transparent;
+            &.reject{
+                color: #00204A;
+                &:hover{
+                    background-color: rgba($color: #000000, $alpha: 0.2);
+                }
+            }
+            &.approve{
+                background-color: #00204a;
+                &:hover{
+                    background-color: rgba($color: #00204a, $alpha: 0.8);
+                }
+            }
+        }
+    }
+}
