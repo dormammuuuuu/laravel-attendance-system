@@ -5,7 +5,7 @@
         </div>
         <div class="qr-details">
             <p class="student-number">{{$student_no}}</p>
-            <p class="student-name">{{$lastname}}, {{$firstname}} {{$middleinitial}}.</p>
+            <p class="student-name">{{$lastname}}, {{$firstname}} {{$middleinitial}}</p>
             <p class="student-section">{{$section}}</p>
         </div>
         <a target="_blank" class="qr-download" href="/student/{{$token}}/qrcode/download">Download Student QR Code</a>

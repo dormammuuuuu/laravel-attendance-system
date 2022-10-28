@@ -38,7 +38,7 @@ Breadcrumbs::for('classes', function ($trail) {
 
 Breadcrumbs::for('professor-profile', function ($trail, $firstname, $lastname, $middleinitial) {
     $trail->parent('professors');
-    $trail->push($firstname . ', ' . $lastname . ' ' . $middleinitial . '.', route('admin.professors.profile', [$firstname, $lastname, $middleinitial]));
+    $trail->push($firstname . ', ' . $lastname . ' ' . $middleinitial, route('admin.professors.profile', [$firstname, $lastname, $middleinitial]));
 });
 
 Breadcrumbs::for('class', function ($trail, $subject) {

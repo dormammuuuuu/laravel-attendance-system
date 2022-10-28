@@ -18,9 +18,9 @@ class AddModal extends ModalComponent
     public $password_confirmation;
 
     protected $rules = [
-        'firstname' => 'required|min:3|max:30',
-        'middleinitial' => 'required|min:1|max:1',
-        'lastname' => 'required|min:3|max:30',
+        'firstname' => 'required|min:3|max:30|alpha',
+        'middleinitial' => 'min:0|max:1|alpha',
+        'lastname' => 'required|min:3|max:30|alpha',
         'email' => 'required|email|unique:users,email',
         'username' => 'required|min:3|max:30|unique:users,username',
         'password' => 'required|min:3|max:30|confirmed',

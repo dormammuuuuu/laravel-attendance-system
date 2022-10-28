@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('middleinitial');
+            $table->string('middleinitial')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('student_no')->unique()->nullable();
             $table->string('section')->nullable();

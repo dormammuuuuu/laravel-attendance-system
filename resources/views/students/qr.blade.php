@@ -17,7 +17,7 @@
         </div>
         <div class="qr-details">
             <p class="student-number">{{$data->student_no}}</p>
-            <p class="student-name">{{$data->lastname}}, {{$data->firstname}} {{$data->middleinitial}}.</p>
+            <p class="student-name">{{$data->lastname}}, {{$data->firstname}} {{$data->middleinitial}}</p>
             <p class="student-section">{{$data->section}}</p>
         </div>
     </div>

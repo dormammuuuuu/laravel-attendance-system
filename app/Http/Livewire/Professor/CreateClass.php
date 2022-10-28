@@ -21,8 +21,8 @@ class CreateClass extends ModalComponent
 
     public function createClass(){
         $this->validate([
-            'class_name' => 'required',
-            'class_room' => 'required',
+            'class_name' => 'required|min:3|max:30',
+            'class_room' => 'required|numeric',
             'class_section' => 'required',
         ]);
 

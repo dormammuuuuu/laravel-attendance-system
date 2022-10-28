@@ -50,7 +50,7 @@
         </div>
         <div class="qr-details">
             <p style="font-family: 'PoppinsBold', sans-serif; font-size: 22px;    font-weight: 600;    color: #00204a ;letter-spacing: 2px;">{{$data->student_no}}</p>
-            <p style="font-size: 16px;    color: #00204a; font-weight: 500;    letter-spacing: 1px;">{{$data->lastname}}, {{$data->firstname}} {{$data->middleinitial}}.</p>
+            <p style="font-size: 16px;    color: #00204a; font-weight: 500;    letter-spacing: 1px;">{{$data->lastname}}, {{$data->firstname}} {{$data->middleinitial}}</p>
             <p style="font-size: 14px;    color: #00204a; font-weight: 400;    letter-spacing: 1px;">{{$data->section}}</p>
         </div>
     </div>

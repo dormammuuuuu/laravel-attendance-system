@@ -17,14 +17,12 @@ class StudentController extends Controller
         return view('students.index', compact('tracks'));
     }
 
-    
     public function store(Request $request)
     {
-
         $request->validate([
-            'FirstName' => 'required|max:30|min:2',
-            'LastName' => 'required|max:30|min:2',
-            'MiddleInitial' => 'required|max:1|min:1',
+            'FirstName' => 'required|max:30|min:2|alpha',
+            'LastName' => 'required|max:30|min:2|alpha',
+            'MiddleInitial' => 'max:1|min:0|alpha',
             'Course' => 'required',
             // 'g-recaptcha-response' => 'required|captcha',
             'StudentNumber' => 'required|max:30|min:2|unique:users,student_no',
@@ -35,16 +33,12 @@ class StudentController extends Controller
         // ]
         );
 
-
-        
         $studentNumber = $request->input('StudentNumber');
         $data = User::where('student_no', $studentNumber)->first();
         if($data){
             $token = $data->token;
             return redirect('/student/'.$token.'/qrcode');
         }
-
-        
 
         $token = Str::random(20);
 

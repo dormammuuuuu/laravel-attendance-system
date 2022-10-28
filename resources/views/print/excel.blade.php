@@ -31,7 +31,7 @@
         <tbody>
         @foreach($students as $student)
             <tr>
-                <td>{{$student->lastname}}, {{$student->firstname}} {{$student->middleinitial}}.</td>
+                <td>{{$student->lastname}}, {{$student->firstname}} {{$student->middleinitial}}</td>
                 @foreach ($dates as $date)
                     <td>
 

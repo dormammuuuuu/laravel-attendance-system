@@ -8,13 +8,12 @@
             <x-form-group label="Middle Initial" id="MiddleInitial" type="text" value="middleinitial"/>
         </div>
         <label class="dropdown-label" for="Course">Year & Section</label>
-        <select wire-model="section" name="Course" id="Course">
-            <option></option>
+        <select wire:model="section" name="Course" id="Course">
             @foreach($tracks as $track)
                 <option value="{{ $track }}">{{ $track }}</option>
             @endforeach
         </select>
-        @error('Course')
+        @error('section')
             <p class="error">{{ $message }}</p>
         @enderror
         <input id="submit" type="submit" value="Create Account">
