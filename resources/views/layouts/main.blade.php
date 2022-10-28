@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
     <link rel="stylesheet" href="{{ asset('css/loading.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='{{ asset('css/boxicons.min.css')}}' rel='stylesheet'>
     
     <script defer src="{{ asset('js/admin/jquery-3.6.1.min.js') }}"></script>
 
