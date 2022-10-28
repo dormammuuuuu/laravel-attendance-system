@@ -40,18 +40,6 @@ class ProfessorController extends Controller
             'username' => $request->UserName,
             'password' => $request->password
         ]);
-        
-
-
-        // $temp = User::where([
-        //     'username'=> $request->UserName,
-        // ])->first();
-
-        // if($temp){
-        //     if($temp->approved == 0){
-        //         return back()->with('error', 'Your account is not yet approved by the admin.');
-        //     }
-        // }
 
         if(auth()->attempt($user)){
             $request->session()->regenerate();
@@ -99,13 +87,22 @@ class ProfessorController extends Controller
         ]);
 
         User::create($user);
-        
-        return redirect()->route('professors.index')->with('success', 'Please wait for an admin to approve your account');
+
+        $credentials = ([
+            'username' => $request->UserName,
+            'password' => $request->password
+        ]);
+
+        if(auth()->attempt($credentials)){
+            $request->session()->regenerate();
+            return redirect()->route('professors.verification');
+        }
     }
 
     public function destroy($token){
         $user = User::where('token', $token)->first();
         $user->delete();
+        Classroom::where('class_prof', $token)->delete();
         return redirect()->back()->with('success', 'Professor Deleted');
     }
 

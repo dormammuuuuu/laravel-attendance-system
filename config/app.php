@@ -197,7 +197,8 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Flasher\Laravel\FlasherServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
     ],
 
     /*
@@ -217,6 +218,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Flasher' => Flasher\Laravel\Facade\Flasher::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
     ])->toArray(),
 
 ];

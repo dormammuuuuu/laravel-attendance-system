@@ -1,4 +1,5 @@
 <div>
+    <x-loading-screen />
     <div class="profile-paginate">
         <p class="label">Class list</p>
         {{ $classes->links() }}

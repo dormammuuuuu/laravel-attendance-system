@@ -9,8 +9,15 @@
     transform: translate(-50%,-50%);
     max-width: 500px;
     width: 100%;
-    padding-bottom: 35px; 
+    padding-bottom: 35px;   
+}
 
+.captcha{
+    margin-top: 20px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    display: flex;
+    justify-content: center;
     
 }
 

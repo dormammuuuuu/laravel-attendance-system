@@ -32,6 +32,13 @@
             @error('Course')
                 <p class="error">{{ $message }}</p>
             @enderror
+            {!! NoCaptcha::renderJs() !!}
+            <div class="captcha">
+                {!! NoCaptcha::display() !!}
+            </div>
+            @error('g-recaptcha-response')
+                <p class="error">{{ $message }}</p>
+            @enderror
             <input id="submit" type="submit" value="Register">
         </form>
     </div>

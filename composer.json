@@ -7,6 +7,7 @@
     "repositories": [ { "type": "vcs", "url": "https://github.com/Butochnikov/livewire-calendar" } ],
         "require": {
         "php": "^8.0.2",
+        "anhskohbo/no-captcha": "^3.4",
         "asantibanez/livewire-calendar": "dev-master",
         "barryvdh/laravel-dompdf": "^2.0",
         "davejamesmiller/laravel-breadcrumbs": "5.x",

@@ -16,8 +16,9 @@
         x-show="show"
         class="modal-parent" style="display: none;">
         <div class="modal-dialog">
-            <div x-show="show" x-on:click="closeModalOnClickAway()" class="modal-ukdiv-parent">
-                <div class="modal-ukdiv"></div>
+            <div x-show="show" class="modal-ukdiv-parent">
+                <div class="modal-ukdiv">
+                </div>
             </div>
 
             <span class="modal-span" aria-hidden="true">&#8203;</span>
@@ -27,6 +28,8 @@
                 id="modal-container">
                 @forelse($components as $id => $component)
                 <div x-show.immediate="activeComponent == '{{ $id }}'" x-ref="{{ $id }}" wire:key="{{ $id }}">
+                    <button class="close-button" wire:click="$emit('closeModal')"><i class='bx bx-x'></i></button>
+
                     @livewire($component['name'], $component['attributes'], key($id))
                 </div>
                 @empty

@@ -9,13 +9,18 @@
     @vite('resources/js/app.js')
     @livewireStyles
     <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/loading.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <script defer src="{{ asset('js/admin/jquery-3.6.1.min.js') }}"></script>
+
     <!-- Alpine v3 -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="{{ asset('js/admin/alpine.min.js') }}"></script>
+    <script defer src="{{ asset('js/admin/alpine-focus.min.js') }}"></script>
+    {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
     <!-- Focus plugin -->
-    <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+    {{-- <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script> --}}
     @yield('js')
     @yield('qr-cam')
     @yield('css')

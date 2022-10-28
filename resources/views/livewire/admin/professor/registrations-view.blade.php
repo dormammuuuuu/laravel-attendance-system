@@ -5,9 +5,8 @@
         @else
             <p>No document uploaded</p>
         @endif
-        {{-- <img src="{{ $photo }}" alt="ID" class="id-view"> --}}
     </div>
-    <div >
+    <div>
         <p class="name">{{ $fullname }}</p>
         <p class="username">{{ '@'.$username }}</p>
         <p class="email">{{ $email }}</p>

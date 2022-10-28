@@ -22,16 +22,22 @@ class RegistrationsView extends ModalComponent
     public $filename;
 
     public function reject(){
-        $status = 'rejected';
-        Mail::to($this->email)->send(new VerificationMailer($status));
+        if ($this->filename != null){
+            $status = 'rejected';
+            Mail::to($this->email)->send(new VerificationMailer($status));
+            unlink(storage_path('app/photos/'.$this->filename));
+            VerificationId::where('user_token', $this->token)->first()->delete();
+        }
         $this->closeModal();
     }
 
     public function approve(){
-        $status = 'approved';
-        Mail::to($this->email)->send(new VerificationMailer($status));
-        unlink(storage_path('app/photos/'.$this->filename));
-        VerificationId::where('user_token', $this->token)->first()->delete();
+        if ($this->filename != null) {
+            $status = 'approved';
+            Mail::to($this->email)->send(new VerificationMailer($status));
+            unlink(storage_path('app/photos/'.$this->filename));
+            VerificationId::where('user_token', $this->token)->first()->delete();
+        }
         User::where('id', $this->user_id)->first()->update(['approved' => 1]);
         $this->closeModalWithEvents([
             UserPagination::getName() => 'refreshList'

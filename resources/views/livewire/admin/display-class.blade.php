@@ -1,4 +1,5 @@
 <div>
+    <x-loading-screen />
     <div class="class-search">
         <input id="search" type="text" placeholder="Search" wire:model="search" >
     </div>

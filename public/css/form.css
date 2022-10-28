@@ -12,6 +12,14 @@
   padding-bottom: 35px;
 }
 
+.captcha {
+  margin-top: 20px;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  display: flex;
+  justify-content: center;
+}
+
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;

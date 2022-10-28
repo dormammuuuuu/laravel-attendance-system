@@ -1,4 +1,5 @@
 <div>
+    <x-loading-screen />
     <div class="search-container">
         <div class="button-container">
             <button class="add" wire:click="$emit('openModal', 'admin.professor.add-modal')">Add Professor</button>

@@ -30,7 +30,6 @@
         <x-navbar.navbar title="Class" />
         <div class="action-container">
             {{ Breadcrumbs::render('classes') }}
-
             {{-- <button class="styled-button" onclick="Livewire.emit('openModal', 'professor.create-class')"><i class='bx bx-plus'></i> Create Class</button> --}}
         </div>
         @livewire('admin.display-class')

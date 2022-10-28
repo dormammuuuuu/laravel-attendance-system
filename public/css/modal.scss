@@ -75,6 +75,24 @@
     }
 }
 
+.close-button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    i{
+        font-size: 30px;
+        color: rgba($color: #00204a, $alpha: 0.7);
+    }
+    &:hover{
+        i{
+            color: rgba($color: #00204a, $alpha: 1);
+        }
+    }
+}
+
 .verification-container{
     text-align: center;
     .id-container{
