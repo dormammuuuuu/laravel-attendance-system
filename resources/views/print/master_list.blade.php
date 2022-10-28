@@ -93,7 +93,11 @@
                         'student_token' => $user['student_no'],
                         'class_token' => $token,
                     ])->get()->count();
-                    $percentage = ($attendance / $sessions) * 100;
+                    if ($attendance == 0) {
+                        $percentage = 0;
+                    } else {
+                        $percentage = ($attendance / $sessions) * 100;
+                    }
                 @endphp
                 <tr>
                     <td>{{ $user['student_no'] }}</td>
