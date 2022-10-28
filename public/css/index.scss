@@ -23,3 +23,9 @@ body{
 	border-radius: 0px;
 }
 
+input:disabled{
+    cursor: not-allowed!important;
+    background-color: gray!important;
+    background: gray!important;
+}
+

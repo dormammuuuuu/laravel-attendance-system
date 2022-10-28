@@ -10,6 +10,6 @@
         <x-form-group label="Email" id="Email" type="email" value="email" />
         <x-form-group label="Password" id="Password" type="password" value="password"/>
         <x-form-group label="Confirm Password" id="PasswordConfirmation" type="password" value="password_confirmation" />
-        <input id="submit" type="submit" value="Create Account">
+        <input id="submit" type="submit" value="Create Account" wire:loading.attr="disabled">
     </form>
 </div>

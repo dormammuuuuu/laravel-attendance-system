@@ -16,6 +16,6 @@
         @error('section')
             <p class="error">{{ $message }}</p>
         @enderror
-        <input id="submit" type="submit" value="Save User Data">
+        <input id="submit" type="submit" value="Save User Data" wire:loading.attr="disabled">
     </form>
 </div>

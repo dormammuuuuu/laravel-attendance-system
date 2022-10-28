@@ -1,4 +1,5 @@
 <div>
+    <x-loading-screen/>
     <form class="right" wire:submit.prevent="save">
         <div>
             <h1>Upload document</h1>

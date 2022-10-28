@@ -8,6 +8,6 @@
         </div>
         <x-form-group label="Email" id="Email" type="email" value="email" />
         <x-form-group label="Username" id="UserName" type="text" value="username"/>
-        <input id="submit" type="submit" value="Save User Data">
+        <input id="submit" type="submit" value="Save User Data" wire:loading.attr="disabled">
     </form>
 </div>

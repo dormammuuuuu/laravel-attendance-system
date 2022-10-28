@@ -21,4 +21,10 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #00204a;
   border-radius: 0px;
+}
+
+input:disabled {
+  cursor: not-allowed !important;
+  background-color: gray !important;
+  background: gray !important;
 }/*# sourceMappingURL=index.css.map */
