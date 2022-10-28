@@ -26,12 +26,14 @@ class StudentController extends Controller
             'LastName' => 'required|max:30|min:2',
             'MiddleInitial' => 'required|max:1|min:1',
             'Course' => 'required',
-            'g-recaptcha-response' => 'required|captcha',
+            // 'g-recaptcha-response' => 'required|captcha',
             'StudentNumber' => 'required|max:30|min:2|unique:users,student_no',
-        ], [
-            'g-recaptcha-response.required' => 'Captcha is required',
-            'g-recaptcha-response.captcha' => 'Captcha is invalid',
-        ]);
+        ],
+        //  [
+        //     'g-recaptcha-response.required' => 'Captcha is required',
+        //     'g-recaptcha-response.captcha' => 'Captcha is invalid',
+        // ]
+        );
 
 
         
@@ -50,6 +52,7 @@ class StudentController extends Controller
             'firstname' => $request->FirstName,
             'lastname' => $request->LastName,
             'middleinitial' => $request->MiddleInitial,
+            'email' => null,
             'student_no' => $request->StudentNumber,
             'section' => $request->Course,
             'token' => $token
