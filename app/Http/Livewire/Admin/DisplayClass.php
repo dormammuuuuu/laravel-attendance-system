@@ -16,6 +16,11 @@ class DisplayClass extends Component
         return 'pagination::default';
     }
 
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         return view('livewire.admin.display-class', [

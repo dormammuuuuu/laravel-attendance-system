@@ -30,6 +30,11 @@ class ProfessorPagination extends Component
         } 
     }
 
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         return view('livewire.admin.professor-pagination', [

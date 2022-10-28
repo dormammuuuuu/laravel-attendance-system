@@ -22,7 +22,7 @@ class StudentController extends Controller
         $request->validate([
             'FirstName' => 'required|max:30|min:2|alpha',
             'LastName' => 'required|max:30|min:2|alpha',
-            'MiddleInitial' => 'max:1|min:0|alpha',
+            'MiddleInitial' => 'min:0|max:1',
             'Course' => 'required',
             // 'g-recaptcha-response' => 'required|captcha',
             'StudentNumber' => 'required|max:30|min:2|unique:users,student_no',

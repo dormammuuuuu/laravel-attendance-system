@@ -19,6 +19,11 @@ class ProfessorClassPagination extends Component
     public function mount($token){
         $this->token = $token;
     }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
     
     public function render()
     {

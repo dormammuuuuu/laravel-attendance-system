@@ -72,6 +72,11 @@ class StudentPagination extends Component
         return 'pagination::default';
     }
 
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         if ($this->filterString == ''){

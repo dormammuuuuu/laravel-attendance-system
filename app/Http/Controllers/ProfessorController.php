@@ -68,7 +68,7 @@ class ProfessorController extends Controller
         $request->validate([
             'FirstName' => 'required|max:30|min:2|alpha',
             'LastName' => 'required|max:30|min:2|alpha',
-            'MiddleInitial' => 'max:1|min:0|alpha',
+            'MiddleInitial' => 'max:1|min:0',
             'Email' => 'required|email|unique:users,email',
             'UserName' => 'required|max:30|min:2|unique:users,username',
             'password' => 'required|max:30|min:6|confirmed',

@@ -18,7 +18,7 @@ class AddModal extends ModalComponent
 
     protected $rules = [
         'firstname' => 'required|min:3|max:30|alpha',
-        'middleinitial' => 'min:0|max:1|alpha',
+        'middleinitial' => 'min:0|max:1',
         'lastname' => 'required|min:3|max:30|alpha',
         'student_no' => 'required|min:3|max:30|unique:users,student_no',
         'section' => 'required',

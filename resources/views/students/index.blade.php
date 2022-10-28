@@ -24,7 +24,6 @@
             </div>
             <label class="dropdown-label" for="Course">Section</label>
             <select name="Course" id="Course">
-                <option></option>
                 @foreach($tracks as $track)
                     <option value="{{ $track }}">{{ $track }}</option>
                 @endforeach
