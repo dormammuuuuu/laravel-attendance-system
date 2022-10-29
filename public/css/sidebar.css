@@ -48,6 +48,7 @@
   padding: 10px 0;
   color: white;
   text-decoration: none;
+  width: 100%;
 }
 #sidebar .sidebar-content .group ul li a i {
   margin-right: 15px;

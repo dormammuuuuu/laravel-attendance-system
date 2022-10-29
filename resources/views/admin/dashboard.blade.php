@@ -24,6 +24,8 @@
         <x-sidebar.admin-sidebar/>
     </x-sidebar.sidebar>
     <div id="main">
+        {{-- <a href="{{route('maintenance.on')}}">ON</a>
+        <a href="{{route('maintenance.off')}}">OFF</a> --}}
         <x-navbar.navbar title="Dashboard"/>
         <div class="prof-class">
             <div class="subject-card-container">

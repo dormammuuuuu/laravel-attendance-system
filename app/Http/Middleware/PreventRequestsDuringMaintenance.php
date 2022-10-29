@@ -14,4 +14,14 @@ class PreventRequestsDuringMaintenance extends Middleware
     protected $except = [
         //
     ];
+
+    // public function handle($request, \Closure $next)
+    // {
+    //     //allow admin to access on maintenance mode
+    //     if (auth()->check() && auth()->user()->is_admin) {
+    //         return $next($request);
+    //     }
+
+    //     return parent::handle($request, $next);
+    // }
 }

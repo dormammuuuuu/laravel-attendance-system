@@ -4,7 +4,7 @@ namespace App\View\Components\sidebar;
 
 use Illuminate\View\Component;
 
-class professor-sidebar extends Component
+class SidebarContentHeader extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class professor-sidebar extends Component
      */
     public function render()
     {
-        return view('components.sidebar.professor-sidebar');
+        return view('components.sidebar.sidebar-content-header');
     }
 }

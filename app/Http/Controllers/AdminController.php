@@ -9,6 +9,7 @@ use App\Models\Classroom;
 use App\Models\ClassSession;
 use Illuminate\Http\Request;
 use App\Models\ClassAttendance;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -123,5 +124,15 @@ class AdminController extends Controller
     public function profile($token){
         $user = User::where('token', $token)->first();
         return view('admin.professors-profile', compact('user', 'token'));
+    }
+
+    public function maintenance(){
+        Artisan::call('down', [
+            '--secret' => 'adminonly',
+        ]);
+    }
+
+    public function maintenanceOff(){
+        Artisan::call('up');
     }
 }

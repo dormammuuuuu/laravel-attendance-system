@@ -98,3 +98,7 @@ Route::get('/logout', function(){
     auth()->logout();
     return redirect('/');
 })->name('auth.logout');
+
+//Maintenance Route
+Route::get('/maintenance', 'App\Http\Controllers\AdminController@maintenance')->name('maintenance.on');
+Route::get('/maintenance/off', 'App\Http\Controllers\AdminController@maintenanceOff')->name('maintenance.off');
