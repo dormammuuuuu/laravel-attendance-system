@@ -11,6 +11,7 @@ use App\Models\ClassSession;
 use Illuminate\Http\Request;
 use App\Models\ClassAttendance;
 use App\Exports\AttendanceExport;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProfessorController extends Controller
@@ -200,5 +201,68 @@ class ProfessorController extends Controller
             return $date->format('Y-m-d');
         }, $dates);
         return Excel::download(new AttendanceExport($students, $dates, $token, $section), 'attendance.xlsx');
+    }
+
+    public function account(){
+        $user = auth()->user();
+        return view('professors.account', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'FirstName' => 'required|max:30|min:2|alpha',
+            'LastName' => 'required|max:30|min:2|alpha',
+            'MiddleInitial' => 'max:1|min:0',
+        ]);        
+
+        $user = User::where('id', auth()->user()->id)->first();
+        $user->firstname = $request->FirstName;
+        $user->lastname = $request->LastName;
+        $user->middleinitial = $request->MiddleInitial;
+
+        if($user->isDirty()){
+            $user->save();
+            return redirect()->back()->with('success', 'Profile Updated');
+        }
+        else {
+            return redirect()->back()->with('warning', 'No Changes Made');
+        }
+    }
+
+    public function updateCredentials(Request $request)
+    {
+        $request->validate([
+            'Email' => 'required|email|unique:users,email,'.auth()->user()->id,
+            'UserName' => 'required|max:30|min:6',
+        ]);
+
+        $user = User::where('id', auth()->user()->id)->first();
+        $user->email = $request->Email;
+        $user->username = $request->UserName;
+        if($user->isDirty()){
+            $user->save();
+            return redirect()->back()->with('success', 'Profile Updated');
+        }
+        else {
+            return redirect()->back()->with('warning', 'No Changes Made');
+        }
+    }
+
+    public function updatePassword(Request $request){
+        $request->validate([
+            'CurrentPassword' => 'required',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        
+        if(Hash::check($request->CurrentPassword, auth()->user()->password)){
+            $user = User::where('id', auth()->user()->id)->first();
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return redirect()->back()->with('success', 'Password Updated');
+        }
+        else {
+            return redirect()->back()->with('error', 'Current password doesn\'t match');
+        }
     }
 }

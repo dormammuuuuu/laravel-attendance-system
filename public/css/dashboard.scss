@@ -143,6 +143,7 @@ $midnight: #2c3e50;
                 color: white;
                 tr{
                     th{
+                        font-size: 12px;
                         padding: 10px;
                         text-align: left;
                         font-weight: 500;
@@ -566,6 +567,53 @@ $midnight: #2c3e50;
     }
 }
 
+.settings-container{
+    width: -webkit-fill-available;
+    width: moz-available;
+    margin: 30px 5%;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: .7fr 1fr;
+    grid-gap: 20px;
+    border-bottom: 1px solid #ccc;
+    .details{
+        .title{
+            font-size: 20px;
+            font-weight: 500;
+            color: #00204A;
+            margin-bottom: 10px;
+        }
+    }
+    .form-container{
+        background: white;
+        box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
+        border-radius: 7px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .submit-settings{
+        background: #00204A;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        outline: none;
+        align-self: flex-end;
+
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+}
+
 //media query for 800px
 @media screen and (max-width: 800px){
     .prof-class{
@@ -578,6 +626,15 @@ $midnight: #2c3e50;
                 }
             }
         }    
+    }
+}
+
+@media screen and (max-width: 700px){
+    .settings-container{
+        grid-template-columns: 1fr;
+        .row{
+            display: block;
+        }
     }
 }
 

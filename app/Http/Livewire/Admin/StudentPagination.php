@@ -107,4 +107,3 @@ class StudentPagination extends Component
         ]);
     }
 }
-// select * from `users` where (`role` = 'student' and `section` = 'ABM 11-B') and (`student_no` like '%%' or `firstname` like '%%' or `lastname` like '%%')

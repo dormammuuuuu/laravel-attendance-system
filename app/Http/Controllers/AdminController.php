@@ -9,8 +9,9 @@ use App\Models\Classroom;
 use App\Models\ClassSession;
 use Illuminate\Http\Request;
 use App\Models\ClassAttendance;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 
 
 class AdminController extends Controller
@@ -23,12 +24,12 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $student = User::where('role', 'student')->count();
+        $student = User::where('role', 'student')->count('id');
         $prof = User::where([
             ['role', 'professor'],
             ['approved', 1]
-        ])->count();
-        $class = Classroom::count();
+        ])->count('id');
+        $class = Classroom::count('id');
         return view('admin.dashboard', compact('student', 'prof', 'class'));
     }
 

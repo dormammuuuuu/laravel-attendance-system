@@ -56,6 +56,14 @@ Route::prefix('professor')->middleware('auth', 'verified')->group(function () {
     Route::get('/class/{token}/calendar/{date}', 'App\Http\Controllers\ProfessorController@attendance')->name('professors.class.attendance');
         //Professor Export
     Route::get('/class/{token}/calendar/{date}/export', 'App\Http\Controllers\ProfessorController@export')->name('professors.class.export');  
+        //Professor Account Settings
+    Route::get('/account', 'App\Http\Controllers\ProfessorController@account')->name('professors.account');
+        //Professor Profile Update
+    Route::post('/account/update/profile', 'App\Http\Controllers\ProfessorController@updateProfile')->name('professors.profile.update');
+        //Professor Credentials Update
+    Route::post('/account/update/credentials', 'App\Http\Controllers\ProfessorController@updateCredentials')->name('professors.credentials.update');
+        //Professor Password Update
+    Route::post('/account/update/password', 'App\Http\Controllers\ProfessorController@updatePassword')->name('professors.password.update');
 });
 
 Route::prefix('admin')->middleware('useraccess')->group(function () {
@@ -99,6 +107,6 @@ Route::get('/logout', function(){
     return redirect('/');
 })->name('auth.logout');
 
-//Maintenance Route
+//Experimental Maintenance Route
 Route::get('/maintenance', 'App\Http\Controllers\AdminController@maintenance')->name('maintenance.on');
 Route::get('/maintenance/off', 'App\Http\Controllers\AdminController@maintenanceOff')->name('maintenance.off');

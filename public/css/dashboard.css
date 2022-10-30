@@ -138,6 +138,7 @@
   color: white;
 }
 #main .table-container table thead tr th {
+  font-size: 12px;
   padding: 10px;
   text-align: left;
   font-weight: 500;
@@ -549,9 +550,59 @@
   justify-content: space-between;
 }
 
+.settings-container {
+  width: -webkit-fill-available;
+  width: moz-available;
+  margin: 30px 5%;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 0.7fr 1fr;
+  grid-gap: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.settings-container .details .title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #00204A;
+  margin-bottom: 10px;
+}
+.settings-container .form-container {
+  background: white;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.settings-container .submit-settings {
+  background: #00204A;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  outline: none;
+  align-self: flex-end;
+}
+.settings-container .submit-settings:hover {
+  transform: scale(1.05);
+}
+
 @media screen and (max-width: 800px) {
   .prof-class .subject-card-container .subject-card .icon i {
     font-size: 0;
+  }
+}
+@media screen and (max-width: 700px) {
+  .settings-container {
+    grid-template-columns: 1fr;
+  }
+  .settings-container .row {
+    display: block;
   }
 }
 @media screen and (max-width: 650px) {

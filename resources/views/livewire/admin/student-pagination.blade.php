@@ -12,7 +12,7 @@
     </div>
     <table>      
         <thead>
-            <th sortable wire:click="sortBy('student_no')">Student Number <i class='bx bxs-sort-alt'></i></th>
+            <th sortable wire:click.defer="sortBy('student_no')">Student Number <i class='bx bxs-sort-alt'></i></th>
             <th sortable wire:click="sortBy('lastname')">Name <i class='bx bxs-sort-alt'></i></th>
             <th sortable wire:click="sortBy('section')">Year & Section <i class='bx bxs-sort-alt'></i></th>
             <th>Actions</th>
