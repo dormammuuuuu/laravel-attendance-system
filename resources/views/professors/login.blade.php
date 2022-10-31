@@ -20,7 +20,8 @@
             <x-form-group label="Password" id="password" type="password" value=""/>
             <input id="submit" type="submit" value="Log in">
         </form>
-        <div class="form-footer">
+    <div class="form-footer">
+            <p><a href="{{ route('account.password.reset') }}">Forgot Password</a></p>
             <p>Don't have an account? <a href="{{ route('professors.index') }}">Register</a></p>
         </div>
     </div>

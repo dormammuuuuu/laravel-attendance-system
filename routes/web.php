@@ -29,6 +29,14 @@ Route::post('/register/professor', 'App\Http\Controllers\ProfessorController@sto
     //Professor Login
 Route::get('/professor/login', 'App\Http\Controllers\ProfessorController@login')->name('professors.login')->middleware('guest');
 Route::post('/authenticate/professor', 'App\Http\Controllers\ProfessorController@authenticate')->name('auth.professor');
+    //Professor Password Reset
+Route::get('/account/reset-password', 'App\Http\Controllers\ProfessorController@resetPassword')->name('account.password.reset');
+    //Professor Reset Email Send
+Route::post('/account/reset-password/send', 'App\Http\Controllers\ProfessorController@sendResetEmail')->name('account.password.reset.send');
+    //Account Reset
+Route::get('/account/reset/{token}', 'App\Http\Controllers\ProfessorController@reset')->name('account.reset');
+    //Account Reset Password
+Route::post('/reset/{token}', 'App\Http\Controllers\ProfessorController@updateReset')->name('account.update.reset.password');
 
 //Student Routes
 Route::get('/student/signup', 'App\Http\Controllers\StudentController@index')->name('students.index')->middleware('guest');
@@ -64,6 +72,8 @@ Route::prefix('professor')->middleware('auth', 'verified')->group(function () {
     Route::post('/account/update/credentials', 'App\Http\Controllers\ProfessorController@updateCredentials')->name('professors.credentials.update');
         //Professor Password Update
     Route::post('/account/update/password', 'App\Http\Controllers\ProfessorController@updatePassword')->name('professors.password.update');
+        
+
 });
 
 Route::prefix('admin')->middleware('useraccess')->group(function () {

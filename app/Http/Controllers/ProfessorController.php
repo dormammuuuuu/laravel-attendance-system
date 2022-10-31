@@ -11,7 +11,10 @@ use App\Models\ClassSession;
 use Illuminate\Http\Request;
 use App\Models\ClassAttendance;
 use App\Exports\AttendanceExport;
+use App\Mail\ResetPasswordMailer;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProfessorController extends Controller
@@ -263,6 +266,63 @@ class ProfessorController extends Controller
         }
         else {
             return redirect()->back()->with('error', 'Current password doesn\'t match');
+        }
+    }
+
+    public function resetPassword()
+    {
+        return view('professors.request-password-reset');
+    }
+
+    public function sendResetEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+        $user = User::where('email', $request->email)->first();
+        if($user){
+            $token = Str::random(60);
+            DB::table('reset_password')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now(),
+            ]);
+            Mail::to($request->email)->send(new ResetPasswordMailer($token));
+            return redirect()->back()->with('success', 'Password reset link sent to your email');
+        }
+        else {
+            return redirect()->back()->with('error', 'Email not found');
+        }
+    }
+
+    public function reset($token)
+    {
+        $reset = DB::table('reset_password')->where('token', $token)->first();
+        if($reset){
+            return view('professors.password-reset', compact('reset'));
+        }
+        else {
+            return redirect()->route('account.password.reset')->with('error', 'Invalid password reset token');
+        }
+    }
+
+    public function updateReset(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        $reset = DB::table('reset_password')->where('token', $request->token)->first();
+
+        if($reset){
+            $user = User::where('email', $reset->email)->first();
+            $user->password = bcrypt($request->password);
+            $user->save();
+            DB::table('reset_password')->where('email', $reset->email)->delete();
+            return redirect()->route('login')->with('success', 'Password has been changed!');
+        }
+        else {
+            return redirect()->route('account.password.reset')->with('error', 'Invalid password reset token');
         }
     }
 }

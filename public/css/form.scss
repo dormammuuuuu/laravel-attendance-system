@@ -87,6 +87,9 @@
     width: -moz-available;  // mozilla width
     text-transform: uppercase;
     margin-top: 30px;
+    &.margin{
+        margin-top: 10px;
+    }
 }
 
 .form-footer{
@@ -94,6 +97,9 @@
     margin-bottom: 0px;
     text-align: center;
     font-size: 14px;
+    p{
+        margin-bottom: 10px;
+    }
     a{
         color: #00BBF0;   
     }

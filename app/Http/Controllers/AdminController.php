@@ -78,21 +78,6 @@ class AdminController extends Controller
         $data = User::where('role', 'admin')->paginate(10);
         return view('admin.admins')->with('data', $data);
     }
-    
-    // public function approve($token)
-    // {
-    //     $user = User::where('token', $token)->first();
-    //     $user->approved = true;
-    //     $user->save();
-    //     return redirect()->back()->with('success', 'Registration approved successfully!');
-    // }
-
-    // public function disapprove($token)
-    // {
-    //     $user = User::where('token', $token)->first();
-    //     $user->delete();
-    //     return redirect()->back()->with('success', 'Registration disapproved successfully!');
-    // }
 
     public function edit(Request $request){
         $user = User::where('token', $request->token)->first();

@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+
 @endsection
 
 @section('js')
@@ -20,5 +21,8 @@
             <x-form-group label="Password" id="password" type="password" />
             <input id="submit" type="submit" value="Login">
         </form>
+        <div class="form-footer">
+            <p><a href="{{ route('account.password.reset') }}">Forgot Password</a></p>
+        </div>
     </div>
 @endsection
