@@ -37,7 +37,9 @@
                 <x-subject.dashboard-card label="Attendance Today" count="{{$attendance}}%" icon="bx bx-calendar"/>
             </div>
             <div>
-                <x-action-card target="" label="Start" desc="Start a session now." link="/professor/class/{{$subject->class_token}}/start"/>
+                @if (auth()->user()->token == $subject->class_prof)
+                    <x-action-card target="" label="Start a Class Today" desc="Start a session now." link="/professor/class/{{$subject->class_token}}/start"/>
+                @endif
                 <x-action-card target="" label="Master list" desc="View the student list and export data, including the attendance for the entire semester." link="/professor/class/{{$subject->class_token}}/manage"/>
                 <x-action-card target="" label="Calendar" desc="View student attendance at the calendar" link="/professor/class/{{$subject->class_token}}/calendar"/>
                 <x-action-card target="" label="Delete" desc="This option will delete your class and all of its records. Delete at your own risk." link="/professor/class/{{$subject->class_token}}/delete"/>
