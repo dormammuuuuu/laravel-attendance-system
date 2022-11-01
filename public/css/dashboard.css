@@ -600,6 +600,8 @@
 @media screen and (max-width: 700px) {
   .settings-container {
     grid-template-columns: 1fr;
+    margin: 0;
+    padding: 20px;
   }
   .settings-container .row {
     display: block;

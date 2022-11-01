@@ -190,6 +190,7 @@ class ProfessorController extends Controller
 
     public function export($token, $date){
         $class = Classroom::where('class_token', $token)->get()->toArray();
+        $subject = $class[0]['class_name'];
         $section = $class[0]['class_section'];
         $students = User::where([
             'role' => 'student',
@@ -203,7 +204,7 @@ class ProfessorController extends Controller
         $dates = array_map(function($date){
             return $date->format('Y-m-d');
         }, $dates);
-        return Excel::download(new AttendanceExport($students, $dates, $token, $section), 'attendance.xlsx');
+        return Excel::download(new AttendanceExport($students, $dates, $token, $section), $subject . ' ' . $section . ' Attendance.xlsx');
     }
 
     public function account(){
@@ -237,7 +238,7 @@ class ProfessorController extends Controller
     {
         $request->validate([
             'Email' => 'required|email|unique:users,email,'.auth()->user()->id,
-            'UserName' => 'required|max:30|min:6',
+            'UserName' => 'required|max:30|min:2|unique:users,username,' . auth()->user()->id,
         ]);
 
         $user = User::where('id', auth()->user()->id)->first();

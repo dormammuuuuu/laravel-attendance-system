@@ -1,12 +1,19 @@
+.wrapper {
+  position: relative;
+  width: 100vw;
+  min-height: calc(90vh - 100px);
+  margin: 2em 0;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #form-container {
   background: white;
   border-radius: 7px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   max-width: 500px;
   width: 100%;
   padding-bottom: 35px;
@@ -94,6 +101,7 @@
   margin-bottom: 0px;
   text-align: center;
   font-size: 14px;
+  color: black;
 }
 .form-footer p {
   margin-bottom: 10px;
@@ -114,4 +122,10 @@ select {
   border-radius: 5px;
   padding: 5px;
   margin-top: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
 }/*# sourceMappingURL=form.css.map */

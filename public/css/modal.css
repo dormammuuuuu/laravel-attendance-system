@@ -148,4 +148,26 @@
 }
 .verification-container .button-container button.approve:hover {
   background-color: rgba(0, 32, 74, 0.8);
+}
+
+.tools {
+  display: flex;
+  flex-direction: column;
+}
+.tools button, .tools a {
+  padding: 10px 0;
+  border-radius: 7px;
+  border: none;
+  background-color: white;
+  font-size: 16px;
+  font-weight: 600;
+  color: #00204a;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+}
+.tools button:hover, .tools a:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }/*# sourceMappingURL=modal.css.map */

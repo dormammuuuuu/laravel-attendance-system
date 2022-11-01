@@ -35,64 +35,6 @@ class AttendanceView extends Component
         $this->classToken = $class->class_token;
     }
 
-    public function exportIndividual(){
-        $class_section = $this->classSection;
-        $subject = Classroom::where('class_token', $this->classToken)->first()->class_name;
-        $tmp_prof = Classroom::where('class_token', $this->classToken)->first()->class_prof;
-        $tmp = User::where('token', $tmp_prof)->first();
-        $professor_name = $tmp->firstname . ' ' . $tmp->lastname;
-        $date = $this->classDate;
-        $token = $this->classToken;
-        $data = User::where([
-            'section' => $this->classSection,
-            'role' => 'student'
-        ])->orderBy('lastname', 'asc')->get()->toArray();
-        $pdfContent = PDF::loadView('print.individual_attendance', compact('data', 'token', 'professor_name', 'class_section', 'date', 'subject'))->output();
-
-        return response()->streamDownload(
-             fn () => print($pdfContent),
-             "individual_attendance.pdf"
-        );
-    }
-
-    public function exportWeekly(){
-        $class_section = $this->classSection;
-        $subject = Classroom::where('class_token', $this->classToken)->first()->class_name;
-        $tmp_prof = Classroom::where('class_token', $this->classToken)->first()->class_prof;
-        $tmp = User::where('token', $tmp_prof)->first();
-        $professor_name = $tmp->firstname . ' ' . $tmp->lastname;
-        $date = Carbon::now()->format('Y-m-d');
-        $token = $this->classToken;
-        $data = User::where([
-            'section' => $this->classSection,
-            'role' => 'student'
-        ])->orderBy('lastname', 'asc')->get()->toArray();
-        $pdfContent = PDF::loadView('print.weekly_attendance', compact('data', 'token', 'professor_name', 'class_section', 'date', 'subject'))->setPaper('A4', 'landscape')->output();
-        return response()->streamDownload(
-             fn () => print($pdfContent),
-             "weekly_attendance.pdf"
-        );
-    }
-
-    // public function exportAll(){
-    //     $class_section = $this->classSection;
-    //     $subject = Classroom::where('class_token', $this->classToken)->first()->class_name;
-    //     $tmp_prof = Classroom::where('class_token', $this->classToken)->first()->class_prof;
-    //     $tmp = User::where('token', $tmp_prof)->first();
-    //     $professor_name = $tmp->firstname . ' ' . $tmp->lastname;
-    //     $date = Carbon::now()->format('Y-m-d');
-    //     $token = $this->classToken;
-    //     $data = User::where([
-    //         'section' => $this->classSection,
-    //         'role' => 'student'
-    //     ])->orderBy('lastname', 'asc')->get()->toArray();
-    //     $pdfContent = PDF::loadView('print.weekly_attendance', compact('data', 'token', 'professor_name', 'class_section', 'date', 'subject'))->setPaper('A4', 'landscape')->output();
-    //     return response()->streamDownload(
-    //          fn () => print($pdfContent),
-    //          "weekly_attendance.pdf"
-    //     );
-    // }
-
     public function sortBy($field)
     {
         if ($this->sortField === $field) {

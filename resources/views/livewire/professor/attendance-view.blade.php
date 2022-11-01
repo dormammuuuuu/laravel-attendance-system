@@ -1,9 +1,7 @@
 <div>
     <div class="search-container">
         <div class="button-container">
-            <button class="export" wire:click="exportIndividual">Export Today</button>
-            <button class="export" wire:click="exportWeekly">Export Weekly</button>
-            <a class="export" href="/professor/class/{{$classToken}}/calendar/{{$classDate}}/export">Export All</a>
+            <button class="export" wire:click="$emit('openModal', 'professor.export-attendance-modal', {{ json_encode([$classToken, $classDate]) }})">Export Attendance</button>
         </div>
         <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
     </div>

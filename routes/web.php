@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('students.index');
-});
+    return view('index');
+})->name('index');
 
 Route::get('/login', function(){
     return redirect()->route('students.index');
@@ -72,7 +72,8 @@ Route::prefix('professor')->middleware('auth', 'verified')->group(function () {
     Route::post('/account/update/credentials', 'App\Http\Controllers\ProfessorController@updateCredentials')->name('professors.credentials.update');
         //Professor Password Update
     Route::post('/account/update/password', 'App\Http\Controllers\ProfessorController@updatePassword')->name('professors.password.update');
-        
+        //Export Attendance
+    Route::get('/export/attendance', 'App\Http\Controllers\ProfessorController@exportAttendance')->name('professors.export.attendance');
 
 });
 

@@ -25,7 +25,7 @@ class UserAccess
             }
         }
         else{
-            return redirect()->back();
+            return redirect()->route('index');
         }
     }
 }
