@@ -250,6 +250,7 @@ input {
 }
 
 .home__img {
+  transform: scaleX(-1);
   height: 250px;
   justify-self: center;
 }
@@ -509,14 +510,14 @@ input {
   }
   .home__content {
     padding-top: 11rem;
-    gap: 3rem;
+    gap: 5rem;
   }
   .home__group {
     padding-top: 0;
   }
   .home__img {
     height: 400px;
-    transform: translateY(-3rem);
+    transform: translateY(-3rem) translateX(-1);
   }
   .home__indicator {
     top: initial;

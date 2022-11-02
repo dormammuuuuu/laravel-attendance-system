@@ -37,7 +37,7 @@
                         <div class="home__content grid">
                             <div class="home__group">
                                 <img
-                                    src="{{ asset('img/banner.png') }}"
+                                    src="{{ asset('img/banner2.png') }}"
                                     alt="" class="home__img">
                             </div>
                             <div class="home__data">

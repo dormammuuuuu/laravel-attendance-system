@@ -255,6 +255,9 @@ justify-content: space-between;
 }
 
 .home__img {
+    //flip image horizontally
+    transform: scaleX(-1);
+
     height: 250px;
     justify-self: center;
 }
@@ -537,7 +540,7 @@ justify-content: space-between;
 
     .home__content {
         padding-top: 11rem;
-        gap: 3rem;
+        gap: 5rem;
     }
 
     .home__group {
@@ -546,7 +549,7 @@ justify-content: space-between;
 
     .home__img {
         height: 400px;
-        transform: translateY(-3rem);
+        transform: translateY(-3rem) translateX(-1);
     }
 
     .home__indicator {
