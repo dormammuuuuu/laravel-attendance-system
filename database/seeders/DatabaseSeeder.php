@@ -44,5 +44,19 @@ class DatabaseSeeder extends Seeder
             'token' => Str::random(20),
             'approved' => 1,
         ]);
+
+        User::create([
+            'firstname' => 'Foo',
+            'lastname' => 'Bar',
+            'middleinitial' => 'B',
+            'email' => 'admin2@ashmr.com',
+            'student_no' => '20181-00000-MN-0',
+            'section' => 'BSIT-1A',
+            'username' => 'admin2',
+            'password' => bcrypt('admin2'),
+            'role' => 'admin',
+            'token' => Str::random(20),
+            'approved' => 1,
+        ]);
     }
 }

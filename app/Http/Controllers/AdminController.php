@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 class AdminController extends Controller
 {
     
-    public function login()
+public function login()
     {
         return view('admin.login');
     }
@@ -40,7 +40,14 @@ class AdminController extends Controller
             'password' => 'required'
         ]);     
 
-        if (Auth::attempt(['username' => $request->UserName, 'password' => $request->password, 'role' => 'admin'])) {
+        $data = ([
+            'username' => $request->UserName,
+            'password' => $request->password,
+            'role' => 'admin'
+        ]);
+
+
+        if (auth()->attempt($data)) {
             $request->session()->regenerate();
             return redirect()->route('admin.dashboard');
         }
