@@ -32,32 +32,7 @@
             <div class="form-header">
                 <h2>Student Registration</h2>
             </div>
-            <form action="{{ route('register.student') }}" method="POST">
-                @csrf
-                <x-form-group label="Student Number" id="StudentNumber" type="text" />
-                <x-form-group label="First Name" id="FirstName" type="text" />
-                <div class="row">
-                    <x-form-group label="Last Name" id="LastName" type="text" />
-                    <x-form-group label="Middle Initial" id="MiddleInitial" type="text" />
-                </div>
-                <label class="dropdown-label" for="Course">Section</label>
-                <select name="Course" id="Course">
-                    @foreach($tracks as $track)
-                        <option value="{{ $track }}">{{ $track }}</option>
-                    @endforeach
-                </select>
-                @error('Course')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-                {{-- {!! NoCaptcha::renderJs() !!}
-                <div class="captcha">
-                    {!! NoCaptcha::display() !!}
-                </div>
-                @error('g-recaptcha-response')
-                    <p class="error">{{ $message }}</p>
-                @enderror --}}
-                <input id="submit" type="submit" value="Register">
-            </form>
+            @livewire('student-registration-form')
         </div>
     </div>
     <x-footer.index-footer/>

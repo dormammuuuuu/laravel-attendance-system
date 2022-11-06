@@ -24,6 +24,11 @@ class AddModal extends ModalComponent
         'section' => 'required',
     ];
 
+    public function updated($field)
+    {
+        $this->validateOnly($field);
+    }
+
     protected $validationAttributes = [
         'firstname' => 'first name',
         'middleinitial' => 'middle initial',

@@ -20,6 +20,8 @@
         "php-flasher/flasher-laravel": "^1.7",
         "psr/simple-cache": "2.0",
         "simplesoftwareio/simple-qrcode": "~4",
+        "symfony/http-client": "^6.1",
+        "symfony/mailgun-mailer": "^6.1",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {

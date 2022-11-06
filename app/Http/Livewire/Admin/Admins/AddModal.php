@@ -34,6 +34,12 @@ class AddModal extends ModalComponent
         'password' => 'password',
     ];
 
+    public function updated($field)
+    {
+        $this->validateOnly($field);
+    }
+
+
     public function create()
     {
         $validatedData = $this->validate();

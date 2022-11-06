@@ -15,6 +15,17 @@ class EditModal extends ModalComponent
     public $email;
     public $username;
 
+    public function updated($field)
+    {
+        $this->validateOnly($field, [
+            'firstname' => 'required|min:3|max:30|alpha',
+            'middleinitial' => 'min:0|max:1',
+            'lastname' => 'required|min:3|max:30|alpha',
+            'email' => 'required|email|unique:users,email,'.$this->user->id,
+            'username' => 'required|min:3|max:30|unique:users,username, ' . $this->user->id . ',id',
+        ]);
+    }
+
     public function update(){
         $this->validate([
             'firstname' => 'required|min:3|max:30|alpha',

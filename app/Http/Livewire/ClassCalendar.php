@@ -62,12 +62,4 @@ class ClassCalendar extends LivewireCalendar
         $data = ClassSession::findOrfail($eventId);
         return redirect('/professor/class/' . $this->token . '/calendar/' . $data->class_date);
     }
-
-    // public function render()
-    // {
-    //     return view('livewire.class-calendar');
-    // }
 }
-
-//select * from `class_session` where `class_token` = '8NDJ81F7rQNnysoaemKM' and date(`class_date`) >= '2022-09-25' and date(`class_date`) <= '2022-11-05'
-//select * from `class_session` where `class_token` = 'class-calendar' and date(`class_date`) >= '2022-09-25' and date(`class_date`) <= '2022-11-05'
