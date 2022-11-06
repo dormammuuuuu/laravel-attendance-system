@@ -35,7 +35,7 @@
                 <img src="{{ asset('img/forgot-password.svg') }}" alt="">
             </div>
             <div class="forgot-container">
-                <div class="header">
+                <div class="head">
                     <p class="title">Forgot Password</p>
                     <div class="email-container">
                         <p>Reset password for:</p>
