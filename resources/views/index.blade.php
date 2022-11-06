@@ -20,10 +20,18 @@
                 <li class="nav__item">
                     <a href="#about" class="nav__link">About</a>
                 </li>
-                <li class="nav__item">
-                    <a href="{{ route('professors.login') }}" class="nav__link">Professor</a>
-                </li>
-                <a href="{{ route('students.index') }}" class="button button--ghost">Student</a>
+                @auth
+                    @if (auth()->user()->role == 'admin')
+                        <a href="{{ route('admin.dashboard') }}" class="button button--ghost">Dashboard</a>
+                    @else
+                        <a href="{{ route('professors.dashboard') }}" class="button button--ghost">Dashboard</a>
+                    @endif
+                @else
+                    <li class="nav__item">
+                        <a href="{{ route('professors.login') }}" class="nav__link">Professor</a>
+                    </li>
+                    <a href="{{ route('students.index') }}" class="button button--ghost">Student</a>
+                @endauth
             </ul>
         </x-slot>
     </x-navbar.index-navbar>

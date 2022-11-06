@@ -9,7 +9,7 @@
   --text-color: hsl(var(--hue), 4%, 85%);
   --text-color-light: hsl(var(--hue), 4%, 55%);
   /*Red gradient*/
-  --body-color: linear-gradient(90deg,
+  --body-color: linear-gradient (90deg,
           hsl(338, 67%, 11%) 0%,
           hsl(281, 63%, 10%) 100%);
   --container-color: linear-gradient(136deg,
@@ -100,7 +100,7 @@ input {
 }
 
 .scroll-header {
-  background: transparent url("../img/BG.svg") no-repeat fixed center;
+  background: transparent url("../img/BG.svg") no-repeat fixed top;
 }
 
 .show-scroll {

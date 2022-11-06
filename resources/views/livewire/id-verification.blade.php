@@ -16,7 +16,7 @@
         </div>
         @error('photo') <span class="error">{{ $message }}</span> @enderror
         <div class="row">
-            <a href="{{ route('auth.logout') }}">Cancel</a>
+            <a href="{{ route('auth.logout') }}">Logout</a>
             <input type="submit" id="submit" value="Upload">
         </div>
     </form>
