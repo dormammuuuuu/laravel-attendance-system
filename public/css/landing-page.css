@@ -158,6 +158,10 @@ input {
   align-items: center;
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
+  color: #00204a;
+}
+.nav__logo img {
+  width: 50px;
 }
 
 .nav__toggle {
