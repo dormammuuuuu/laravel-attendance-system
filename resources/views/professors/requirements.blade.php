@@ -9,6 +9,7 @@
 
 @section('js')
     <script src="{{ asset('js/admin/verify.js') }}"></script>
+    <script src="{{ asset('js/index.js')}}"></script>
 @endsection    
 
 @php
