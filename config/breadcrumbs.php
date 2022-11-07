@@ -64,11 +64,10 @@ return [
     | Subclass the default classes for more advanced customisations.
     |
     */
+    // // Manager
+    // 'manager-class' => DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::class,
 
-    // Manager
-    'manager-class' => DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::class,
-
-    // Generator
-    'generator-class' => DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
+    // // Generator
+    // 'generator-class' => DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
 
 ];

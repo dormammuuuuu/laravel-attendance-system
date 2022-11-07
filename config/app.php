@@ -219,6 +219,7 @@ return [
         'Flasher' => Flasher\Laravel\Facade\Flasher::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'Breadcrumbs' => \Diglactic\Breadcrumbs\Facade::class,
     ])->toArray(),
 
 ];

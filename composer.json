@@ -10,7 +10,7 @@
         "anhskohbo/no-captcha": "^3.4",
         "asantibanez/livewire-calendar": "dev-master",
         "barryvdh/laravel-dompdf": "^2.0",
-        "davejamesmiller/laravel-breadcrumbs": "5.x",
+        "diglactic/laravel-breadcrumbs": "^8.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.36",
         "laravel/sanctum": "^3.0",

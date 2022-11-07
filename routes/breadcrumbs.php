@@ -1,7 +1,8 @@
 <?php
 
 use Carbon\Carbon;
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Diglactic\Breadcrumbs\Breadcrumbs;
+use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push('Dashboard', route('admin.dashboard'));

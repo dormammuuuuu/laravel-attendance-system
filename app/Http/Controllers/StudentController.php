@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassAttendance;
 use \PDF;
 use App\Models\User;
 use App\Models\Student;
@@ -37,7 +38,7 @@ class StudentController extends Controller
         if($data){
             $token = $data->token;
             return redirect('/student/'.$token.'/qrcode');
-        }
+    }
 
         $token = Str::random(20);
 
@@ -59,8 +60,9 @@ class StudentController extends Controller
     public function destroy($token)
     {
         $user = User::where('token', $token)->first();
+        ClassAttendance::where('student_token', $user->student_no)->delete();
         $user->delete();
-        return redirect()->back()->with('success', 'Student Deleted');;
+        return redirect()->back()->with('success', 'Student Deleted');
     }
 
     public function show($token)

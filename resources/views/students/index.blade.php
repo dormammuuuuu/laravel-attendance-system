@@ -9,6 +9,7 @@
 
 @section('js')
     <script src="{{ asset('js/index.js') }}"></script>
+    <script src="https://unpkg.com/imask"></script>
 @endsection    
 
 @section('content')
@@ -35,5 +36,12 @@
             @livewire('student-registration-form')
         </div>
     </div>
+    <script>
+        // var element = document.getElementById('StudentNumber');
+        // var maskOptions = {
+        //    mask: '(000)000-00-00'
+        // };
+        // var mask = IMask(element, maskOptions);
+    </script>
     <x-footer.index-footer/>
 @endsection
