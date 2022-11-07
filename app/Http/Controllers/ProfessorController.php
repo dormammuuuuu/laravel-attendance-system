@@ -112,6 +112,10 @@ class ProfessorController extends Controller
 
     public function classDashboard($token){
         $subject = Classroom::where('class_token', $token)->first();
+
+        if ($subject->class_prof != auth()->user()->token || auth()->user()->role != 'admin') {
+            return redirect()->route('professors.dashboard');
+        }
         
         $student = User::where([
             'role' => 'student',
@@ -130,6 +134,9 @@ class ProfessorController extends Controller
 
     public function manageClass($token){
         $subject = Classroom::where('class_token', $token)->first();
+        if ($subject->class_prof != auth()->user()->token || auth()->user()->role != 'admin') {
+            return redirect()->route('professors.dashboard');
+        }
             
         return view('professors.manageclass', compact('subject', 'token'));
     }
@@ -149,6 +156,11 @@ class ProfessorController extends Controller
             'class_date' => Carbon::now()->format('Y-m-d'),
         ])->first();
 
+        $subject = Classroom::where('class_token', $token)->first();
+        if ($subject->class_prof != auth()->user()->token) {
+            return redirect()->route('professors.dashboard');
+        }
+
         if (!$attempt) {
             ClassSession::create([
                 'class_token' => $token,
@@ -163,6 +175,11 @@ class ProfessorController extends Controller
 
     public function calendar($token){
         $subject = Classroom::where('class_token', $token)->first();
+
+        if ($subject->class_prof != auth()->user()->token || auth()->user()->role != 'admin') {
+            return redirect()->route('professors.dashboard');
+        }
+
         return view('professors.class-calendar', compact('subject'));
     }
 
@@ -171,6 +188,10 @@ class ProfessorController extends Controller
             'class_token' => $token,
             'class_date' => $date,
         ])->first();
+        $subject = Classroom::where('class_token', $token)->first();
+        if ($subject->class_prof != auth()->user()->token || auth()->user()->role != 'admin') {
+            return redirect()->route('professors.dashboard');
+        }
         
         if ($data){
             $subject = Classroom::where('class_token', $token)->first();
