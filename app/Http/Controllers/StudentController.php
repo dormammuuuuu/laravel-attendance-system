@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClassAttendance;
 use \PDF;
 use App\Models\User;
 use App\Models\Student;
+use App\Rules\AlphaSpaces;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ClassAttendance;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StudentController extends Controller
@@ -20,8 +21,8 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'FirstName' => 'required|max:30|min:2|alpha',
-            'LastName' => 'required|max:30|min:2|alpha',
+            'FirstName' => ['required', 'max:30', 'min:2', new AlphaSpaces],
+            'LastName' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'MiddleInitial' => 'min:0|max:1',
             'Course' => 'required',
             // 'g-recaptcha-response' => 'required|captcha',

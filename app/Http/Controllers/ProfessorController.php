@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use Carbon\CarbonPeriod;
 use App\Models\Classroom;
+use App\Rules\AlphaSpaces;
 use Illuminate\Support\Str;
 use App\Models\ClassSession;
 use Illuminate\Http\Request;
@@ -19,10 +20,8 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ProfessorController extends Controller
 {
-    //
     public function index()
     {
-        
         return view('professors.index');
     }
 
@@ -70,8 +69,8 @@ class ProfessorController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'FirstName' => 'required|max:30|min:2|alpha',
-            'LastName' => 'required|max:30|min:2|alpha',
+            'FirstName' => ['required', 'max:30', 'min:2', new AlphaSpaces],
+            'LastName' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'MiddleInitial' => 'max:1|min:0',
             'Email' => 'required|email|unique:users,email',
             'UserName' => 'required|max:30|min:2|unique:users,username',
@@ -112,10 +111,6 @@ class ProfessorController extends Controller
 
     public function classDashboard($token){
         $subject = Classroom::where('class_token', $token)->first();
-
-        if ($subject->class_prof != auth()->user()->token || auth()->user()->role != 'admin') {
-            return redirect()->route('professors.dashboard');
-        }
         
         $student = User::where([
             'role' => 'student',
@@ -134,14 +129,12 @@ class ProfessorController extends Controller
 
     public function manageClass($token){
         $subject = Classroom::where('class_token', $token)->first();
-        if ($subject->class_prof != auth()->user()->token || auth()->user()->role != 'admin') {
-            return redirect()->route('professors.dashboard');
-        }
             
         return view('professors.manageclass', compact('subject', 'token'));
     }
 
     public function deleteClass($token){
+
         $class = Classroom::where('class_token', $token)->first();
         ClassAttendance::where('class_token', $token)->delete();
         ClassSession::where('class_token', $token)->delete();
@@ -155,11 +148,6 @@ class ProfessorController extends Controller
             'class_token' => $token,
             'class_date' => Carbon::now()->format('Y-m-d'),
         ])->first();
-
-        $subject = Classroom::where('class_token', $token)->first();
-        if ($subject->class_prof != auth()->user()->token) {
-            return redirect()->route('professors.dashboard');
-        }
 
         if (!$attempt) {
             ClassSession::create([
@@ -176,10 +164,6 @@ class ProfessorController extends Controller
     public function calendar($token){
         $subject = Classroom::where('class_token', $token)->first();
 
-        if ($subject->class_prof != auth()->user()->token || auth()->user()->role != 'admin') {
-            return redirect()->route('professors.dashboard');
-        }
-
         return view('professors.class-calendar', compact('subject'));
     }
 
@@ -188,10 +172,6 @@ class ProfessorController extends Controller
             'class_token' => $token,
             'class_date' => $date,
         ])->first();
-        $subject = Classroom::where('class_token', $token)->first();
-        if ($subject->class_prof != auth()->user()->token || auth()->user()->role != 'admin') {
-            return redirect()->route('professors.dashboard');
-        }
         
         if ($data){
             $subject = Classroom::where('class_token', $token)->first();

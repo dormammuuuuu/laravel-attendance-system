@@ -3,20 +3,23 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Rules\AlphaSpaces;
 
 class ProfessorRegistrationForm extends Component
 {
     public $firstname, $lastname, $middleinitial, $email, $Password, $Password_confirmation, $username;
 
-    protected $rules = [
-        'firstname' => 'required|max:30|min:2|alpha',
-        'lastname' => 'required|max:30|min:2|alpha',
-        'middleinitial' => 'max:1|min:0',
-        'email' => 'required|email|unique:users,email',
-        'username' => 'required|max:30|min:2|unique:users,username',
-        'Password' => 'required|max:30|min:6|required_with:Password_confirmation|same:Password_confirmation',
-        'Password_confirmation' => 'required|max:30|min:6',
-    ];
+    public function rules (){
+        return [
+            'firstname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
+            'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
+            'middleinitial' => 'max:1|min:0',
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|max:30|min:2|unique:users,username',
+            'Password' => 'required|max:30|min:6',
+            'Password_confirmation' => 'required|max:30|min:6|required_with:Password|same:Password',
+        ];
+    }
 
     public function updated($field)
     {

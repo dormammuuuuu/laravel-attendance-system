@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Professor;
 use App\Models\User;
 use Illuminate\Support\Str;
 use LivewireUI\Modal\ModalComponent;
+use App\Rules\AlphaSpaces;
 
 class AddModal extends ModalComponent
 {
@@ -17,14 +18,16 @@ class AddModal extends ModalComponent
     public $password;
     public $password_confirmation;
 
-    protected $rules = [
-        'firstname' => 'required|min:3|max:30|alpha',
-        'middleinitial' => 'min:0|max:1',
-        'lastname' => 'required|min:3|max:30|alpha',
-        'email' => 'required|email|unique:users,email',
-        'username' => 'required|min:3|max:30|unique:users,username',
-        'password' => 'required|min:3|max:30|confirmed',
-    ];
+    public function rules (){
+        return [
+            'firstname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
+            'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
+            'middleinitial' => 'max:1|min:0',
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|min:3|max:30|unique:users,username',
+            'password' => 'required|min:3|max:30|confirmed',
+        ];
+    }
 
     protected $validationAttributes = [
         'firstname' => 'first name',

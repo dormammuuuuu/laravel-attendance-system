@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Professor;
 
-use App\Http\Livewire\Admin\ProfessorPagination;
 use App\Models\User;
+use App\Rules\AlphaSpaces;
 use LivewireUI\Modal\ModalComponent;
+use App\Http\Livewire\Admin\ProfessorPagination;
 
 class EditModal extends ModalComponent
 {
@@ -18,9 +19,9 @@ class EditModal extends ModalComponent
     {
         // validate the firstname field
         $this->validateOnly($field, [
-            'firstname' => 'required|min:3|max:30|alpha',
+            'firstname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'middleinitial' => 'min:0|max:1',
-            'lastname' => 'required|min:3|max:30|alpha',
+            'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'username' => 'required|min:3|max:30|unique:users,username, ' . $this->user->id . ',id',
             'email' => 'required|email|unique:users,email, ' . $this->user->id . ',id',
         ]);
@@ -28,9 +29,9 @@ class EditModal extends ModalComponent
 
     public function update(){
         $this->validate([
-            'firstname' => 'required|min:3|max:30|alpha',
+            'firstname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'middleinitial' => 'min:0|max:1',
-            'lastname' => 'required|min:3|max:30|alpha',
+            'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'username' => 'required|min:3|max:30|unique:users,username, ' . $this->user->id . ',id',
             'email' => 'required|email|unique:users,email, ' . $this->user->id . ',id',
         ]);

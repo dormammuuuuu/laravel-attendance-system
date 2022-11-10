@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Student;
 
-use App\Http\Livewire\Admin\StudentPagination;
 use App\Models\User;
+use App\Rules\AlphaSpaces;
 use LivewireUI\Modal\ModalComponent;
+use App\Http\Livewire\Admin\StudentPagination;
 
 class EditModal extends ModalComponent
 {
@@ -19,9 +20,9 @@ class EditModal extends ModalComponent
     public function updated($field)
     {
         $this->validateOnly($field, [
-            'firstname' => 'required|min:3|max:30|alpha',
+            'firstname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'middleinitial' => 'min:0|max:1',
-            'lastname' => 'required|min:3|max:30|alpha',
+            'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'student_no' => 'required|min:3|max:30|unique:users,student_no,' . $this->user->id . ',id',
             'section' => 'required',
         ]);
@@ -30,9 +31,9 @@ class EditModal extends ModalComponent
     public function update()
     {
         $this->validate([
-            'firstname' => 'required|min:3|max:30|alpha',
+            'firstname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'middleinitial' => 'min:0|max:1',
-            'lastname' => 'required|min:3|max:30|alpha',
+            'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'student_no' => 'required|min:3|max:30|unique:users,student_no,' . $this->user->id . ',id',
             'section' => 'required',
         ]);
