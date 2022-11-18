@@ -5,19 +5,8 @@
                 <div class="footer-row">
                     <div class="col-lg-6 offset-lg-3">
                         <div class="contact-content text-center">
-                            <h6>1120 Lorem ipsum dolor sit amet, KC 123456,
-                                PH.</h6>
-                            <h6>+01 2345 6789 12<span>|</span>+01 2345 6789 12</h6>
-                            <div class="contact-social">
-                                <ul>
-                                    <li><a class="hover-target" href="#"><i
-                                                class="bx bxl-facebook bx-sm"></i></a></li>
-                                    <li><a class="hover-target" href="#"><i
-                                                class="bx bxl-twitter bx-sm"></i></a></li>
-                                    <li><a class="hover-target" href="#"><i
-                                                class="bx bxl-pinterest bx-sm"></i></a></li>
-                                </ul>
-                            </div>
+                            <h6>5031 Gen. T. de Leon, Valenzuela, 1442 Metro Manila</h6>
+                            <h6>+63989220077</h6>
                         </div>
                     </div>
                 </div>

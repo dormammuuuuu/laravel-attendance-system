@@ -596,6 +596,7 @@ input {
 }
 .footer-home section {
   padding: 60px 0;
+  padding-bottom: 30px;
   /* min-height: 100vh;*/
 }
 .footer-home ul {

@@ -65,7 +65,7 @@
             <div class="about__container container grid">
                 <div class="about__data">
                     <h2 class="section__title about__title">About ASHMR</h2>
-                    <p class="about__description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur, natus distinctio. Veniam molestias deleniti quo! Deserunt corporis officiis eaque accusamus neque harum, eius, id reprehenderit cupiditate, ea mollitia beatae sed.</p>
+                    <p class="about__description">ASHMR is a new Attendance Monitoring System that tracks all SHS students at Our Lady of Lourdes College. To make it faster and easier for every professor and student to get their attendance by simply scanning their QR code with a unique and helpful platform support service.</p>
                 </div>
                 <img src="{{asset('img/about.png')}}" alt=""
                 class="about__img">
