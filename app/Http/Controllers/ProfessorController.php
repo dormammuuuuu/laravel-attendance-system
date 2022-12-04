@@ -68,6 +68,9 @@ class ProfessorController extends Controller
     }
 
     public function store(Request $request){
+        // $request->merge([
+        //     'email' => $request->email . '@gmail.com',
+        // ]);
         $request->validate([
             'FirstName' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'LastName' => ['required', 'max:30', 'min:2', new AlphaSpaces],

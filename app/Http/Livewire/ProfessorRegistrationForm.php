@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Validator;
 use Livewire\Component;
 use App\Rules\AlphaSpaces;
 
@@ -23,7 +24,18 @@ class ProfessorRegistrationForm extends Component
 
     public function updated($field)
     {
-        $this->validateOnly($field);
+        // if($field == 'email' && $this->email != null){
+        //     $tmp = $this->email;
+        //     $this->email = $this->email . '@gmail.com';
+        //     $validator = Validator::make(['email' => $this->email], ['email' => 'required|email|unique:users,email']);
+        //     if($validator->fails()){
+        //         $this->email = $tmp;
+        //         dd('here');
+        //     }
+        // }
+        // else{
+            $this->validateOnly($field);
+        // }
     }
 
     public function render()

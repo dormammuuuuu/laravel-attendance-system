@@ -5,6 +5,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/qr.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 @endsection
 
 @section('js')
@@ -36,7 +37,8 @@
                     <p class="student-section">{{$data->section}}</p>
                 </div>
             </div>
-            <a class="download-button" target="_" href="/student/{{$data->token}}/qrcode/download"> DOWNLOAD QR CODE</a>
+            {{-- <button class="download-button" target="_" href="/student/{{$data->token}}/qrcode/download"> DOWNLOAD QR CODE</button> --}}
+            <button class="download-button" onclick="Livewire.emit('openModal', 'student.terms', {{ json_encode([$data->token]) }})"> DOWNLOAD QR CODE</button>
         </div>
     </div>
     <x-footer.index-footer/>

@@ -8,7 +8,9 @@
 
 <div class="form-group" >
     <label for="{{ $id }}">{{ $label }}</label>
-    <input class="form-field" type="{{ $type }}" name="{{ $id }}" id="{{ $id }}" value="{{ old($id) }}" wire:model="{{$value}}" autocomplete="off">
+    <div class="input-{{$type}}">
+        <input class="form-field" type="{{ $type }}" name="{{ $id }}" id="{{ $id }}" value="{{ old($id) }}" wire:model="{{$value}}" autocomplete="off">
+    </div>
     @error($id)
         <p class="error">{{ $message }}</p>
     @enderror

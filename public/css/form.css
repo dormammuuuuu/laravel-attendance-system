@@ -50,6 +50,7 @@
   margin-bottom: 12px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .form-group label {
   margin-bottom: 5px;
@@ -64,6 +65,8 @@
   outline: none;
   font-size: 14px;
   font-weight: 400;
+  position: relative;
+  width: 100%;
 }
 .form-group .form-field:focus {
   border: 1px solid #B8E8F5;

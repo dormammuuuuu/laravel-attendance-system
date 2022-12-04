@@ -51,7 +51,7 @@
     margin-bottom: 12px;
     display: flex;
     flex-direction: column;
-    
+    position: relative;
     label{
         margin-bottom: 5px;
         font-size: 14px;
@@ -66,12 +66,33 @@
         outline: none;
         font-size: 14px;
         font-weight: 400;
+        position:relative;
+        width: 100%;
         &:focus{
             border: 1px solid #B8E8F5;
             box-shadow: 0 0 4px #B8E8F5;
         }
     }
 }
+
+// .input-email{
+//     position: relative;
+// }
+
+// .input-email::after{
+//     content: '@gmail.com';
+//     position: absolute;
+//     display: block;
+//     top: 50%;
+//     right: 10px;
+//     transform: translateY(-50%);
+//     width: fit-content;
+//     width: moz-fit-content;
+//     height: 20px;
+//     color: #333;
+//     font-size: small;
+//     background-color: white;
+// }
 
 .error{
     color: red;

@@ -170,4 +170,32 @@
 }
 .tools button:hover, .tools a:hover {
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.ordered-list {
+  padding: 10px 30px;
+}
+
+.terms-paragraph {
+  padding: 10px 0;
+  text-align: left;
+}
+
+.terms-download {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  padding: 10px 0;
+  border-radius: 7px;
+  border: none;
+  background-color: #00204A;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 10px 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+.terms-download a {
+  text-decoration: none;
+  color: #fff;
 }/*# sourceMappingURL=modal.css.map */
