@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\ClassAttendance;
 use App\Exports\AttendanceExport;
 use App\Mail\ResetPasswordMailer;
+use App\Mail\UpdateEmail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -68,9 +69,6 @@ class ProfessorController extends Controller
     }
 
     public function store(Request $request){
-        // $request->merge([
-        //     'email' => $request->email . '@gmail.com',
-        // ]);
         $request->validate([
             'FirstName' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'LastName' => ['required', 'max:30', 'min:2', new AlphaSpaces],
@@ -246,11 +244,18 @@ class ProfessorController extends Controller
         ]);
 
         $user = User::where('id', auth()->user()->id)->first();
+        $emailTemp = $user->email;
         $user->email = $request->Email;
         $user->username = $request->UserName;
         if($user->isDirty()){
             $user->save();
-            return redirect()->back()->with('success', 'Profile Updated');
+            if ($user->email == $emailTemp){
+                return redirect()->back()->with('success', 'Profile Updated');
+            }
+            else {
+                Mail::to($request->Email)->send(new UpdateEmail($request->UserName));
+                return redirect()->back()->with('success', 'Profile Updated');
+            }
         }
         else {
             return redirect()->back()->with('warning', 'No Changes Made');

@@ -26,6 +26,9 @@ class IdVerification extends Component
     public function save()
     {
         $userToken = auth()->user()->token;
+        if($this->photo == null) {
+            return redirect(request()->header('Referer'))->with('error', 'Please upload a file.');
+        }
         $fileExtension = $this->photo->getClientOriginalExtension();
         $this->photo->storeAs('photos', $userToken . '.' . $fileExtension);
         VerificationId::create([
