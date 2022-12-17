@@ -81,7 +81,7 @@ Route::prefix('admin')->middleware('useraccess')->group(function () {
         //Admin Dashboard
     Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard');
         //Admin Registration Management
-    Route::get('/registrations', 'App\Http\Controllers\AdminController@registrations')->name('admin.registrations');
+    // Route::get('/registrations', 'App\Http\Controllers\AdminController@registrations')->name('admin.registrations');
         //Admin Registration Approval
     Route::get('/registrations/{token}/approve', 'App\Http\Controllers\AdminController@approve')->name('admin.approve');
         //Admin Registration Disapproval
