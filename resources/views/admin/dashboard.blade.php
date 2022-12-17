@@ -37,7 +37,7 @@
                 <x-action-card target="" label="Class" desc="Browse and manage the list of classes." link="{{route('admin.classes')}}"/>
                 <x-action-card target="" label="Professors" desc="Browse and manage the list of professors who are currently registered." link="{{route('admin.professors')}}"/>
                 <x-action-card target="" label="Students" desc="Browse and manage the list of students who are currently registered." link="{{route('admin.students')}}"/>
-                <x-action-card target="" label="Pending Registration" desc="Accept or reject registration requests. (Professors)" link="{{route('admin.registrations')}}"/>
+                {{-- <x-action-card target="" label="Pending Registration" desc="Accept or reject registration requests. (Professors)" link="{{route('admin.registrations')}}"/> --}}
             </div>
         </div>
     </div>

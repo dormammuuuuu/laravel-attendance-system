@@ -24,7 +24,7 @@ Route::get('/login', function(){
 
 //Professor Ungrouped Routes
     //Professor Registration
-Route::get('/professor/signup', 'App\Http\Controllers\ProfessorController@index')->name('professors.index')->middleware('guest');
+// Route::get('/professor/signup', 'App\Http\Controllers\ProfessorController@index')->name('professors.index')->middleware('guest');
 Route::post('/register/professor', 'App\Http\Controllers\ProfessorController@store')->name('register.professor');
     //Professor Login
 Route::get('/professor/login', 'App\Http\Controllers\ProfessorController@login')->name('professors.login')->middleware('guest');

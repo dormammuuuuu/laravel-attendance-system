@@ -9,6 +9,6 @@
         <x-sidebar.sidebar-item href="{{route('admin.classes')}}" icon="bx bxs-chalkboard" title="Class"/>
         <x-sidebar.sidebar-item href="{{route('admin.professors')}}" icon="bx bxs-user" title="Professor"/>
         <x-sidebar.sidebar-item href="{{route('admin.students')}}" icon="bx bxs-book" title="Student"/>
-        <x-sidebar.sidebar-item href="{{route('admin.registrations')}}" icon="bx bxs-user-plus" title="Registration Request"/>
+        {{-- <x-sidebar.sidebar-item href="{{route('admin.registrations')}}" icon="bx bxs-user-plus" title="Registration Request"/> --}}
     </ul>
 </div>
