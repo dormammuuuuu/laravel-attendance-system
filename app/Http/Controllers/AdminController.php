@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 class AdminController extends Controller
 {
     
-public function login()
+    public function login()
     {
         return view('admin.login');
     }
@@ -31,6 +31,16 @@ public function login()
         ])->count('id');
         $class = Classroom::count('id');
         return view('admin.dashboard', compact('student', 'prof', 'class'));
+    }
+
+    public function archived(){
+        $data = User::onlyTrashed()->paginate(10);
+        return view('admin.archived')->with('data', $data);
+    }
+
+    public function archivedProfile($token){
+        $user = User::withTrashed()->where('token', $token)->first();
+        return view('admin.archived-profile', compact('user', 'token'));
     }
 
     public function authenticate(Request $request)

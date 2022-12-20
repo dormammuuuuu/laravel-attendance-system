@@ -27,6 +27,11 @@ Breadcrumbs::for('professors', function ($trail) {
     $trail->push('Professors', route('admin.professors'));
 });
 
+Breadcrumbs::for('archived', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Archived', route('admin.archived'));
+});
+
 Breadcrumbs::for('registrations', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Registration Requests', route('admin.registrations'));
@@ -40,6 +45,11 @@ Breadcrumbs::for('classes', function ($trail) {
 Breadcrumbs::for('professor-profile', function ($trail, $firstname, $lastname, $middleinitial) {
     $trail->parent('professors');
     $trail->push($firstname . ', ' . $lastname . ' ' . $middleinitial, route('admin.professors.profile', [$firstname, $lastname, $middleinitial]));
+});
+
+Breadcrumbs::for('archived-profile', function ($trail, $firstname, $lastname, $middleinitial) {
+    $trail->parent('archived');
+    $trail->push($firstname . ', ' . $lastname . ' ' . $middleinitial, route('admin.archived.profile', [$firstname, $lastname, $middleinitial]));
 });
 
 Breadcrumbs::for('class', function ($trail, $subject) {

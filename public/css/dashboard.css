@@ -592,6 +592,12 @@
   transform: scale(1.05);
 }
 
+.profile-archived {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
 @media screen and (max-width: 800px) {
   .prof-class .subject-card-container .subject-card .icon i {
     font-size: 0;

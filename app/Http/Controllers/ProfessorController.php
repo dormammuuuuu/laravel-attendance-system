@@ -103,11 +103,23 @@ class ProfessorController extends Controller
         }
     }
 
+    public function softDestroy($token){
+        $user = User::where('token', $token)->first();
+        $user->delete();
+        return redirect()->back()->with('success', 'Professor Archived');
+    }
+
     public function destroy($token){
         $user = User::where('token', $token)->first();
         $user->delete();
         Classroom::where('class_prof', $token)->delete();
-        return redirect()->back()->with('success', 'Professor Deleted');
+        return redirect()->back()->with('success', 'Professor Archived');
+    }
+
+    public function restore($token){
+        $user = User::withTrashed()->where('token', $token)->first();
+        $user->restore();
+        return redirect()->back()->with('success', 'Professor Restored');
     }
 
     public function classDashboard($token){

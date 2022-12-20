@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('token');
             $table->timestamp('created_at')->useCurrent();
             $table->boolean('approved')->nullable();
+            $table->softDeletes();
         });
     }
 

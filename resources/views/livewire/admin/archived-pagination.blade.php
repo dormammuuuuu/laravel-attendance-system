@@ -1,9 +1,6 @@
 <div>
     <x-loading-screen />
-    <div class="search-container">
-        <div class="button-container">
-            <button class="add" wire:click="$emit('openModal', 'admin.professor.add-modal')">Add Professor</button>
-        </div>
+    <div class="search-container right">
         <input wire:model="search" type="text" name="search" id="search" placeholder="Search...">    
     </div>   
     <table>      
@@ -25,9 +22,8 @@
                     <td data-label="Username">{{ $user->username }}</td>
                     <td data-label="Email">{{ $user->email }}</td>
                     <td data-label="Action">
-                        <a class="action view" href="/admin/professors/{{$user->token}}/view">View</a>
-                        <button class="action edit" wire:click="$emit('openModal', 'admin.professor.edit-modal', {{ json_encode([$user->id]) }})">Edit</button>
-                        <a class="action delete" href="/professor/{{$user->token}}/delete">Archive</a>
+                        <a class="action view" href="/admin/archived/{{$user->token}}/view">View</a>
+                        <a class="action delete" href="/professor/{{$user->token}}/restore">Restore</a>
                     </td>
                 </tr>
             @endforeach

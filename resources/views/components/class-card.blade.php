@@ -5,7 +5,7 @@
 
 @php
     $tmp = $class->class_prof;
-    $prof = \App\Models\User::where('token', $tmp)->first();
+    $prof = \App\Models\User::withTrashed()->where('token', $tmp)->first();
     $firstname = $prof->firstname;
     $lastname = $prof->lastname;
     $middleinitial = $prof->middleinitial;

@@ -88,6 +88,8 @@ Route::prefix('admin')->middleware('useraccess')->group(function () {
     Route::get('/registrations/{token}/reject', 'App\Http\Controllers\AdminController@disapprove')->name('admin.disapprove');
         //Admin Professor Management
     Route::get('/professors', 'App\Http\Controllers\AdminController@professors')->name('admin.professors');
+        //Admin Archived Management
+    Route::get('/archived', 'App\Http\Controllers\AdminController@archived')->name('admin.archived');
         //Admin Student Management
     Route::get('/students', 'App\Http\Controllers\AdminController@students')->name('admin.students');
         //Admin Class Management
@@ -98,6 +100,8 @@ Route::prefix('admin')->middleware('useraccess')->group(function () {
     Route::get('/admins', 'App\Http\Controllers\AdminController@admins')->name('admin.admins');
         //Professor View Profile
     Route::get('/professors/{token}/view', 'App\Http\Controllers\AdminController@profile')->name('admin.professors.profile');
+        //Professor Archived Profile
+    Route::get('/archived/{token}/view', 'App\Http\Controllers\AdminController@archivedProfile')->name('admin.archived.profile');
 });
 
 
@@ -108,7 +112,9 @@ Route::post('/authenticate/admin', 'App\Http\Controllers\AdminController@authent
     //Admin Delete Student
 Route::get('/student/{token}/delete', 'App\Http\Controllers\StudentController@destroy')->name('student.delete');
     //Admin Delete Professor
-Route::get('/professor/{token}/delete', 'App\Http\Controllers\ProfessorController@destroy')->name('professor.delete');
+Route::get('/professor/{token}/delete', 'App\Http\Controllers\ProfessorController@softDestroy')->name('professor.delete');
+    //Admin Restore Professor
+Route::get('/professor/{token}/restore', 'App\Http\Controllers\ProfessorController@restore')->name('professor.restore');
 //Admin Get User
 Route::post('/admin/user/get', 'App\Http\Controllers\AdminController@edit')->name('admin.edit');
 
