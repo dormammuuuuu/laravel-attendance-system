@@ -133,11 +133,18 @@ class ProfessorController extends Controller
 
         $class = ClassSession::where(['class_token' => $token])->get();
         $session = $class->count();
+        
+        $sessionToday = ClassSession::where([
+            'class_token' => $token,
+            'class_date' => Carbon::now()->format('Y-m-d'),
+        ])->first();
+
+        // dd($sessionToday);
 
         $temp = ClassAttendance::where(['class_token' => $token, 'attendance_day' => Carbon::now()->format('Y-m-d')])->get();
         $attendance = $temp->count() / $students * 100;
         $attendance = round($attendance);
-        return view('professors.class', compact('subject', 'students', 'session', 'attendance'));
+        return view('professors.class', compact('subject', 'students', 'session', 'attendance', 'token', 'sessionToday'));
     }
 
     public function manageClass($token){
@@ -156,18 +163,18 @@ class ProfessorController extends Controller
         return redirect()->route('professors.dashboard')->with('success', 'Class Deleted');
     }
 
-    public function startClass($token){
+    public function startClass(Request $request, $token){
         $attempt = ClassSession::where([
             'class_token' => $token,
             'class_date' => Carbon::now()->format('Y-m-d'),
         ])->first();
 
-        if (!$attempt) {
-            ClassSession::create([
-                'class_token' => $token,
-                'class_date' => Carbon::now()->format('Y-m-d'),
-            ]);
-        }
+        // Redirect if the class has already ended
+        $currentTime = Carbon::now()->format('Y-m-d H:i:s');
+        $endTime = Carbon::parse($attempt->class_date . ' ' . $attempt->class_end_time)->format('Y-m-d H:i:s');
+        if (Carbon::parse($currentTime)->greaterThan(Carbon::parse($endTime))) {
+            return redirect()->route('professors.class.dashboard', $token)->with('error', 'The class for today has already ended');
+        } 
 
         $subject = Classroom::where('class_token', $token)->first();
         $token = $subject->class_token;

@@ -293,12 +293,19 @@
   font-size: 120px;
   color: rgba(0, 32, 74, 0.5);
 }
-.prof-class a {
-  text-decoration: none;
+.prof-class .button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.prof-class a .action-card {
+.prof-class a, .prof-class button {
+  text-decoration: none;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+.prof-class a .action-card, .prof-class button .action-card {
   padding: 15px;
-  margin: 10px 0;
   text-decoration: none;
   background-color: white;
   border-radius: 4px;
@@ -306,22 +313,22 @@
   align-items: center;
   justify-content: space-between;
 }
-.prof-class a .action-card .title {
+.prof-class a .action-card .title, .prof-class button .action-card .title {
   font-size: 16px;
   font-weight: 600;
   color: #00204A;
   margin-bottom: 5px;
 }
-.prof-class a .action-card .description {
+.prof-class a .action-card .description, .prof-class button .action-card .description {
   font-size: 14px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.5);
 }
-.prof-class a .action-card i {
+.prof-class a .action-card i, .prof-class button .action-card i {
   font-size: 30px;
   color: rgba(0, 0, 0, 0.5);
 }
-.prof-class a .action-card:hover {
+.prof-class a .action-card:hover, .prof-class button .action-card:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -402,10 +409,19 @@
 .user-info.show {
   display: block;
 }
-.user-info .present, .user-info .absent {
+.user-info .present, .user-info .late, .user-info .absent {
   background-color: rgba(118, 235, 165, 0.5215686275);
   color: green;
   border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+.user-info .late {
+  background-color: rgba(255, 204, 0, 0.368627451);
+  color: #ff6600;
+  border: 1px solid #ff6600;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 15px;
@@ -423,17 +439,23 @@
   margin-bottom: 5px;
 }
 
-.present, .absent {
+.present, .late, .absent {
   background: #00C851;
   font-size: 10px;
   color: white;
   border: none;
   border-radius: 25px;
   padding: 5px 10px;
+  max-width: 70px;
+  text-align: center;
 }
 
 .absent {
   background-color: #ff4444;
+}
+
+.late {
+  background-color: #ffaa00;
 }
 
 .error {

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('student_token');
             $table->string('class_token');
             $table->date('attendance_day');
+            $table->string('status');
         });
     }
 

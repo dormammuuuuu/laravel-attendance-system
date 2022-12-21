@@ -310,17 +310,26 @@ $midnight: #2c3e50;
         }
     }    
 
-    a{
+    .button-container{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    a, button{
         text-decoration: none;
+        width: 100%;
+        border: none;
+        cursor: pointer;
         .action-card{
             padding: 15px;
-            margin: 10px 0;
             text-decoration: none;
             background-color: white;
             border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            
             .title{
                 font-size: 16px;
                 font-weight: 600;
@@ -426,6 +435,15 @@ $midnight: #2c3e50;
         margin-bottom: 15px;
         font-size: 13px;
     }
+    .late{
+        background-color: #ffcc005e;
+        color: #ff6600;
+        border: 1px solid #ff6600;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
     .heading{
         font-size: 18px;
         font-weight: 600;
@@ -446,11 +464,18 @@ $midnight: #2c3e50;
     border: none;
     border-radius: 25px;
     padding: 5px 10px;
+    max-width: 70px;
+    text-align: center;
 }
 
 .absent{
     @extend .present;
     background-color: #ff4444;
+}
+
+.late {
+    @extend .present;
+    background-color: #ffaa00;
 }
 
 .error{

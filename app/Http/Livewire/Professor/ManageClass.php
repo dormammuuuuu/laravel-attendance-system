@@ -45,8 +45,9 @@ class ManageClass extends Component
 
     public function exportMasterList(){
         $class_section = $this->classSection;
-        $subject = Classroom::where('class_token', $this->classToken)->first()->class_name;
-        $tmp_prof = Classroom::where('class_token', $this->classToken)->first()->class_prof;
+        $temp = Classroom::where('class_token', $this->classToken)->first();
+        $subject = $temp->class_name;
+        $tmp_prof = $temp->class_prof;
         $tmp = User::where('token', $tmp_prof)->first();
         $professor_name = $tmp->firstname . ' ' . $tmp->lastname;
         $date = Carbon::now()->format('F d, Y');

@@ -70,6 +70,10 @@
         .present{
             color: green;
         }
+
+        .late {
+            color: orange;
+        }
     </style>
 </head>
 <body>
@@ -125,9 +129,13 @@
                                     ])->first();   
 
                                     if ($attendance) {
-                                        echo '<span class="present">P</span>';
+                                        if ($attendance->status == 'present'){
+                                            echo '<div class="present">Present</div>';
+                                        } else {
+                                            echo '<div class="late">Late</div>';
+                                        }
                                     } else {
-                                        echo '<span class="absent">A</span>';
+                                        echo '<div class="absent">Absent</div>';
                                     }
                                 }  else {
                                     echo '<span class="none"></span>';

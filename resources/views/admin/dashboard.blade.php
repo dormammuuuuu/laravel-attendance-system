@@ -33,7 +33,7 @@
                 <x-subject.dashboard-card label="Students" count="{{$student}}" icon="bx bx-book-open"/>
                 <x-subject.dashboard-card label="Classes" count="{{$class}}" icon="bx bx-book-alt"/>
             </div>
-            <div>
+            <div class="button-container">
                 <x-action-card target="" label="Class" desc="Browse and manage the list of classes." link="{{route('admin.classes')}}"/>
                 <x-action-card target="" label="Professors" desc="Browse and manage the list of professors who are currently registered." link="{{route('admin.professors')}}"/>
                 <x-action-card target="" label="Archived Professors" desc="Browse and manage the list of archived professors who are registered." link="{{route('admin.archived')}}"/>

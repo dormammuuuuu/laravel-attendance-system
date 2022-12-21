@@ -172,6 +172,25 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.start-session {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.start-session button, .start-session a {
+  padding: 10px 0;
+  border-radius: 7px;
+  border: none;
+  background-color: #00204a;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+}
+
 .ordered-list {
   padding: 10px 30px;
 }

@@ -32,9 +32,13 @@
                             ])->first();   
 
                             if ($attendance) {
-                                echo '<span class="present">Present</span>';
+                                if ($attendance->status == 'present'){
+                                    echo '<div class="present">Present</div>';
+                                } else {
+                                    echo '<div class="late">Late</div>';
+                                }
                             } else {
-                                echo '<span class="absent">Absent</span>';
+                                echo '<div class="absent">Absent</div>';
                             }
                         @endphp
                     </td>

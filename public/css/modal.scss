@@ -68,7 +68,6 @@
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
-        
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -181,6 +180,25 @@
             background-color: rgba($color: #000000, $alpha: 0.2);
         }
 
+    }
+}
+
+.start-session{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    button, a{
+        padding: 10px 0;
+        border-radius: 7px;
+        border: none;
+        background-color: #00204a;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        cursor: pointer;
+        text-align: center;
+        border: 1px solid rgb(0 0 0 / 0.4);
+        text-decoration: none;
     }
 }
 

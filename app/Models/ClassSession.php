@@ -14,6 +14,9 @@ class ClassSession extends Model
     public $timestamps = false;
     protected $fillable = [
         'class_token',
-        'class_date'
+        'class_date',
+        'class_start_time',
+        'class_end_time',
+        'class_late',
     ];
 }

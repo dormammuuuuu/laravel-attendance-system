@@ -14,6 +14,7 @@ class ClassAttendance extends Model
         'student_token',
         'class_token',
         'attendance_day',
+        'status',
     ];
     
     use HasFactory;

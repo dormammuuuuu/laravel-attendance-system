@@ -36,9 +36,13 @@
                 <x-subject.dashboard-card label="Days" count="{{$session}}" icon="bx bx-sun"/>
                 <x-subject.dashboard-card label="Attendance Today" count="{{$attendance}}%" icon="bx bx-calendar"/>
             </div>
-            <div>
+            <div class="button-container">
                 @if (auth()->user()->token == $subject->class_prof)
-                    <x-action-card target="" label="Start a Class Today" desc="Start a session now." link="/professor/class/{{$subject->class_token}}/start"/>
+                    @if ($sessionToday)
+                        <x-action-card target="" label="Join Current Session" desc="The session will end at {{ \Carbon\Carbon::createFromFormat('H:i:s', $sessionToday->class_end_time)->format('g:i A') }}" link="/professor/class/{{$subject->class_token}}/start"/>
+                    @else
+                        <x-start-session-button label="Start a Class Today" desc="Start a session now." token="{{$token}}"/>
+                    @endif
                 @endif
                 <x-action-card target="" label="Master list" desc="View the student list and export data, including the attendance for the entire semester." link="/professor/class/{{$subject->class_token}}/manage"/>
                 <x-action-card target="" label="Calendar" desc="View student attendance at the calendar" link="/professor/class/{{$subject->class_token}}/calendar"/>

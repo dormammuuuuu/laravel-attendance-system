@@ -14,7 +14,7 @@
     </div>
     {{-- 9781-84668-BL-3 --}}
     <div class="user-info {{$show}}">
-        <p class="present">Status: Present</p>
+        <p class="{{$status}}">Status: {{ ucfirst($status) }}</p>
         <p class="heading">User details</p> 
         <p>Student number: <span class="detail">{{$student_no}}</span></p>
         <p>Full name: <span class="detail">{{$lastname}}, {{$firstname}} {{$middleinitial}}</span></p>

@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('class_token');
             $table->date('class_date');
-
+            $table->time('class_start_time');
+            $table->time('class_end_time');
+            $table->time('class_late');
         });
     }
 

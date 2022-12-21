@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use App\Models\Classroom;
 use App\Models\ClassAttendance;
+use App\Models\ClassSession;
 
 class QrLive extends Component
 {
@@ -17,6 +18,9 @@ class QrLive extends Component
     public $middleinitial = "";
     public $student_no = "";
     public $show = "";
+    public $lateTime = "";
+    public $endTime = "";
+    public $status = "";
 
     protected $rules = [
         'qrlive' => 'required',
@@ -34,12 +38,20 @@ class QrLive extends Component
         $this->show = "";
         $this->validate();
         
+        $this->status = Carbon::parse(now()->format('H:i:s'))->greaterThan(Carbon::parse($this->lateTime)) ? 'late' : 'present';
+
+        //If the current time is greater that the end time, redirect to class dashboard with a message of "Class has been ended"
+        if (Carbon::parse(now()->format('H:i:s'))->greaterThan(Carbon::parse($this->endTime))){
+            return redirect()->route('professors.class.dashboard', $this->subject)->with('error', 'Class has been ended');
+        }
+
+
         $data = [
             'student_token' => $this->qrlive,
             'class_token' => $this->subject,
             'attendance_day' => now()->format('Y-m-d'),
+            'status' => $this->status
         ];
-
 
         $user = User::where('student_no', $data['student_token'])->first();
         
@@ -64,7 +76,6 @@ class QrLive extends Component
             return;
         }
 
-        $this->show = "show";
         if ($user) {
 
             $test = ClassAttendance::where([
@@ -74,9 +85,10 @@ class QrLive extends Component
             ])->first();
 
             if ($test) {
-                $this->addError('qrlive', 'Student already scanned');
+                $this->addError('qrlive', 'Student already scanned' );
             } else {       
                 ClassAttendance::create($data); 
+                $this->show = "show";
             }
     
         } else {
@@ -87,6 +99,9 @@ class QrLive extends Component
 
     public function mount($token){
         $this->subject = $token;
+        $temp = ClassSession::where('class_token', $token)->first();
+        $this->lateTime = $temp->class_late;
+        $this->endTime = $temp->class_end_time;
     }
 
 
