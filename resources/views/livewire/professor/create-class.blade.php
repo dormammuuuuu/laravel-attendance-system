@@ -3,6 +3,7 @@
     <form wire:submit.prevent="createClass" method="POST">
         <x-form-group label="Subject Name" id="ClassName" type="text" value="class_name"/>
         <x-form-group label="Room number" id="ClassRoom" type="text" value="class_room"/>
+        {{-- school year --}}
         {{-- <x-form-group label="Section" id="ClassSection" type="text" value="class_section"/> --}}
         <label class="dropdown-label" for="ClassSection">Section</label>
         <select name="ClassSection" id="ClassSection" wire:model="class_section">

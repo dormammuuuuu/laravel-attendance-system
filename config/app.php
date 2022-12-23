@@ -43,6 +43,7 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    'school_year' => 2020_2021,
     /*
     |--------------------------------------------------------------------------
     | Application URL

@@ -102,6 +102,10 @@ Route::prefix('admin')->middleware('useraccess')->group(function () {
     Route::get('/professors/{token}/view', 'App\Http\Controllers\AdminController@profile')->name('admin.professors.profile');
         //Professor Archived Profile
     Route::get('/archived/{token}/view', 'App\Http\Controllers\AdminController@archivedProfile')->name('admin.archived.profile');
+        //Admin System Settings
+    Route::get('/settings', 'App\Http\Controllers\AdminController@settings')->name('admin.settings');
+        //Admin Maintenance
+    Route::post('/maintenance', 'App\Http\Controllers\AdminController@maintenance')->name('admin.maintenance');
 });
 
 

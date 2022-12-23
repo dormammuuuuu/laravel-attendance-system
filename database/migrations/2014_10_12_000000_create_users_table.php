@@ -13,6 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('school_years', function (Blueprint $table) {
+            $table->id();
+            $table->string('year')->unique();
+            $table->timestamps();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('firstname');
@@ -27,6 +33,8 @@ return new class extends Migration
             $table->string('token');
             $table->timestamp('created_at')->useCurrent();
             $table->boolean('approved')->nullable();
+            $table->unsignedBigInteger('school_year_id')->nullable();
+            $table->foreign('school_year_id')->references('id')->on('school_years');
             $table->softDeletes();
         });
     }

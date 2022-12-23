@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\ClassAttendance;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -129,13 +130,30 @@ class AdminController extends Controller
         return view('admin.professors-profile', compact('user', 'token'));
     }
 
-    public function maintenance(){
-        Artisan::call('down', [
-            '--secret' => 'adminonly',
-        ]);
+    public function settings(){
+        return view('admin.settings');
     }
-
-    public function maintenanceOff(){
-        Artisan::call('up');
+    
+    public function maintenance(Request $request)
+    {
+        $hashedPassword = Auth::user()->password;
+        $providedPassword = $request->input('Password');
+        
+        if (Hash::check($providedPassword, $hashedPassword)) {
+            if (app()->isDownForMaintenance()){
+                Artisan::call('up');
+                return redirect()->route('admin.settings')->with('success', 'Maintenance mode is now turned off.');
+            } else {
+                Artisan::call('down', [
+                    '--secret' => 'adminonly',
+                ]);
+                $url = '/' . 'adminonly';
+                return redirect($url)->with('success', 'Maintenance mode is now on.');
+            }
+        } else {
+            return back()->withErrors([
+                'Password' => 'The password you entered is incorrect.',
+            ]);
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Classroom;
+use App\Models\SchoolYear;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
@@ -57,6 +58,10 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'token' => Str::random(20),
             'approved' => 1,
+        ]);
+
+        SchoolYear::create([
+            'year' => '2022-2023',
         ]);
     }
 }

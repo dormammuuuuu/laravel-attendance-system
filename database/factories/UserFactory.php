@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'password' => bcrypt('123'),
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'approved' => false,
+            'school_year_id' => '2022-2023',
         ];
     }
 
