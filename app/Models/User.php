@@ -31,6 +31,7 @@ class User extends Authenticatable
         'role',
         'token',
         'approved',
+        'school_year_id',
     ];
 
     /**
