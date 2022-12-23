@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\VerificationMailer;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -131,3 +132,7 @@ Route::get('/logout', function(){
 //Experimental Maintenance Route
 Route::get('/maintenance', 'App\Http\Controllers\AdminController@maintenance')->name('maintenance.on');
 Route::get('/maintenance/off', 'App\Http\Controllers\AdminController@maintenanceOff')->name('maintenance.off');
+
+Route::get('/test', function(){
+    return User::where('school_year_id', '2022-2023')->get();
+});

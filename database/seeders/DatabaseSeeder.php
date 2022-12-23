@@ -18,6 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        SchoolYear::create([
+            'year' => '2022-2023',
+        ]);
+
+        
         User::factory(700)->create();
         //seed 10 professors
         User::factory(20)->create([
@@ -60,8 +66,6 @@ class DatabaseSeeder extends Seeder
             'approved' => 1,
         ]);
 
-        SchoolYear::create([
-            'year' => '2022-2023',
-        ]);
+        
     }
 }
