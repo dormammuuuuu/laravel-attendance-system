@@ -39,7 +39,7 @@ class ArchivedPagination extends Component
     public function render()
     {
         return view('livewire.admin.archived-pagination', [
-            'data' => User::onlyTrashed()->search([
+            'data' => User::onlyTrashed()->where('role', 'professor')->search([
                 'firstname',
                 'lastname',
                 'username',
