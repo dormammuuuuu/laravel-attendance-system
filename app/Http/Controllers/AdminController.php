@@ -6,12 +6,15 @@ use Carbon\Carbon;
 use App\Models\User;
 use Redirect,Response;
 use App\Models\Classroom;
+use Illuminate\Support\Str;
 use App\Models\ClassSession;
 use Illuminate\Http\Request;
+use App\Mail\ServerDownMailer;
 use App\Models\ClassAttendance;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -142,12 +145,18 @@ class AdminController extends Controller
         if (Hash::check($providedPassword, $hashedPassword)) {
             if (app()->isDownForMaintenance()){
                 Artisan::call('up');
+                
                 return redirect()->route('admin.settings')->with('success', 'Maintenance mode is now turned off.');
             } else {
+                $randomUUID = (string) Str::uuid();
                 Artisan::call('down', [
-                    '--secret' => 'adminonly',
+                    '--secret' => $randomUUID,
                 ]);
-                $url = '/' . 'adminonly';
+                $url = '/' . $randomUUID;
+                $admins = User::where('role', 'admin')->get();
+                foreach ($admins as $admin) {
+                    Mail::to($admin->email)->send(new ServerDownMailer($randomUUID));
+                }
                 return redirect($url)->with('success', 'Maintenance mode is now on.');
             }
         } else {
