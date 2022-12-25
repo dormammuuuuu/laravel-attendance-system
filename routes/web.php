@@ -107,6 +107,8 @@ Route::prefix('admin')->middleware('useraccess')->group(function () {
     Route::get('/settings', 'App\Http\Controllers\AdminController@settings')->name('admin.settings');
         //Admin Maintenance
     Route::post('/maintenance', 'App\Http\Controllers\AdminController@maintenance')->name('admin.maintenance');
+        //Aadmin School Year
+    Route::post('/schoolyear', 'App\Http\Controllers\AdminController@activateSchoolYear')->name('admin.schoolyear');
 });
 
 
@@ -134,5 +136,5 @@ Route::get('/maintenance', 'App\Http\Controllers\AdminController@maintenance')->
 Route::get('/maintenance/off', 'App\Http\Controllers\AdminController@maintenanceOff')->name('maintenance.off');
 
 Route::get('/test', function(){
-    return User::where('school_year_id', '2022-2023')->get();
+    return User::withTrashed()->where('section', 'Graduated')->get();
 });

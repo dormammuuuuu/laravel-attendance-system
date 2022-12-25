@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Carbon\Carbon;
 use App\Models\User;
 use Redirect,Response;
 use App\Models\Classroom;
+use App\Models\SchoolYear;
 use Illuminate\Support\Str;
+use App\Mail\ServerUpMailer;
 use App\Models\ClassSession;
 use Illuminate\Http\Request;
 use App\Mail\ServerDownMailer;
@@ -15,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -134,18 +138,29 @@ class AdminController extends Controller
     }
 
     public function settings(){
-        return view('admin.settings');
+        $currentSchoolYear = SchoolYear::latest()->first()->year;
+        $nextSchoolYear = (int)substr($currentSchoolYear, 0, 4) + 1 . '-' . (int)substr($currentSchoolYear, 5, 4) + 1;
+        return view('admin.settings', compact('currentSchoolYear', 'nextSchoolYear'));
     }
     
     public function maintenance(Request $request)
     {
+        $validatedData = $request->validate([
+            'Password' => 'required',
+        ], [
+            'Password.required' => 'Please enter your password.',
+        ]);
+
         $hashedPassword = Auth::user()->password;
-        $providedPassword = $request->input('Password');
+        $providedPassword = $validatedData['Password'];
         
         if (Hash::check($providedPassword, $hashedPassword)) {
             if (app()->isDownForMaintenance()){
                 Artisan::call('up');
-                
+                $admins = User::where('role', 'admin')->get();
+                foreach ($admins as $admin) {
+                    Mail::to($admin->email)->send(new ServerUpMailer());
+                }
                 return redirect()->route('admin.settings')->with('success', 'Maintenance mode is now turned off.');
             } else {
                 $randomUUID = (string) Str::uuid();
@@ -162,6 +177,73 @@ class AdminController extends Controller
         } else {
             return back()->withErrors([
                 'Password' => 'The password you entered is incorrect.',
+            ]);
+        }
+    }
+
+    public function activateSchoolYear(Request $request)
+    {
+        // Validate the password
+        $validatedData = $request->validate([
+            'syPassword' => 'required',
+        ], [
+            'syPassword.required' => 'Please enter your password.',
+        ]);
+
+        $currentSchoolYear = SchoolYear::latest()->first()->year;
+        $nextSchoolYear = (int)substr($currentSchoolYear, 0, 4) + 1 . '-' . (int)substr($currentSchoolYear, 5, 4) + 1;
+
+        $firstPart = substr($currentSchoolYear, 0, 4);
+
+        // if ($firstPart <= Carbon::now()->format('Y')) {
+        //     return back()->withErrors([
+        //         'syPassword' => 'The next school year could not be activated because the current school year is not yet over.',
+        //     ]);
+        // }
+
+        // Check if the password is correct
+        if (Hash::check($validatedData['syPassword'], Auth::user()->password)) {
+            // Get the current school year and the next school year
+
+            // Create a new school year record for the next school year
+            $schoolYear = new SchoolYear;
+            $schoolYear->year = $nextSchoolYear;
+            $schoolYear->save();
+
+            // Promote all Grade 12
+            $grade12 = User::where('section', 'like', '% 12-%')
+                ->where('role', 'student')
+                ->get();
+            foreach ($grade12 as $user) {
+                $user->section = 'Graduated';
+                $user->save();
+                $user->delete(); // Delete the user
+            }
+
+            // Promote all Grade 11
+            $grade11 = User::where('section', 'like', '% 11-%')
+                ->where('role', 'student')
+                ->get();
+
+
+            // Insert or update records in the users table here
+            foreach ($grade11 as $student) {
+                $newStudent = $student->replicate();
+                $student->student_no = $student->student_no . ' (old)';
+                $student->save();
+                $newStudent->school_year_id = $nextSchoolYear;
+                $newStudent->section = str_replace(' 11-', ' 12-', $student->section);
+                $newStudent->token = Str::random(20);
+                $newStudent->save();
+                $student->delete(); // Delete the old record
+            }
+            
+            // Redirect to the settings page with a success message
+            return redirect()->route('admin.settings')->with('success', 'The next school year has been activated.');
+        } else {
+            // Redirect to the settings page with an error message
+            return back()->withErrors([
+                'syPassword' => 'The password you entered is incorrect.',
             ]);
         }
     }

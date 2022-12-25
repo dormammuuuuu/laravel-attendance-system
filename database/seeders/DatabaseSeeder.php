@@ -24,7 +24,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         
-        User::factory(700)->create();
+        User::factory(700)->create([
+            'username' => null,
+            'password' => null,
+            'email' => null,
+
+        ]);
         //seed 10 professors
         User::factory(20)->create([
             'role' => 'professor',

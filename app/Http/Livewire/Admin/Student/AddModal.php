@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Student;
 
+use App\Models\SchoolYear;
 use App\Models\User;
 use App\Rules\AlphaSpaces;
 use Illuminate\Support\Str;
@@ -52,6 +53,7 @@ class AddModal extends ModalComponent
             'section' => $validatedData['section'],
             'role' => 'student',
             'token' => Str::random(20),
+            'school_year_id' => SchoolYear::latest()->first()->year,
         ];
 
         User::create($data);

@@ -37,16 +37,15 @@
                 @endif
             </x-slot>
         </x-acct-settings-form>
-        {{-- <x-acct-settings-form :action="route('professors.profile.update')" title="System School Year" details="This is the information about your profile that will be displayed on the platform.">
+        <x-acct-settings-form :action="route('admin.schoolyear')" title="System School Year" details="This setting will start the next school year. This will promote all students from their current year and archive all classes from the previous year. Upgrading to the next school year is irreversible.">
             <x-slot name="form">
-                <x-form-group-acct-profile label="First Name" id="FirstName" type="text" value=""/>
-                <div class="row">
-                    <x-form-group-acct-profile label="Last Name" id="LastName" type="text" value=""/>
-                    <x-form-group-acct-profile label="Middle Initial" id="MiddleInitial" type="text" value=""/>
-                </div>
-                <input type="submit" name="profile" class="submit-settings" value="Apply Changes">
+                <p style="margin-bottom: 5px; font-size: 15px;"> Current system school year: <strong>{{$currentSchoolYear}}</strong></p>
+                <p style="margin-bottom: 20px; font-size: 15px;"> Next school year: <strong>{{$nextSchoolYear}}</strong> </p>
+                <x-form-group-acct-profile label="Activating the next school year requires your password. Please enter it and confirm that you wish to proceed." id="syPassword" type="password" value=""/>
+                
+                <input type="submit" name="profile" class="submit-settings" value="Activate Next School Year">
             </x-slot>
-        </x-acct-settings-form> --}}
+        </x-acct-settings-form>
     </div>
     {{-- here --}}
 @endsection
