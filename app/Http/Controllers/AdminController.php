@@ -127,7 +127,7 @@ class AdminController extends Controller
         $session = $class->count();
 
         $temp = ClassAttendance::where(['class_token' => $token, 'attendance_day' => Carbon::now()->format('Y-m-d')])->get();
-        $attendance = $temp->count() / $students * 100;
+        $attendance = ($temp->count() != 0) ? $temp->count() / $students * 100 : 0;
         $attendance = round($attendance);
         return view('admin.class-view', compact('subject', 'students', 'session', 'attendance'));
     }
@@ -195,11 +195,11 @@ class AdminController extends Controller
 
         $firstPart = substr($currentSchoolYear, 0, 4);
 
-        // if ($firstPart <= Carbon::now()->format('Y')) {
-        //     return back()->withErrors([
-        //         'syPassword' => 'The next school year could not be activated because the current school year is not yet over.',
-        //     ]);
-        // }
+        if ($firstPart <= Carbon::now()->format('Y')) {
+            return back()->withErrors([
+                'syPassword' => 'The next school year could not be activated because the current school year is not yet over.',
+            ]);
+        }
 
         // Check if the password is correct
         if (Hash::check($validatedData['syPassword'], Auth::user()->password)) {

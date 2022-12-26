@@ -16,6 +16,7 @@ class ExportAttendanceModal extends ModalComponent
         $class = Classroom::where('class_token', $this->classToken)->first();
         $this->classSection = $class->class_section;
         $this->classSubject = $class->class_name;
+        $this->classSchoolYear = $class->class_school_year;
         $tmp_prof = $class->class_prof;
         $tmp = User::where('token', $tmp_prof)->first();
         $this->professor_name = $tmp->firstname . ' ' . $tmp->lastname;
@@ -27,9 +28,10 @@ class ExportAttendanceModal extends ModalComponent
         $professor_name = $this->professor_name;
         $class_section = $this->classSection;
         $subject = $this->classSubject;
-        $data = User::where([
+        $data = User::withTrashed()->where([
             'section' => $this->classSection,
-            'role' => 'student'
+            'role' => 'student',
+            'school_year_id' => $this->classSchoolYear
         ])->orderBy('lastname', 'asc')->get()->toArray();
         $pdfContent = PDF::loadView('print.individual_attendance', compact('data', 'token', 'professor_name', 'class_section', 'date', 'subject'))->output();
         return response()->streamDownload(
@@ -45,9 +47,10 @@ class ExportAttendanceModal extends ModalComponent
         $date = Carbon::now()->format('Y-m-d');
         $firstday = Carbon::now()->subDays(6)->format('Y-m-d');
         $token = $this->classToken;
-        $data = User::where([
+        $data = User::withTrashed()->where([
             'section' => $this->classSection,
-            'role' => 'student'
+            'role' => 'student',
+            'school_year_id' => $this->classSchoolYear
         ])->orderBy('lastname', 'asc')->get()->toArray();
         $pdfContent = PDF::loadView('print.weekly_attendance', compact('data', 'token', 'professor_name', 'class_section', 'date', 'subject'))->setPaper('A4', 'landscape')->output();
         return response()->streamDownload(

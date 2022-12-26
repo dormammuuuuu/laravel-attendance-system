@@ -15,15 +15,16 @@ class ViewModal extends ModalComponent
     public $student_no;
     public $token;
 
-    public function mount(User $user)
+    public function mount($user)
     {
-        $this->user = $user;
-        $this->student_no = $user->student_no;
-        $this->firstname = $user->firstname;
-        $this->lastname = $user->lastname;
-        $this->middleinitial = $user->middleinitial;
-        $this->section = $user->section;
-        $this->token = $user->token;
+        $pattern = '/\s*\(.*\)/';
+        $this->user = User::withTrashed()->find($user);
+        $this->student_no = preg_replace($pattern, '', $this->user->student_no); 
+        $this->firstname = $this->user->firstname;
+        $this->lastname = $this->user->lastname;
+        $this->middleinitial = $this->user->middleinitial;
+        $this->section = $this->user->section;  
+        $this->token = $this->user->token;
     }
 
     public function render()

@@ -74,7 +74,9 @@ class StudentController extends Controller
 
     public function download($token)
     {
-        $data = User::where('token', $token)->first();
+        $data = User::withTrashed()->where('token', $token)->first();
+        $pattern = '/\s*\(.*\)/';
+        $data->student_no = preg_replace($pattern, '', $data->student_no);
         $pdf = PDF::loadView('print.qr_print', compact('data'));
 
         $customPaper = array(0,0,360, 504);

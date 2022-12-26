@@ -54,13 +54,13 @@ Breadcrumbs::for('archived-profile', function ($trail, $firstname, $lastname, $m
 
 Breadcrumbs::for('class', function ($trail, $subject) {
     $trail->parent('classes');
-    $trail->push($subject->class_name . ' - ' . $subject->class_section);
+    $trail->push($subject->class_name . ' - ' . $subject->class_section . ' ('. $subject->class_school_year .')');
 });
 
 Breadcrumbs::for('professor-class', function($trail, $subject) {
     $token = $subject->class_token;
     $trail->parent('professor-dashboard');
-    $trail->push($subject->class_name . ' - ' . $subject->class_section, route('professors.class.dashboard', $token));
+    $trail->push($subject->class_name . ' - ' . $subject->class_section . ' ('. $subject->class_school_year .')', route('professors.class.dashboard', $token));
 });
 
 Breadcrumbs::for('master-list', function($trail, $subject) {

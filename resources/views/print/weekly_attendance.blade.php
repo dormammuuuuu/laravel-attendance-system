@@ -110,7 +110,7 @@
         <tbody> 
             @foreach ($data as $user)
                 <tr>
-                    <td>{{ $user['student_no'] }}</td>
+                    <td>{{ preg_replace('/\s*\(.*\)/', '', $user['student_no']) }}</td>
                     <td>{{ $user['lastname'] }}, {{ $user['firstname'] }} {{ $user['middleinitial'] }}</td>                  
 
                     @foreach ($date_array as $date)
@@ -123,7 +123,7 @@
 
                                 if ($verifier){
                                     $attendance = App\Models\ClassAttendance::where([
-                                        'student_token' => $user['student_no'],
+                                        'student_token' => preg_replace('/\s*\(.*\)/', '', $user['student_no']),
                                         'attendance_day' => $date,
                                         'class_token' => $token
                                     ])->first();   

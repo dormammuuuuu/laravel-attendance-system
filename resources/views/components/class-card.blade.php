@@ -15,6 +15,7 @@
     <p class="subject name">{{$class->class_name}}</p>
     <p class="subject room">Room number: {{$class->class_room}}</p>
     <p class="subject section">Section: {{$class->class_section}}</p>
+    <p class="subject sy">School Year: {{$class->class_school_year}}</p>
     @if($param == "/admin/classes/")
         <p class="subject prof">Professor: {{$firstname}} {{$middleinitial}}. {{$lastname}}</p>
     @endif

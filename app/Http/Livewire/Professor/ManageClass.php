@@ -31,6 +31,7 @@ class ManageClass extends Component
     {
         $this->classSection = $class->class_section;
         $this->classToken = $class->class_token;
+        $this->classSchoolYear = $class->class_school_year;
     }
 
     public function sortBy($field)
@@ -48,15 +49,17 @@ class ManageClass extends Component
         $temp = Classroom::where('class_token', $this->classToken)->first();
         $subject = $temp->class_name;
         $tmp_prof = $temp->class_prof;
+        $school_year = $temp->class_school_year;
         $tmp = User::where('token', $tmp_prof)->first();
         $professor_name = $tmp->firstname . ' ' . $tmp->lastname;
         $date = Carbon::now()->format('F d, Y');
         $token = $this->classToken;
-        $data = User::where([
+        $data = User::withTrashed()->where([
             'section' => $this->classSection,
-            'role' => 'student'
+            'role' => 'student',
+            'school_year_id' => $school_year
         ])->orderBy('lastname', 'asc')->get()->toArray();
-        $pdfContent = PDF::loadView('print.master_list', compact('data', 'token', 'professor_name', 'class_section', 'date', 'subject'))->output();
+        $pdfContent = PDF::loadView('print.master_list', compact('data', 'token', 'professor_name', 'class_section', 'date', 'subject', 'school_year'))->output();
         return response()->streamDownload(
              fn () => print($pdfContent),
              $class_section . " " . $subject . " - Master List.pdf"
@@ -66,7 +69,11 @@ class ManageClass extends Component
     public function render()
     {
         return view('livewire.professor.manage-class', [
-            'data' => User::where('section', $this->classSection)
+            'data' => User::withTrashed()->where([
+                'section' => $this->classSection,
+                'role' => 'student',
+                'school_year_id' => $this->classSchoolYear
+            ])
             ->search([
                 'student_no',
                 'firstname',

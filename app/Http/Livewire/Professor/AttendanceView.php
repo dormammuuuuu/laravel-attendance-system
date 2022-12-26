@@ -33,6 +33,7 @@ class AttendanceView extends Component
         $this->classDate = request()->segment(5);
         $this->classSection = $class->class_section;
         $this->classToken = $class->class_token;
+        $this->classSchoolYear = $class->class_school_year;
     }
 
     public function sortBy($field)
@@ -48,7 +49,7 @@ class AttendanceView extends Component
     public function render()
     {
         return view('livewire.professor.attendance-view', [
-            'data' => User::where(['section' => $this->classSection, 'role' => 'student'])
+            'data' => User::withTrashed()->where(['section' => $this->classSection, 'role' => 'student', 'school_year_id' => $this->classSchoolYear])
             ->search([
                 'student_no',
                 'firstname',

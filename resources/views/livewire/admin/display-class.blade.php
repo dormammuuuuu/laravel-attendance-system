@@ -2,6 +2,12 @@
     <x-loading-screen />
     <div class="class-search">
         <input id="search" type="text" placeholder="Search" wire:model="search" >
+        <select class="dashboard-sy-select" wire:model="schoolYear">
+            <option value="all">All</option>
+            @foreach ($sy as $year)
+                <option value="{{$year->year}}" {{$loop->last ? 'selected' : ''}}>{{$year->year}}</option>    
+            @endforeach
+        </select>
     </div>
     <div class="class-card-container">
         @if($classes->count() > 0)

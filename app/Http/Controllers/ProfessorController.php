@@ -14,6 +14,7 @@ use App\Models\ClassAttendance;
 use App\Exports\AttendanceExport;
 use App\Mail\ResetPasswordMailer;
 use App\Mail\UpdateEmail;
+use App\Models\SchoolYear;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -124,10 +125,12 @@ class ProfessorController extends Controller
 
     public function classDashboard($token){
         $subject = Classroom::where('class_token', $token)->first();
+        $school_year = SchoolYear::latest()->first()->year;
         
-        $student = User::where([
+        $student = User::withTrashed()->where([
             'role' => 'student',
             'section' => $subject->class_section,
+            'school_year_id' => $subject->class_school_year,
         ])->get();
         $students = $student->count();
 
@@ -142,9 +145,8 @@ class ProfessorController extends Controller
         // dd($sessionToday);
 
         $temp = ClassAttendance::where(['class_token' => $token, 'attendance_day' => Carbon::now()->format('Y-m-d')])->get();
-        $attendance = $temp->count() / $students * 100;
-        $attendance = round($attendance);
-        return view('professors.class', compact('subject', 'students', 'session', 'attendance', 'token', 'sessionToday'));
+        $attendance = ($temp->count() > 0) ? round($temp->count() / $students * 100) : 0;
+        return view('professors.class', compact('subject', 'students', 'session', 'attendance', 'token', 'sessionToday', 'school_year'));
     }
 
     public function manageClass($token){
@@ -197,9 +199,10 @@ class ProfessorController extends Controller
             $subject = Classroom::where('class_token', $token)->first();
             $section = $subject->class_section;
 
-            $students = User::where([
+            $students = User::withTrashed()->where([
                 'role' => 'student',
                 'section' => $section,
+                'school_year_id' => $subject->class_school_year,
             ])->get();
 
             return view('professors.attendance', compact('students', 'subject', 'date'));
@@ -213,9 +216,11 @@ class ProfessorController extends Controller
         $class = Classroom::where('class_token', $token)->get()->toArray();
         $subject = $class[0]['class_name'];
         $section = $class[0]['class_section'];
-        $students = User::where([
+        $schoolYear = $class[0]['class_school_year'];
+        $students = User::withTrashed()->where([
             'role' => 'student',
             'section' => $section,
+            'school_year_id' => $schoolYear,
         ])->orderBy('lastname', 'asc')->get();
         $dates = ClassSession::where('class_token', $token)->orderBy('class_date', 'asc')->get()->toArray();
         $firstDate = $dates[0]['class_date'];

@@ -37,7 +37,7 @@
 
                         @php
                             $attendance = App\Models\ClassAttendance::where([
-                                'student_token' => $student->student_no,
+                                'student_token' => preg_replace('/\s*\(.*\)/', '', $student->student_no),
                                 'attendance_day' => $date,
                                 'class_token' => $token
                             ])->first();   

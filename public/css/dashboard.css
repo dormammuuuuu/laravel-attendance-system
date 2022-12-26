@@ -217,9 +217,13 @@
 }
 
 .action-container {
-  width: 100%;
+  width: -webkit-fill-available;
+  width: -moz-available;
   margin-top: 40px;
   margin-left: 30px;
+  margin-right: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 .action-container.bottom {
   margin-bottom: 20px;
@@ -437,6 +441,10 @@
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 5px;
+}
+
+.dashboard-sy-select {
+  max-width: 200px;
 }
 
 .present, .late, .absent {
@@ -666,6 +674,22 @@
 @media screen and (max-width: 500px) {
   .row {
     display: block;
+  }
+  .action-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .action-container .action {
+    margin-bottom: 10px;
+  }
+  .action-container .styled-button {
+    margin-top: 20px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .dashboard-sy-select {
+    max-width: 100%;
   }
   .prof-class .subject-card-container {
     grid-gap: 10px;

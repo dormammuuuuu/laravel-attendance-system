@@ -32,6 +32,7 @@ class ClassCalendar extends LivewireCalendar
             $this->saved_token = $this->token;
         }
 
+        
 
         $this->user_events = ClassSession::where('class_token', $this->saved_token)
         ->whereDate('class_date', '>=', $this->gridStartsAt)
@@ -43,7 +44,7 @@ class ClassCalendar extends LivewireCalendar
                 'attendance_day' => $class->class_date])
                 ->count();
             $tmp = Classroom::where('class_token', $this->saved_token)->first();
-            $section = User::where(['section' => $tmp->class_section, 'role' => "student"])->count();
+            $section = User::withTrashed()->where(['section' => $tmp->class_section, 'role' => "student", 'school_year_id' => $tmp->class_school_year])->count();
             $percent = ($perDay / $section) * 100;
 
             return [

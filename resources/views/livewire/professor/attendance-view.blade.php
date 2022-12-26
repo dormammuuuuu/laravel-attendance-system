@@ -20,13 +20,14 @@
             @endif
             @foreach ($data as $user)
                 <tr>
-                    <td data-label="Student number">{{ $user->student_no }}</td>
+                    <td data-label="Student number">{{ preg_replace('/\s*\(.*\)/', '', $user->student_no) }}</td>
                     <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
                     <td data-label="Section">{{ $user->section }}</td>
                     <td data-label="Status" data-token="{{ $user->token }}">
                         @php
+                            $pattern = '/\s*\(.*\)/';
                             $attendance = App\Models\ClassAttendance::where([
-                                'student_token' => $user->student_no,
+                                'student_token' => preg_replace($pattern, '', $user->student_no),
                                 'attendance_day' => $classDate,
                                 'class_token' => $classToken
                             ])->first();   

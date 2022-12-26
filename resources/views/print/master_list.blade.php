@@ -74,6 +74,7 @@
             </tr>
             <tr>
                 <td>Number of Sessions: {{$sessions}}</td>
+                <td>School Year: {{$school_year}}</td>
             </tr>
         </table>
     </div>
@@ -90,7 +91,7 @@
             @foreach ($data as $user)
                 @php
                     $attendance = App\Models\ClassAttendance::where([
-                        'student_token' => $user['student_no'],
+                        'student_token' => preg_replace('/\s*\(.*\)/', '', $user['student_no']),
                         'class_token' => $token,
                     ])->get()->count();
                     if ($attendance == 0) {
@@ -100,7 +101,7 @@
                     }
                 @endphp
                 <tr>
-                    <td>{{ $user['student_no'] }}</td>
+                    <td>{{ preg_replace('/\s*\(.*\)/', '', $user['student_no']) }}</td>
                     <td>{{ $user['lastname'] }}, {{ $user['firstname'] }} {{ $user['middleinitial'] }}</td>
                     <td>{{ $attendance }}</td>
                     <td>{{ $sessions - $attendance }}</td>

@@ -28,10 +28,6 @@
     </x-sidebar.sidebar>
     <div id="main">
         <x-navbar.navbar title="Dashboard" />
-        <div class="action-container bottom">
-            <button class="styled-button" onclick="Livewire.emit('openModal', 'professor.create-class')"><i class='bx bx-plus'></i> Create Class</button>
-        </div>
         @livewire('professor.display-class')
     </div>
-    {{-- here --}}
 @endsection

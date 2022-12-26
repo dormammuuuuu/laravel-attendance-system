@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('class_room');
             $table->string('class_section');
             $table->string('class_token');
+            $table->string('class_school_year');
         });
     }
 

@@ -26,10 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Builder::macro('search', function ($field, $string){
-        //     return $string ? $this->where($field, 'like', '%'.$string.'%') : $this;
-        // });
-        // Debugbar::disable(); 
 
         Builder::macro('search', function ($fields, $string){
             $this->where(function ($query) use ($fields, $string) {
@@ -39,16 +35,6 @@ class AppServiceProvider extends ServiceProvider
             });
             return $this;
         });
-        /*
-        Builder::macro('search', function ($fields, $string){
-            $this->where(function (Builder $query) use ($fields, $string) {
-                foreach (Arr::wrap($fields) as $attribute) {
-                    $query->orWhere($attribute, 'LIKE', "%{$string}%");
-                }
-            });
-
-            return $this;
-        });*/
 
         Paginator::defaultView('pagination::default');
  
