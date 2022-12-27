@@ -23,10 +23,25 @@ class EditModal extends ModalComponent
             'firstname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'middleinitial' => 'min:0|max:1',
             'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
-            'student_no' => 'required|min:3|max:30|unique:users,student_no,' . $this->user->id . ',id',
+            'student_no' => 'required|min:3|max:30|unique:users,student_no,' . $this->user->id . ',id|regex:/^02[0-9]{9}$/',
             'section' => 'required',
         ]);
     }
+
+    public function messages()
+    {
+        return [
+            'student_no.regex' => 'The :attribute must be a valid student ID.',
+        ];
+    }
+
+    protected $validationAttributes = [
+        'firstname' => 'first name',
+        'middleinitial' => 'middle initial',
+        'lastname' => 'last name',
+        'student_no' => 'student number',
+        'section' => 'section',
+    ];
 
     public function update()
     {

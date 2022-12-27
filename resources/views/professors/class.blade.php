@@ -48,6 +48,7 @@
                 @endif
                 <x-action-card target="" label="Master list" desc="View the student list and export data, including the attendance for the entire semester." link="/professor/class/{{$subject->class_token}}/manage"/>
                 <x-action-card target="" label="Calendar" desc="View student attendance at the calendar" link="/professor/class/{{$subject->class_token}}/calendar"/>
+                
                 @if (auth()->user()->token == $subject->class_prof || auth()->user()->role == 'admin')
                     <x-action-card target="" label="Delete" desc="This option will delete your class and all of its records. Delete at your own risk." link="/professor/class/{{$subject->class_token}}/delete"/>
                 @endif

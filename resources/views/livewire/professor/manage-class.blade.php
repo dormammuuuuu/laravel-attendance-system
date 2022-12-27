@@ -9,7 +9,8 @@
         <thead>
             <th sortable wire:click="sortBy('student_no')">Student Number <i class='bx bxs-sort-alt'></i></th>
             <th sortable wire:click="sortBy('lastname')">Name <i class='bx bxs-sort-alt'></i></th>
-            <th sortable wire:click="sortBy('section')">Year & Section <i class='bx bxs-sort-alt'></i></th>
+            <th sortable>Days Present</th>
+            <th sortable>Days Absent</th>
             <th sortable>Attendance</th>
             <th>Actions</th>
         </thead>
@@ -40,7 +41,8 @@
                 <tr>
                     <td data-label="Student number">{{ preg_replace($pattern, '', $user->student_no) }}</td>
                     <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
-                    <td data-label="Section">{{ $user->section }}</td>
+                    <td data-label="Days Present">{{ $attendance }}</td>
+                    <td data-label="Days Absent" class="{{ ($classSessionCount - $attendance >= 3) ? "warning" : "" }}">{{ $classSessionCount - $attendance }}</td>
                     <td data-label="Attendance">{{ $percentage }}%</td>
                     <td data-label="Action" data-token="{{ $user->token }}">
                         <button class="action view" wire:click="$emit('openModal', 'professor.view-modal', {{ json_encode([$user->id]) }})">View</button>

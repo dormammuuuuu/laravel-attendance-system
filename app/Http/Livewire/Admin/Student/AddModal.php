@@ -23,7 +23,7 @@ class AddModal extends ModalComponent
             'firstname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'middleinitial' => 'min:0|max:1',
             'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
-            'student_no' => 'required|min:3|max:30|unique:users,student_no',
+            'student_no' => 'required|min:3|max:30|unique:users,student_no|regex:/^02[0-9]{9}$/',
             'section' => 'required',
         ];
     }
@@ -31,6 +31,13 @@ class AddModal extends ModalComponent
     public function updated($field)
     {
         $this->validateOnly($field);
+    }
+
+    public function messages()
+    {
+        return [
+            'student_no.regex' => 'The :attribute must be a valid student ID.',
+        ];
     }
 
     protected $validationAttributes = [

@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use \PDF;
 use App\Models\Classroom;
+use App\Models\ClassSession;
 use App\Models\ClassStudent;
 use Livewire\WithPagination;
 
@@ -19,7 +20,7 @@ class ManageClass extends Component
     public $sortDirection = 'asc';
     public $classSection;
     public $classToken;
-
+    public $classSessionCount;
     public $listeners = ['refreshProfessors' => 'render'];
 
     public function paginationView()
@@ -32,6 +33,7 @@ class ManageClass extends Component
         $this->classSection = $class->class_section;
         $this->classToken = $class->class_token;
         $this->classSchoolYear = $class->class_school_year;
+        $this->classSessionCount = ClassSession::where('class_token', $this->classToken)->get()->count();
     }
 
     public function sortBy($field)

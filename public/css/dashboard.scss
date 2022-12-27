@@ -459,10 +459,43 @@ $midnight: #2c3e50;
         font-weight: 600;
         margin-bottom: 5px;
     }
+
+    .qr-form{
+        .field{
+            border: 1px solid rgba(0,0,0,0.5);
+            border-radius: 5px;
+            padding: 10px;
+            outline: none;
+            width: 249px;
+        }
+        .submit{
+            background: #00204A;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            outline: none;
+        }
+        .error{
+            color: #ff4444;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+    }
 }
 
 .dashboard-sy-select{
     max-width: 200px;
+}
+
+.warning{
+    color: red;
 }
 
 .present{

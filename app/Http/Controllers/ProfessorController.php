@@ -142,8 +142,6 @@ class ProfessorController extends Controller
             'class_date' => Carbon::now()->format('Y-m-d'),
         ])->first();
 
-        // dd($sessionToday);
-
         $temp = ClassAttendance::where(['class_token' => $token, 'attendance_day' => Carbon::now()->format('Y-m-d')])->get();
         $attendance = ($temp->count() > 0) ? round($temp->count() / $students * 100) : 0;
         return view('professors.class', compact('subject', 'students', 'session', 'attendance', 'token', 'sessionToday', 'school_year'));
