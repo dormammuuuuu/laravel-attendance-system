@@ -30,6 +30,58 @@ class QrLive extends Component
         'qrlive' => 'QR Code or Student number',
     ];
 
+    public function excused($token){
+        $user = User::find($token);
+
+        if (!$user){
+            $this->addError('qrlive', 'User not found');
+            return;
+        }
+
+        $data = [
+            'student_token' => $user->student_no,
+            'class_token' => $this->subject,
+            'attendance_day' => now()->format('Y-m-d'),
+            'status' => 'excused'
+        ];
+
+        $this->firstname = $user->firstname;
+        $this->lastname = $user->lastname;
+        $this->middleinitial = $user->middleinitial;
+        $this->student_no = $user->student_no;
+        $this->status = 'excused';
+        $qr_student_section = $user->section;
+
+        $validateSection = Classroom::where([
+            'class_token' => $data['class_token'],
+            'class_section' => $qr_student_section,
+        ])->first();
+
+        if (!$validateSection){
+            $this->addError('qrlive', 'Student not allowed to attend this class');
+            return;
+        }
+
+        if ($user) {
+            $test = ClassAttendance::where([
+                ['student_token', $this->qrlive],
+                ['class_token', $this->subject],
+                ['attendance_day', Carbon::now()->format('Y-m-d')],
+            ])->first();
+
+            if ($test) {
+                $this->addError('qrlive', 'Student already scanned' );
+            } else {       
+                ClassAttendance::create($data); 
+                $this->show = "show";
+            }
+    
+        } else {
+            $this->addError('qrlive', 'QR Code or Student number is invalid.');
+        }
+        $this->qrlive = '';   
+    }
+
     public function qrCode(){
         $this->firstname = "";
         $this->lastname = "";
@@ -94,7 +146,9 @@ class QrLive extends Component
         } else {
             $this->addError('qrlive', 'QR Code or Student number is invalid.');
         }
-        $this->qrlive = '';        
+        $this->qrlive = '';     
+        //Refresh component
+        // $this->emit('refreshComponent');
     }
 
     public function mount($token){
@@ -102,11 +156,19 @@ class QrLive extends Component
         $temp = ClassSession::where('class_token', $token)->first();
         $this->lateTime = $temp->class_late;
         $this->endTime = $temp->class_end_time;
+        $this->classroom = Classroom::where('class_token', $token)->first();
     }
-
 
     public function render()
     {
-        return view('livewire.qr.qr-live');
+        $this->students = User::where([
+            'role' => 'student',
+            'section' => $this->classroom->class_section,
+            'school_year_id' => $this->classroom->class_school_year,
+        ])->get();
+
+        return view('livewire.qr.qr-live', [
+            'data' => $this->students,
+        ]);
     }
 }

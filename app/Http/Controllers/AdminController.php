@@ -194,7 +194,7 @@ class AdminController extends Controller
         $nextSchoolYear = (int)substr($currentSchoolYear, 0, 4) + 1 . '-' . (int)substr($currentSchoolYear, 5, 4) + 1;
 
         $firstPart = substr($currentSchoolYear, 0, 4);
-
+        
         if ($firstPart <= Carbon::now()->format('Y')) {
             return back()->withErrors([
                 'syPassword' => 'The next school year could not be activated because the current school year is not yet over.',

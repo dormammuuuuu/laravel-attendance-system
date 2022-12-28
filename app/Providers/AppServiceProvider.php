@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Debugbar::disable();
+        // Debugbar::disable();
         Builder::macro('search', function ($fields, $string){
             $this->where(function ($query) use ($fields, $string) {
                 foreach ($fields as $field) {

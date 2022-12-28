@@ -131,6 +131,8 @@
                                     if ($attendance) {
                                         if ($attendance->status == 'present'){
                                             echo '<div class="present">Present</div>';
+                                        } else if ($attendance->status == 'excused'){
+                                            echo '<div class="excused">Excused</div>';
                                         } else {
                                             echo '<div class="late">Late</div>';
                                         }

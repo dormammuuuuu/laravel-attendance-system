@@ -356,20 +356,116 @@ $midnight: #2c3e50;
     }
 }
 
+.scanner-dashboard{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    gap: 20px;
+    justify-content: center;
+    .list{
+        max-height: 80vh;
+        max-width: 400px;
+        width: 100%;
+        overflow-y: auto;
+        background-color: white;
+        border-radius: 5px;
+        padding: 20px;
+        padding-top: 0;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        .item{
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .action{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                i{
+                    font-size: 20px;
+                    color: rgba(0,0,0,0.2);
+                    cursor: pointer;
+                    &:hover{
+                        color: rgba(0,0,0,0.5);
+                    }
+                }
+            }
+            .status{
+                width: 70px;
+                text-align: center;
+                font-size: 10px;
+                font-weight: 500;
+                color: white;
+                letter-spacing: 1px;
+                &.Present{
+                    background-color: #00C851;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                }
+                &.Absent{
+                    background-color: #FF4444;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                }
+                &.Late{
+                    background-color: #ffaa00;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                }
+                &.Excused{
+                    background-color: #4d4d4d;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                }
+            }
+            .student-number{
+                font-size: 14px;
+                font-weight: 500;
+                color: rgba(0,0,0,0.5);
+                letter-spacing: 1px;
+            }
+        }
+        &::-webkit-scrollbar{
+            width: 5px;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .heading{
+            font-size: 18px;
+            font-weight: 600;
+            color: #00204A;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            left: 0;
+            background-color: white;
+            padding-top: 20px;
+        }
+
+    }
+
+    .scanner-cam{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
 .scanner-container{
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    margin: auto;
     width: fit-content;
-    margin-top: 30px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
     #preview{
         width: 350px;
-        height: 300px;
+        height: 350px;
         object-fit: cover;
         border-radius: 5px;
         transform: scaleX(-1);
@@ -423,7 +519,7 @@ $midnight: #2c3e50;
     width: 392px;
     box-shadow: 0 0 5px rgb(0 0 0 / 10%);
     padding: 20px;
-    margin-top: 10px;
+    margin-top: 0;
     background: white;
     border-radius: 5px;
     display: none;
@@ -434,6 +530,15 @@ $midnight: #2c3e50;
         background-color: #76eba585;
         color: green;
         border: 1px solid green;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+    .excused{
+        background-color: #aaaaaa5e;
+        color: rgba($color: #000000, $alpha: 0.7);
+        border: 1px solid #4d4d4d;
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 15px;
@@ -517,6 +622,11 @@ $midnight: #2c3e50;
 .late {
     @extend .present;
     background-color: #ffaa00;
+}
+
+.excused {
+    @extend .present;
+    background-color: #4d4d4d;
 }
 
 .error{

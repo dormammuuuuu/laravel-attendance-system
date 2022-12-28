@@ -33,6 +33,7 @@ class StudentRegistrationForm extends Component
             'student_no' => 'required|max:30|min:2|unique:users,student_no|regex:/^02[0-9]{9}$/',
         ];
     }
+    
 
     public function updated($field)
     {
