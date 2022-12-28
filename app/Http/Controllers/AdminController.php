@@ -117,7 +117,7 @@ class AdminController extends Controller
     public function classView($token){
         $subject = Classroom::where('class_token', $token)->first();       
 
-        $student = User::where([
+        $student = User::withTrashed()->where([
             'role' => 'student',
             'section' => $subject->class_section,
         ])->get();
