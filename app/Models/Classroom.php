@@ -18,6 +18,9 @@ class Classroom extends Model
         'class_section',
         'class_token',
         'class_school_year',
+        'class_days',
+        'class_start_time',
+        'class_end_time',
     ];
 
     public function students()

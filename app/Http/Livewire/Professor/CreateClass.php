@@ -7,20 +7,61 @@ use App\Models\Classroom;
 use App\Models\SchoolYear;
 use Illuminate\Support\Str;
 use LivewireUI\Modal\ModalComponent;
+use App\Rules\ClassEndAfterClassStart;
 
 class CreateClass extends ModalComponent
 {
     public $class_name;
     public $class_room;
     public $class_section;
+    public $class_start;
+    public $class_end;
+    public $days = [];
     public $schoolYear;
     public $dropdown;
+    public $track;
+    public $monday, $tuesday, $wednesday, $thursday, $friday;
+
+    public function updatedTrack($data){
+        $this->class_section = $data;
+    }
+
+    public $messages = [
+        'class_end.after_or_equal' => 'The :attribute field must be at least 1 hour after the :other field.',
+    ];
 
     public function updated($field){
+        $checked_days = [];
+
+        if ($this->monday) {
+            $checked_days[] = 'Monday';
+        }
+        
+        if ($this->tuesday) {
+            $checked_days[] = 'Tuesday';
+        }
+
+        if ($this->wednesday) {
+            $checked_days[] = 'Wednesday';
+        }
+
+        if ($this->thursday) {
+            $checked_days[] = 'Thursday';
+        }
+
+        if ($this->friday) {
+            $checked_days[] = 'Friday';
+        }
+
+        $this->days = implode(', ', $checked_days);
+
         $this->validateOnly($field, [
             'class_name' => 'required|min:3|max:30',
             'class_room' => 'required|numeric',
             'class_section' => 'required',
+            'days' => 'required',
+            'class_start' => 'required',
+            'class_end' => ['required', new ClassEndAfterClassStart($this->class_start)],
         ]);
     }
 
@@ -31,10 +72,37 @@ class CreateClass extends ModalComponent
     }
 
     public function createClass(){
+        $checked_days = [];
+
+        if ($this->monday) {
+            $checked_days[] = 'Monday';
+        }
+        
+        if ($this->tuesday) {
+            $checked_days[] = 'Tuesday';
+        }
+
+        if ($this->wednesday) {
+            $checked_days[] = 'Wednesday';
+        }
+
+        if ($this->thursday) {
+            $checked_days[] = 'Thursday';
+        }
+
+        if ($this->friday) {
+            $checked_days[] = 'Friday';
+        }
+
+        $this->days = implode(', ', $checked_days);
+
         $this->validate([
             'class_name' => 'required|min:3|max:30',
             'class_room' => 'required|numeric',
             'class_section' => 'required',
+            'days' => 'required',
+            'class_start' => 'required',
+            'class_end' => ['required', new ClassEndAfterClassStart($this->class_start)],
         ]);
 
         $data = [
@@ -44,8 +112,11 @@ class CreateClass extends ModalComponent
             'class_prof' => auth()->user()->token,
             'class_token' => Str::random(20),
             'class_school_year' => $this->schoolYear,
+            'class_days' => $this->days,
+            'class_start_time' => $this->class_start,
+            'class_end_time' => $this->class_end,
         ];
-
+        
         Classroom::create($data);
         $this->closeModal();
         return redirect(request()->header('Referer'))->with('success', 'Class created successfully!');

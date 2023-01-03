@@ -30,7 +30,7 @@ class StudentRegistrationForm extends Component
             'lastname' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'middleinitial' => 'min:0|max:1',
             'course' => 'required',
-            'student_no' => 'required|max:30|min:2|unique:users,student_no|regex:/^02[0-9]{9}$/',
+            'student_no' => 'required|max:30|min:2|regex:/^02[0-9]{9}$/',
         ];
     }
     

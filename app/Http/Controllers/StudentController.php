@@ -25,37 +25,25 @@ class StudentController extends Controller
             'LastName' => ['required', 'max:30', 'min:2', new AlphaSpaces],
             'MiddleInitial' => 'min:0|max:1',
             'Course' => 'required',
-            // 'g-recaptcha-response' => 'required|captcha',
-            'StudentNumber' => 'required|max:30|min:2|unique:users,student_no',
-        ],
-        //  [
-        //     'g-recaptcha-response.required' => 'Captcha is required',
-        //     'g-recaptcha-response.captcha' => 'Captcha is invalid',
-        // ]
-        );
+            'StudentNumber' => 'required|max:30|min:2',
+        ]);
 
         $studentNumber = $request->input('StudentNumber');
-        $data = User::where('student_no', $studentNumber)->first();
-        if($data){
-            $token = $data->token;
-            return redirect('/student/'.$token.'/qrcode');
-    }
-
-        $token = Str::random(20);
-
-        $user = ([
+        $data = User::where([
+            'student_no' => $studentNumber,
             'firstname' => $request->FirstName,
             'lastname' => $request->LastName,
             'middleinitial' => $request->MiddleInitial,
-            'email' => null,
-            'student_no' => $request->StudentNumber,
             'section' => $request->Course,
-            'token' => $token
-        ]);
+        ])->first();
+        
 
-        User::create($user);
-
-        return redirect('/student/'.$token.'/qrcode');
+        if (!$data){
+            return redirect()->back()->with('error', 'Invalid Details. Please try again.');
+        }else{
+            $token = $data->token;
+            return redirect('/student/'.$token.'/qrcode');
+        }
     }
 
     public function destroy($token)

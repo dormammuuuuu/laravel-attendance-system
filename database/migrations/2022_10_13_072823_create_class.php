@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('class_section');
             $table->string('class_token');
             $table->string('class_school_year');
+            $table->string('class_days');
+            $table->time('class_start_time');
+            $table->time('class_end_time');
         });
     }
 

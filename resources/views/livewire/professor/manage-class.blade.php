@@ -11,7 +11,8 @@
             <th sortable wire:click="sortBy('lastname')">Name <i class='bx bxs-sort-alt'></i></th>
             <th sortable>Days Present</th>
             <th sortable>Days Absent</th>
-            <th sortable>Attendance</th>
+            <th sortable>Days Late</th>
+            <th sortable>Days Excused</th>
             <th>Actions</th>
         </thead>
         <tbody> 
@@ -28,22 +29,33 @@
             @foreach ($data as $user)
                 @php
                     $pattern = '/\s*\(.*\)/';
-                    $attendance = App\Models\ClassAttendance::where([
+                    $present = App\Models\ClassAttendance::where([
                         'student_token' => preg_replace($pattern, '', $user->student_no),
-                        'class_token' => $classToken
+                        'class_token' => $classToken,
+                        'status' => 'present'
                     ])->get()->count();
-                    if ($attendance == 0) {
-                        $percentage = 0;
-                    } else {
-                        $percentage = ($attendance / $sessions) * 100;
-                    }
+
+                    $late = App\Models\ClassAttendance::where([
+                        'student_token' => preg_replace($pattern, '', $user->student_no),
+                        'class_token' => $classToken,
+                        'status' => 'late'
+                    ])->get()->count();
+
+                    $excused = App\Models\ClassAttendance::where([
+                        'student_token' => preg_replace($pattern, '', $user->student_no),
+                        'class_token' => $classToken,
+                        'status' => 'excused'
+                    ])->get()->count();
+
+                    $absent = $classSessionCount - ($present + $late + $excused);
                 @endphp
                 <tr>
                     <td data-label="Student number">{{ preg_replace($pattern, '', $user->student_no) }}</td>
                     <td data-label="Name">{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middleinitial }}</td>
-                    <td data-label="Days Present">{{ $attendance }}</td>
-                    <td data-label="Days Absent" class="{{ ($classSessionCount - $attendance >= 3) ? "warning" : "" }}">{{ $classSessionCount - $attendance }}</td>
-                    <td data-label="Attendance">{{ $percentage }}%</td>
+                    <td data-label="Days Present">{{ $present }}</td>
+                    <td data-label="Days Absent" class="{{ ($absent >= 3) ? "warning" : "" }}">{{ $absent }}</td>
+                    <td data-label="Days Late">{{ $late }}</td>
+                    <td data-label="Days Excused">{{ $excused }}</td>
                     <td data-label="Action" data-token="{{ $user->token }}">
                         <button class="action view" wire:click="$emit('openModal', 'professor.view-modal', {{ json_encode([$user->id]) }})">View</button>
                     </td>

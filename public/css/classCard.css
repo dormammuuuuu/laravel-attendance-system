@@ -43,6 +43,16 @@
   font-weight: 400;
   color: #00204a;
 }
+.class-card .subject.days {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #00204a;
+}
+.class-card .subject.time {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #00204a;
+}
 .class-card:hover {
   transform: scale(1.03);
   background-color: rgba(0, 187, 240, 0.5);

@@ -82,30 +82,43 @@
         <thead>
             <th>Student Number</th>
             <th>Name</th>
-            <th>Days Present</th>
-            <th>Days Absent</th>
-            <th>Attendance %</th>
+            <th>Present</th>
+            <th>Absent</th>
+            <th>Late</th>
+            <th>Excused</th>
         </thead>
         <tbody> 
             
             @foreach ($data as $user)
                 @php
-                    $attendance = App\Models\ClassAttendance::where([
-                        'student_token' => preg_replace('/\s*\(.*\)/', '', $user['student_no']),
+                    $pattern = '/\s*\(.*\)/';
+                    $present = App\Models\ClassAttendance::where([
+                        'student_token' => preg_replace($pattern, '', $user['student_no']),
                         'class_token' => $token,
+                        'status' => 'present'
                     ])->get()->count();
-                    if ($attendance == 0) {
-                        $percentage = 0;
-                    } else {
-                        $percentage = ($attendance / $sessions) * 100;
-                    }
+
+                    $late = App\Models\ClassAttendance::where([
+                        'student_token' => preg_replace($pattern, '', $user['student_no']),
+                        'class_token' => $token,
+                        'status' => 'late'
+                    ])->get()->count();
+
+                    $excused = App\Models\ClassAttendance::where([
+                        'student_token' => preg_replace($pattern, '', $user['student_no']),
+                        'class_token' => $token,
+                        'status' => 'excused'
+                    ])->get()->count();
+
+                    $absent = $sessions - ($present + $late + $excused);
                 @endphp
                 <tr>
                     <td>{{ preg_replace('/\s*\(.*\)/', '', $user['student_no']) }}</td>
                     <td>{{ $user['lastname'] }}, {{ $user['firstname'] }} {{ $user['middleinitial'] }}</td>
-                    <td>{{ $attendance }}</td>
-                    <td>{{ $sessions - $attendance }}</td>
-                    <td>{{ $percentage }}%</td>
+                    <td>{{ $present }}</td>
+                    <td>{{ $absent }}</td>
+                    <td>{{ $late }}</td>
+                    <td>{{ $excused }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -164,19 +164,32 @@ class ProfessorController extends Controller
     }
 
     public function startClass(Request $request, $token){
+        $subject = Classroom::where('class_token', $token)->first();
+        if (!in_array(Carbon::now()->format('l'), array_map('trim', explode(',', $subject->class_days)))){
+            return redirect()->route('professors.class.dashboard', $token)->with('error', 'No scheduled class for today');
+        }
+
+        if (Carbon::parse($subject->class_start_time)->greaterThan(Carbon::now()->format('H:i:s'))){
+            return redirect()->route('professors.class.dashboard', $token)->with('error', 'The class for today has not started yet');
+        }        
+
         $attempt = ClassSession::where([
             'class_token' => $token,
             'class_date' => Carbon::now()->format('Y-m-d'),
         ])->first();
 
-        // Redirect if the class has already ended
-        $currentTime = Carbon::now()->format('Y-m-d H:i:s');
-        $endTime = Carbon::parse($attempt->class_date . ' ' . $attempt->class_end_time)->format('Y-m-d H:i:s');
-        if (Carbon::parse($currentTime)->greaterThan(Carbon::parse($endTime))) {
-            return redirect()->route('professors.class.dashboard', $token)->with('error', 'The class for today has already ended');
-        } 
-
-        $subject = Classroom::where('class_token', $token)->first();
+        if ($attempt) {
+            // Redirect if the class has already ended
+            $currentTime = Carbon::now()->format('Y-m-d H:i:s');
+            $endTime = Carbon::parse($attempt->class_date . ' ' . $attempt->class_end_time)->format('Y-m-d H:i:s');
+            if (Carbon::parse($currentTime)->greaterThan(Carbon::parse($endTime))) {
+                return redirect()->route('professors.class.dashboard', $token)->with('error', 'The class for today has already ended');
+            } 
+        } else {
+            if (Carbon::parse($subject->class_end_time)->lessThan(Carbon::now()->format('H:i:s'))) {
+                return redirect()->route('professors.class.dashboard', $token)->with('error', 'Session missed');
+            }
+        }       
         $token = $subject->class_token;
         return view('professors.start-class', compact('subject', 'token'));
     }

@@ -322,6 +322,7 @@
   font-weight: 600;
   color: #00204A;
   margin-bottom: 5px;
+  text-align: left;
 }
 .prof-class a .action-card .description, .prof-class button .action-card .description {
   font-size: 14px;

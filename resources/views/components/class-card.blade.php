@@ -16,6 +16,8 @@
     <p class="subject room">Room number: {{$class->class_room}}</p>
     <p class="subject section">Section: {{$class->class_section}}</p>
     <p class="subject sy">School Year: {{$class->class_school_year}}</p>
+    <p class="subject days">Schedule: {{$class->class_days}}</p>
+    <p class="subject time">Time: {{ \Carbon\Carbon::parse($class->class_start_time)->format('h:i A')}} - {{\Carbon\Carbon::parse($class->class_end_time)->format('h:i A')}}</p>
     @if($param == "/admin/classes/")
         <p class="subject prof">Professor: {{$firstname}} {{$middleinitial}}. {{$lastname}}</p>
     @endif

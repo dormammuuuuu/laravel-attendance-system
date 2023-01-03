@@ -13,6 +13,8 @@ class QrLive extends Component
 {
     public $qrlive;
     public $subject;
+    public $classroom;
+    public $students;
     public $firstname = "";
     public $lastname = "";
     public $middleinitial = "";
@@ -165,7 +167,7 @@ class QrLive extends Component
             'role' => 'student',
             'section' => $this->classroom->class_section,
             'school_year_id' => $this->classroom->class_school_year,
-        ])->get();
+        ])->orderBy('lastname', 'asc')->get();
 
         return view('livewire.qr.qr-live', [
             'data' => $this->students,
