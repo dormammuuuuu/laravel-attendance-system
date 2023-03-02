@@ -369,8 +369,7 @@ input {
 .about__img {
   width: 200px;
   justify-self: center;
-  -webkit-animation: floating 2s ease-in-out infinite;
-          animation: floating 2s ease-in-out infinite;
+  animation: floating 2s ease-in-out infinite;
 }
 
 /* TRICK OR TREAT */
@@ -434,7 +433,6 @@ input {
   }
   .home__buttons {
     flex-direction: column;
-    width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
     row-gap: 1rem;
@@ -466,8 +464,8 @@ input {
     height: calc(var(--header-height) + 1.5rem);
   }
   .nav__img,
-.nav__close,
-.nav__toggle {
+  .nav__close,
+  .nav__toggle {
     display: none;
   }
   .nav__list {
@@ -492,7 +490,7 @@ input {
     align-items: center;
   }
   .about__title,
-.about__data {
+  .about__data {
     text-align: initial;
   }
   .about__img {
@@ -515,6 +513,7 @@ input {
   .home__content {
     padding-top: 11rem;
     gap: 5rem;
+    align-items: center;
   }
   .home__group {
     padding-top: 0;
@@ -562,17 +561,6 @@ input {
   }
 }
 /* KEYFRAMES */
-@-webkit-keyframes floating {
-  0% {
-    transform: translate(0, 0px);
-  }
-  50% {
-    transform: translate(0, 15px);
-  }
-  100% {
-    transform: translate(0, 0px);
-  }
-}
 @keyframes floating {
   0% {
     transform: translate(0, 0px);

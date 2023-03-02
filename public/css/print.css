@@ -22,7 +22,6 @@
 .qr-image {
   padding: 10px;
   border-radius: 10px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: white;

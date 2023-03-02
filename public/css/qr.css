@@ -11,7 +11,6 @@
 
 #qr-container {
   padding: 20px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   min-width: 300px;
@@ -40,7 +39,6 @@
 }
 #qr-container #qr-card .qr-image {
   border-radius: 10px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: white;

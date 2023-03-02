@@ -20,5 +20,5 @@ This is a simple attendnace system with QR Scanner. It is a web application that
 1. Run `php artisan serve`
 2. Open the application in your browser
 3. Login using the following credentials:
-    - Email: `admin@ashmr.com`
-    - Password: `admin`
+    - Username: `admin1`
+    - Password: `admin1`

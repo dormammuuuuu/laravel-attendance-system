@@ -97,7 +97,6 @@
   justify-content: center;
   align-items: center;
   list-style: none;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 5px;
@@ -256,7 +255,6 @@
   padding: 0 30px;
   padding-top: 30px;
   margin: auto;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -420,7 +418,6 @@
   font-weight: 600;
   color: #00204A;
   margin-bottom: 20px;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   left: 0;
@@ -438,10 +435,8 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   display: flex;
@@ -485,7 +480,6 @@
 }
 
 .qr-download {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin: auto;
@@ -642,7 +636,6 @@
   padding-left: 2em;
   padding-right: 1em;
   line-height: 2;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   cursor: pointer;
@@ -825,7 +818,6 @@
   }
   .action-container .styled-button {
     margin-top: 20px;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
   }
